@@ -1,0 +1,12 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="book-area" >
+    <image bindtap="tapBook"data-book_id="{{item.book_name}}" wx:for="{{bookInfo}}" wx:key="id" wx:for-index="id" wx:for-item="item" class="cover-img" mode="widthFix" src="{{item.book_cover_img}}" >
+    <text class="cover-text">{{item.book_name}}</text></image>
+    <!-- <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">点击收藏 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block> -->
+  </view>
+</view>

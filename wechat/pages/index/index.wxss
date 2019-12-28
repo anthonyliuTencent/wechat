@@ -1,0 +1,98 @@
+/* pages/index/index.wxss */
+.book-area {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  background-color: #ffffff;
+}
+.cover-img {
+  padding: 18px 10px;
+}
+.cover-text {
+  font-size: 14px;
+  display: block;
+  text-align: center;
+}
+.usermotto {
+  font-family:"Times New Roman",Georgia,Serif;
+  padding-top: 30px;
+  margin-top:10px;
+  color:  #FF6600;
+  background-color: #ffffff;
+  width: 100%;
+}
+.user-motto {
+  font-size: 15px;
+  text-align: center;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+}
+.famous {
+  font-size: 12px;
+  color:  #000000;
+  display: block;
+  text-align: right;
+  padding-right:5px;
+}
+.navig-tab {
+  width: 100%;
+  padding-left: 12px;
+  margin-top: 12px;
+  padding-top: 5px;
+  background-color: #ffffff;
+}
+.navig-tab-area {
+  border-left:3px solid red;
+  color: #4c4c4c;
+    font-size: 14px;
+    height: 25px;
+    border-top: 1px solid #dfdfdf;
+    border-bottom: 1px solid #dfdfdf;
+    padding: 11px 8px 0;
+    background: #f2f2f2;
+    line-height: 14px;
+}
+.navig-tab-subtitle {
+  font-family:'Franklin Gothic Medium', 'Arial Narrow';
+  padding-left: 6px;
+  font-size: 12px;
+  color:#969696;
+}
+.book-list {
+  padding-left: 12px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: #ffffff;
+  border-bottom:1px solid #eeeeee;
+}
+.book-list-image {
+  width: 20%;
+  padding-top: 6px;
+  float: left;
+}
+.book-list-cover {
+  width: 100%;
+}
+.book-list-text {
+  width: 78%;
+  float: right;
+}
+.book-list-text-title {
+  font-weight: bold;
+}
+.book-list-text-content {
+  font-size:12px;
+  text-overflow:ellipsis;
+  overflow:hidden;
+  word-break: break-all;
+  display:-webkit-box;
+  -webkit-line-clamp:5;   /*设置要显示省略号的行数*/
+  -webkit-box-orient:vertical;
+}
+.book-list-text-author {
+  padding-top:4px;
+  padding-right: 8px;
+  float: right;
+  font-size:12px;
+  color: #969696;
+}

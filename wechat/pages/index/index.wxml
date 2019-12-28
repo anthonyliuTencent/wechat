@@ -1,0 +1,57 @@
+<!--index.wxml-->
+<view class="container">
+<view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+    <text class="famous">--{{famous}}</text>
+  </view>
+  <view class="navig-tab">
+ <view class="navig-tab-area">
+ <text style="padding-left: 7px;">值得阅读</text>
+ <text class="navig-tab-subtitle">个人强烈推荐</text>
+ </view>
+ </view>
+  <view class="book-area">
+    <image bindtap="tapBook"data-book_id="{{item.book_name}}" wx:for="{{bookInfo}}" wx:key="id" wx:for-index="id" wx:for-item="item" class="cover-img" mode="widthFix" src="{{item.book_cover_img}}" >
+    <text class="cover-text">{{item.book_name}}</text></image>
+    <!-- <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">点击收藏 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block> -->
+  </view>
+  <view class="navig-tab">
+    <view class="navig-tab-area">
+      <text style="padding-left: 7px;">更多好书</text>
+    </view>
+ </view>
+ <view class="book-list">
+    <view class="book-list-image">
+      <image class="book-list-cover" mode="widthFix" src="http://zuopinj.com/d/file/wx/huangyi/2015-03-07/869caebc2e0201a852d4cc8a1219c55d.jpg"></image>
+    </view>
+    <view class="book-list-text">
+      <view><text class="book-list-text-title">寻情记</text></view>
+      <view class="book-list-text-content"><text>简介： 凌渡宇系列有点像007系列，故事的展开呈现固定的模式。同时与007系列一样，凌渡宇作为一个英雄始终是战无不胜攻无不克，能人所不能。凌渡宇系列的每个故事之间没有非常大的联系，但是又有一定的相关性，顺序性，可以单独的拿出每个故事来看，也可以把这些看成凌渡宇的一系列历险。</text></view>
+      <view class="book-list-text-author">作者:黄易</view>
+    </view>
+ </view>
+  <view class="book-list">
+    <view class="book-list-image">
+      <image class="book-list-cover" mode="widthFix" src="http://zuopinj.com/d/file/wx/huangyi/2015-03-07/869caebc2e0201a852d4cc8a1219c55d.jpg"></image>
+    </view>
+    <view class="book-list-text">
+      <view><text class="book-list-text-title">寻情记</text></view>
+      <view class="book-list-text-content"><text>简介： 凌渡宇系列有点像007系列，故事的展开呈现固定的模式。同时与007系列一样，凌渡宇作为一个英雄始终是战无不胜攻无不克，能人所不能。凌渡宇系列的每个故事之间没有非常大的联系，但是又有一定的相关性，顺序性，可以单独的拿出每个故事来看，也可以把这些看成凌渡宇的一系列历险。</text></view>
+    </view>
+     <view>黄易</view>
+ </view>
+  <view class="book-list">
+    <view class="book-list-image">
+      <image class="book-list-cover" mode="widthFix" src="http://zuopinj.com/d/file/wx/huangyi/2015-03-07/869caebc2e0201a852d4cc8a1219c55d.jpg"></image>
+    </view>
+    <view class="book-list-text">
+      <view><text class="book-list-text-title">寻情记</text></view>
+      <view class="book-list-text-content"><text>简介： 凌渡宇系列有点像007系列，故事的展开呈现固定的模式。同时与007系列一样，凌渡宇作为一个英雄始终是战无不胜攻无不克，能人所不能。凌渡宇系列的每个故事之间没有非常大的联系，但是又有一定的相关性，顺序性，可以单独的拿出每个故事来看，也可以把这些看成凌渡宇的一系列历险。</text></view>
+    </view>
+ </view>
+</view>
+

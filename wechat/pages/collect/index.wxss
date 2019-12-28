@@ -1,0 +1,14 @@
+/* pages/collect/index.wxss */
+.book-area {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+.cover-img {
+  padding: 20px 10px;
+}
+.cover-text {
+  font-size: 14px;
+  display: block;
+  text-align: center;
+}

@@ -1,0 +1,51 @@
+/* pages/book/detail.wxss */ 
+.book-content {
+  position: relative;
+  background: rgb(255, 238, 194);
+  border-radius: 3px;
+}
+.title {
+  display: block;
+  text-align: center;
+    line-height: 1.5;
+    font-size: 30px;
+    margin-block-end: 0.83em;
+}
+  p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+.text p{
+      margin: 0;
+    padding: .4em;
+    text-align: justify;
+    word-break: break-all;
+    text-indent: 2em;
+    padding-bottom: 50px;
+}
+.navigator {
+  position: fixed;
+  padding-top: 5px;
+  background-color:#ffffff;
+  display: flex;
+  bottom: 5px;
+  width: 100%;
+}
+.button {
+    flex: 1;
+    margin: .5em;
+    text-align: center;
+    font-size: 12px;
+    background: rgba(255,255,255,.7);
+    border-radius: 26px;
+    display: block;
+    padding: 7px;
+    box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+    text-decoration: none;
+}
+.nextpage {
+  background-color: #FF0033;
+}

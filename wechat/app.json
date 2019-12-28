@@ -1,0 +1,45 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/collect/index",
+    "pages/logs/logs",
+    "pages/book/index",
+    "pages/my/my",
+    "pages/book/detail",
+    "pages/book/list"
+  ],
+  "window": {
+    "backgroundColor": "#eeeeee",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "个人空间",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "color": "#a9b7b7",
+    "selectedColor": "#11cd6e",
+    "borderStyle": "white",
+    "list": [
+      {
+        "selectedIconPath": "images/fav.png",
+        "iconPath": "images/fav.png",
+        "pagePath": "pages/collect/index",
+        "text": "收藏"
+      },
+      {
+        "selectedIconPath": "images/main.png",
+        "iconPath": "images/main.png",
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "selectedIconPath": "images/user.png",
+        "iconPath": "images/user.png",
+        "pagePath": "pages/my/my",
+        "text": "我"
+      }
+    ]
+  }
+}

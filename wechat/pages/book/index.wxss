@@ -1,0 +1,168 @@
+/* pages/book/index.wxss */
+
+.booksite {
+  width: 100%;
+  margin: 2px;
+  padding: 15px 7px 5px;
+  position: relative;
+  zoom: 1;
+  background: #fff;
+  border-bottom: 1px solid #dfdfdf;
+}
+
+.bookimg {
+  padding: 5px;
+}
+
+.bookimg image {
+  width: 30%;
+}
+
+.booksite .bookname {
+  color: #303030;
+  font-size: 16px;
+  line-height: 25px;
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+}
+
+.bookinfo {
+  float: right;
+  width: 65%;
+}
+
+.booksite .info {
+  display: block;
+  color: #787878;
+  font-size: 13px;
+  line-height: 18px;
+  padding-top: 12px;
+}
+
+.booksite .info div {
+  display: block;
+}
+
+.booksite .add_bs {
+  border: 1px solid #ff4643;
+  color: #ff4643;
+}
+
+.booksite .cbut {
+  position: absolute;
+  right: 25px;
+  top: 50px;
+  width: 54px;
+  height: 23px;
+  text-align: center;
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 23px;
+  overflow: hidden;
+}
+
+.booksite .add_bs:before {
+  content: "+ 书架";
+}
+
+.booksite .bookbutton {
+  padding: 5px;
+  display: -webkit-box;
+  clear: both;
+  font-size: 16px;
+}
+
+.booksite .bookbutton a {
+  display: block;
+  -webkit-box-flex: 1;
+  line-height: 35px;
+  border-radius: 2px;
+  text-align: center;
+  background: #b33836;
+  color: #fff;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding: 0px 10px;
+}
+
+.booksite .bookbutton .book-btn {
+  border: 1px solid #b33836;
+  color: #b33836;
+  background: #fff;
+  margin-left: 8px;
+}
+
+.book-text {
+  width: 100%;
+  padding: 5px;
+  background-color: #fff;
+}
+
+.book-text-title {
+  padding: 5px;
+  font-weight: bold;
+  color: #4c4c4c;
+  font-size: 14px;
+  height: 25px;
+  padding: 11px 8px 0;
+}
+
+.book-text-content {
+  padding: 5px;
+  color: #787878;
+  font-size: 13px;
+  line-height: 18px;
+  padding-top: 12px;
+}
+
+.navig-tab-area {
+  margin-left: 5px;
+  border-left: 3px solid red;
+}
+
+.book-list {
+  margin: 5px;
+  width: 100%;
+  padding: 5px;
+  background-color: #fff;
+}
+
+.book-list a {
+  position: relative;
+  clear: both;
+  line-height: 38px;
+  height: 38px;
+  padding: 0px 20px 0px 8px;
+  font-size: 14px;
+  border-bottom: 1px solid #dfdfdf;
+  color: #4c4c4c;
+  display: block;
+  margin: 0;
+  background-size: 138px;
+  background-position: right -50px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.arrow {
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid #999;
+  border-right: 2px solid #999;
+  position: absolute;
+  right: 20rpx;
+  transform: rotate(45deg);
+  margin-top: -22px;
+}
+.bottom-area {
+  width: 100%;
+  text-align: center;
+  background-color: #ffffff;
+  color: #787878;
+  font-size: 13px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+}
