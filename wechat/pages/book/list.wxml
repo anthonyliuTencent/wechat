@@ -1,11 +1,90 @@
 <!--pages/book/list.wxml-->
 <view class="container">
   <view class="section">
-    <view class="section__title">普通选择器</view>
-    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
-      <view class="picker">
-        当前选择：{{array[index]}}
-      </view>
+    <picker class="picker" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+      <div class='down'></div> 
+      {{array[index]}}
     </picker>
   </view>
+
+  <view class="book-list">
+    <view class="book-text-content">
+      <div class="book_list">
+        <a href="/h5/chapter?bookid=831100&amp;cid=55742716&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3131">
+          <text>楔 子 浮生二八</text>
+          <view class='arrow'></view>
+        </a>
+
+        <a href="/h5/chapter?bookid=831100&amp;cid=54649645&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3246">
+          <text>楔 子 浮生二八</text>
+          <view class='arrow'></view>
+        </a>
+
+        <a href="/h5/chapter?bookid=831100&amp;cid=55742716&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3131">
+          <text>楔 子 浮生二八</text>
+          <view class='arrow'></view>
+        </a>
+
+        <a href="/h5/chapter?bookid=831100&amp;cid=54649645&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3246">
+          <text>楔 子 浮生二八</text>
+          <view class='arrow'></view>
+        </a>
+        <a href="/h5/chapter?bookid=831100&amp;cid=55742716&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3131">
+          <text>楔 子 浮生二八</text>
+          <view class='arrow'></view>
+        </a>
+
+        <a href="/h5/chapter?bookid=831100&amp;cid=54649645&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3246">
+          <text>楔 子 浮生二八</text>
+          <view class='arrow'></view>
+        </a>
+        <a href="/h5/chapter?bookid=831100&amp;cid=55742716&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3131">
+          <text>楔 子 浮生二八</text>
+          <view class='arrow'></view>
+        </a>
+
+        <a href="/h5/chapter?bookid=831100&amp;cid=54649645&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3246">
+          <text>楔 子 浮生二八</text>
+          <view class='arrow'></view>
+        </a>
+        <a href="/h5/chapter?bookid=831100&amp;cid=55742716&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3131">
+          <text>楔 子 浮生二八</text>
+          <view class='arrow'></view>
+        </a>
+
+        <a href="/h5/chapter?bookid=831100&amp;cid=54649645&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3246">
+          <text>楔 子 浮生二八</text>
+          <view class='arrow'></view>
+        </a>
+        <a href="/h5/chapter?bookid=831100&amp;cid=55742716&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3131">
+          <text>楔 子 浮生二八</text>
+          <view class='arrow'></view>
+        </a>
+
+        <a href="/h5/chapter?bookid=831100&amp;cid=54649645&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3246">
+          <text>楔 子 浮生二八</text>
+          <view class='arrow'></view>
+        </a>
+        <a href="/h5/chapter?bookid=831100&amp;cid=55742716&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3131">
+          <text>楔 子 浮生二八</text>
+          <view class='arrow'></view>
+        </a>
+
+        <a href="/h5/chapter?bookid=831100&amp;cid=54649645&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3246">
+          <text>楔 子 浮生二八</text>
+          <view class='arrow'></view>
+        </a>
+        <a href="/h5/chapter?bookid=831100&amp;cid=55742716&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3131">
+          <text>楔 子 浮生二八</text>
+          <view class='arrow'></view>
+        </a>
+
+        <a href="/h5/chapter?bookid=831100&amp;cid=54649645&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3246">
+          <text>楔 子 浮生二八</text>
+          <view class='arrow'></view>
+        </a>
+      </div>
+    </view>
+  </view>
+  <view class="bottom-area">-------我是有底线的-------</view>
 </view>

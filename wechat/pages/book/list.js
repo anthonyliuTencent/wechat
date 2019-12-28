@@ -5,10 +5,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    array:['1-20章','21-40章']
+    array: ['1-20章', '中国', '巴西', '日本'],
+    index: 0
   },
   bindPickerChange: function(e){
-    console.log(e);
+    console.log('e:',e);
+    this.setData({
+      index: e.detail.value
+    })
   },
   /**
    * 生命周期函数--监听页面加载

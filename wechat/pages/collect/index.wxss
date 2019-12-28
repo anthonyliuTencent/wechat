@@ -1,4 +1,7 @@
 /* pages/collect/index.wxss */
+.container {
+  background-color: #ffffff;
+}
 .book-area {
   display: flex;
   justify-content: space-around;
@@ -11,4 +14,19 @@
   font-size: 14px;
   display: block;
   text-align: center;
+}
+.navig-tab-area {
+  width: 100%;
+  margin-top: 5px;
+  margin-left: 5px;
+  border-left: 3px solid red;
+}
+
+.book-text-title {
+  padding: 5px;
+  font-weight: bold;
+  color: #4c4c4c;
+  font-size: 14px;
+  height: 25px;
+  padding: 11px 8px 0;
 }
