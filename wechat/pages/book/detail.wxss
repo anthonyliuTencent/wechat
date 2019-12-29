@@ -1,51 +1,111 @@
-/* pages/book/detail.wxss */ 
+/* pages/book/detail.wxss */
+
 .book-content {
   position: relative;
-  background: rgb(255, 238, 194);
   border-radius: 3px;
+  padding: 6px 8px;
 }
+
 .title {
   display: block;
   text-align: center;
-    line-height: 1.5;
-    font-size: 30px;
-    margin-block-end: 0.83em;
+  line-height: 1.5;
+  font-size: 30px;
+  margin-block-end: 0.83em;
 }
-  p {
-    display: block;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
+
+p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
 }
-.text p{
-      margin: 0;
-    padding: .4em;
-    text-align: justify;
-    word-break: break-all;
-    text-indent: 2em;
-    padding-bottom: 50px;
+
+.text p {
+  margin: 0;
+  padding: 0.4em;
+  text-align: justify;
+  word-break: break-all;
+  text-indent: 2em;
+  padding-bottom: 50px;
+}
+
+.fontArea {
+  display: flex;
+  align-items: baseline;
+}
+
+.fontArea div {
+  flex: 1;
+  margin: 0.5em;
+  text-align: center;
+  text-decoration: none;
+  border-bottom: 1px solid #dfdfdf;
+}
+
+.small-font {
+  font-size: 16px;
+}
+
+.media-font {
+  font-size: 20px;
+}
+
+.large-font {
+  font-size: 24px;
 }
 .navigator {
-  position: fixed;
-  padding-top: 5px;
-  background-color:#ffffff;
+  padding-top: 30px;
   display: flex;
-  bottom: 5px;
+  bottom: 10px;
   width: 100%;
 }
-.button {
-    flex: 1;
-    margin: .5em;
-    text-align: center;
-    font-size: 12px;
-    background: rgba(255,255,255,.7);
-    border-radius: 26px;
-    display: block;
-    padding: 7px;
-    box-shadow: 1px 1px 3px rgba(0,0,0,.3);
-    text-decoration: none;
+
+.help {
+position: fixed;
+bottom: 5px;
+width: 100%;
+z-index: 30;
+margin-left: -8px;
+background-color:#EEEEEE;
+border-top-right-radius: 20px;
+border-top-left-radius: 20px;
 }
+
+.colorArea {
+  display: flex;
+}
+
+.colorArea button {
+  margin: 20px;
+  /* background-color: #ffffff; */
+}
+
+.white-btn {
+  background-color: #ffffff;
+}
+
+.yello-btn {
+  background-color: #ffecc2;
+}
+
+.blur-btn {
+  background-color: #CCFFCC;
+}
+
+.button {
+  flex: 1;
+  margin: 0.5em;
+  text-align: center;
+  font-size: 14px;
+  border-radius: 5px;
+  display: block;
+  padding: 12px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
+}
+
 .nextpage {
-  background-color: #FF0033;
+  background-color: #f03;
 }

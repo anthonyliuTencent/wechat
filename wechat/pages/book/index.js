@@ -1,18 +1,78 @@
 // pages/book/index.js
+const utils = require('../../utils/util.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    bookInfo: {},
+    chapterArray:[]
   },
-
+  jumpList: function(e) {
+    let dataset = (e.target.dataset.book_id) ? e.target.dataset : e.currentTarget.dataset
+    wx.navigateTo({ url: `/pages/book/list?book_id=${dataset.book_id}`});
+  },
+  tapBook: function(e) {
+    let dataset = (e.target.dataset.book_id) ? e.target.dataset : e.currentTarget.dataset
+    wx.navigateTo({ url: `/pages/book/detail?book_id=${dataset.book_id}&chapter_id=${dataset.chapter_id}` });
+  },
+  jumpContent: function(e) {
+    let dataset = (e.target.dataset.book_id) ? e.target.dataset : e.currentTarget.dataset
+    wx.navigateTo({ url: `/pages/book/detail?book_id=${dataset.book_id}&chapter_id=${dataset.chapter_id}` });
+  },
+  addBook: function () {
+     var that= this;
+    wx.getUserInfo({
+      success: function (res) {
+        console.log(res);
+        let data = res.userInfo
+        data.book_id = that.data.id
+        wx.request({
+          url: `${utils.baseUrl}handler/user/addfavbook`,
+          data,
+          method: 'post',
+          success: (result) => {
+          },
+          fail: ()=>{
+          }
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let url = utils.getCurrentPageUrlWithArgs()
+    let book_id = utils.getLinkValue(url)['id'] || 1;
+    wx.request({
+      url: `${utils.baseUrl}handler/book/getbookdetail`,
+      data: {
+        book_id
+      },
+      method: 'post',
+      success: (result) => {
+        // console.log('data is:', result)
+        let data = result.data
+        let bookInfo = {
+          author: data.book_author,
+          cover_img: data.book_book_cover_img,
+          id: data.book_id,
+          introduce: data.book_introduce,
+          name: data.book_name
+        }
+        wx.setNavigationBarTitle({
+          title: data.book_name
+        })
+        let compare = utils.compare('chapter_id')
+        let chapterArray = data.chapter.sort(compare)
+        this.setData({
+          bookInfo,
+          chapterArray
+        })
+      }
+    })
   },
 
   /**
@@ -40,6 +100,9 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
+    wx.reLaunch({
+      url: '/pages/index/index',
+    })
 
   },
 

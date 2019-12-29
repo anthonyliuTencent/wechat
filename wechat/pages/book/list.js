@@ -1,18 +1,28 @@
 // pages/book/list.js
+const utils = require('../../utils/util.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    array: ['1-20章', '中国', '巴西', '日本'],
+    chapterArray:[],
+    array: [],
     index: 0
   },
+  Allchapter:[],
   bindPickerChange: function(e){
-    console.log('e:',e);
+    let index = e.detail.value
+    let that = this
     this.setData({
-      index: e.detail.value
+      chapterArray: that.Allchapter.slice((index * 20), (index * 20)+20),
+      index
     })
+  },
+  tapBook: function (e) {
+    let dataset = (e.target.dataset.book_id) ? e.target.dataset : e.currentTarget.dataset
+    console.log('dataset is:', dataset)
+    wx.navigateTo({ url: `/pages/book/detail?book_id=${dataset.book_id}&chapter_id=${dataset.chapter_id}` });
   },
   /**
    * 生命周期函数--监听页面加载
@@ -22,7 +32,32 @@ Page({
     wx.setNavigationBarTitle({
       title: '目录'
     })
-    
+    let url = utils.getCurrentPageUrlWithArgs()
+    let book_id = utils.getLinkValue(url)['book_id'];
+    wx.request({
+      url: `${utils.baseUrl}handler/book/getbookdetail`,
+      data: {
+        book_id
+      },
+      method: 'post',
+      success: (result) => {
+        // console.log('data is:', result)
+        let data = result.data
+        let compare = utils.compare('chapter_id')
+        let Allchapter = data.chapter.sort(compare)
+        let len = Math.floor(Allchapter.length / 20)
+        let tempArray = [];
+        for(let i =0; i < len; i++) {
+          tempArray.push((i*20+1) + '----' + ((i+1)*20 + '章'))
+        }
+        tempArray.push((len * 20 + 1) + '----' + (Allchapter.length + '章'))
+        this.Allchapter = Allchapter
+        this.setData({
+          array: tempArray,
+          chapterArray: Allchapter.slice(0,20)
+        })
+      }
+    })
   },
 
   /**

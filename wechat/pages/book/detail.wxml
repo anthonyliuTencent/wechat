@@ -1,25 +1,27 @@
 <!--pages/book/detail.wxml-->
-<view class="book-content" id="book-conent" bindtap="showNavigtor">
-    <div class="body" style="font-size: 20px;">
-      <div class="title">第一章 应聘(1)</div>
-      <div class="text">
-        <p>电话那边沉默了一会儿：“萌萌，也就是我打不过你，要不然我非揍你一顿解解恨。”</p>
-        <p>杨萌挠了挠头：“来啊，互相伤害啊！二愣子！这话光我就听了十多次了。咱说点有用的好么？给我打电话有什么事？”</p>
-        <p> “还能有什么事？这不闲着没事么？把‘疯子’、‘龙虾’他们叫出来一起撸个串？咱们茁山子村出来的这些人好久没聚聚了。”胡二楞说出打电话的目的。</p>
-        <p>杨萌摇头道：“还是算了吧，我要去面试新工作呢。”</p>
-        <p>“你不送外卖了？”胡二楞听后好奇问道。</p>
-        <p>杨萌点头道：“是啊，赚的钱太少了，想要多赚点。换个新工作试一试。”</p>
-        <p>胡二愣听后愣了：“卧槽，你赚钱还少？送外卖不好么？不是一个月能上万么？哥几个提起你的时候还说你特拼。你这是要干什么？别为了赚钱把身体给累垮了！”</p>
-        <p>杨萌叹气道：“上万？哪有那么多啊！我这么拼一年有一个月上万我就知足了！我是待团队的，平时也就五六千。你说原来我孤身一人无牵无挂，每个月还可以给家里寄些钱，穷不穷的对我来说也无非是晚上吃馒头咸菜还是吃排骨米饭而已，并没什么大的差别，甚至还可以玩玩游戏跟朋友们聚聚过得还是挺快乐的。可是这恋爱之后我深深感受到钱不够用。我现在都恨不得一分钱掰成两瓣花”</p>
-        <p>胡二楞沉默了一会儿：“她又跟你要什么了？”</p>
-        <p>他知道杨萌最近找了个女朋友，不过说实话，他倒真没有为这事替杨萌感到高兴。</p>
-        <p>不得不说，感谢父母的‘基因提纯’，杨萌的</p>
-        <p>（本章未完，请翻页）</p>
-      </div>
-    </div>
-    <div class="navigator" id="navigator" style="display:{{navIsHide?'none':'flex'}}">
-      <div class="button" data-state="enable">上一章</div>
-      <div class="button" data-state="enable">目录</div>
-      <div class="button nextpage" >下一页</div>
-    </div>
+<!-- <import src="../../wxParse/wxParse.wxml"/> -->
+<view class="book-content" id="book-conent" bindtap="showHelp" 
+   style="background-color:{{backgroundColor}}">
+  <div class="body" style="font-size: {{fontSize}};">
+    <!-- <div class="title">{{title}}</div> -->
+    <!-- <template is="wxParse" data="{{wxParseData:content.nodes}}"/> -->
+    <rich-text nodes="{{html}}"></rich-text>
+  </div>
+  <view class="help" style="display:{{helpShow}};">
+    <view class="fontArea">
+      <div data-size="small" catchtap="changeFont"class="small-font">小</div>
+      <div data-size="media" catchtap="changeFont"class="media-font">中</div>
+      <div data-size="large" catchtap="changeFont" class="large-font">大</div>
+    </view>
+    <view class="colorArea">
+      <div class="button white-btn" catchtap="changeColor" data-color="1"></div>
+      <div class="button yello-btn" catchtap="changeColor"data-color="2" ></div>
+      <div class="button blur-btn" catchtap="changeColor" data-color="3"></div>
+    </view>
+  </view>
+  <div class="navigator" id="navigator" style="display:{{jumpShow}};">
+    <div class="button" catchtap="lookLast">上一章</div>
+    <div class="button" catchtap="lookList">目录</div>
+    <div class="button nextpage" catchtap="lookNext">下一页</div>
+  </div>
 </view>

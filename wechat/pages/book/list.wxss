@@ -8,7 +8,7 @@
 
 .picker {
   text-align: center;
-  background-color: #f9dea6;
+  background-color: #f7e9cd;
   padding: 5px;
   margin-left: 40px;
   margin-right: 40px;
@@ -22,7 +22,7 @@
   border-top: 2px solid #999;
   border-right: 2px solid #999;
   position: absolute;
-  right: 85px;
+  right: 55px;
   transform: rotate(135deg);
 }
 

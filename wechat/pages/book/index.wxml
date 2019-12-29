@@ -2,30 +2,30 @@
 <view class="container">
   <view class="booksite">
     <div class="bookimg">
-      <image mode="widthFix" src="http://zuopinj.com/d/file/wx/huangyi/2015-03-07/869caebc2e0201a852d4cc8a1219c55d.jpg"></image>
-
+      <image mode="widthFix" src="{{bookInfo.cover_img}}"></image>
     </div>
     <div class="bookinfo">
-      <h1 class="bookname">许你两世相顾</h1>
+      <h1 class="bookname">{{bookInfo.name}}</h1>
       <div class="info">
         <div>作者：
-          <span>之子言归</span>
+          <span>{{bookInfo.author}}</span>
         </div>
-        <div>分类：
+        <!-- <div>分类：
           <span>都市重生</span>
         </div>
         <div>字数：
           <span>1223094</span>
         </div>
         <div>已有
-          <span>4492人次</span> 读过此书</div>
+          <span>4492人次</span> 读过此书
+        </div> -->
       </div>
     </div>
     <div>
-      <a href="#" class="cbut add_bs" bookid="831100"></a>
+      <a  href="javascript:void(0)" class="cbut add_bs" bindtap="addBook"></a>
       <div class="bookbutton">
-        <a>立即阅读</a>
-        <a class="book-btn" href="javascript:void(0)">进入目录</a>
+        <a  href="javascript:void(0)" data-book_id="{{bookInfo.id}}"bindtap="jumpContent" data-chapter_id='0'>立即阅读</a>
+        <a class="book-btn" data-book_id="{{bookInfo.id}}" bindtap="jumpList" href="javascript:void(0)">进入目录</a>
       </div>
     </div>
   </view>
@@ -34,7 +34,7 @@
       <text class="book-text-title">作品介绍</text>
     </view>
     <view class="book-text-content">
-      <text>简介： 凌渡宇系列有点像007系列，故事的展开呈现固定的模式。同时与007系列一样，凌渡宇作为一个英雄始终是战无不胜攻无不克，能人所不能。凌渡宇系列的每个故事之间没有非常大的联系，但是又有一定的相关性，顺序性，可以单独的拿出每个故事来看，也可以把这些看成凌渡宇的一系列历险。</text>
+      <text>{{bookInfo.introduce}}</text>
     </view>
   </view>
   <view class="book-list">
@@ -43,200 +43,8 @@
     </view>
     <view class="book-text-content">
       <div class="book_list">
-        <a href="/h5/chapter?bookid=831100&amp;cid=55742716&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3131">
-          <text>楔 子 浮生二八</text>
-          <view class='arrow'></view>
-        </a>
-
-        <a href="/h5/chapter?bookid=831100&amp;cid=54649645&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3246">
-          <text>楔 子 浮生二八</text>
-          <view class='arrow'></view>
-        </a>
-
-        <a href="/h5/chapter?bookid=831100&amp;cid=55742716&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3131">
-          <text>楔 子 浮生二八</text>
-          <view class='arrow'></view>
-        </a>
-
-        <a href="/h5/chapter?bookid=831100&amp;cid=54649645&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3246">
-          <text>楔 子 浮生二八</text>
-          <view class='arrow'></view>
-        </a>
-        <a href="/h5/chapter?bookid=831100&amp;cid=55742716&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3131">
-          <text>楔 子 浮生二八</text>
-          <view class='arrow'></view>
-        </a>
-
-        <a href="/h5/chapter?bookid=831100&amp;cid=54649645&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3246">
-          <text>楔 子 浮生二八</text>
-          <view class='arrow'></view>
-        </a>
-        <a href="/h5/chapter?bookid=831100&amp;cid=55742716&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3131">
-          <text>楔 子 浮生二八</text>
-          <view class='arrow'></view>
-        </a>
-
-        <a href="/h5/chapter?bookid=831100&amp;cid=54649645&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3246">
-          <text>楔 子 浮生二八</text>
-          <view class='arrow'></view>
-        </a>
-        <a href="/h5/chapter?bookid=831100&amp;cid=55742716&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3131">
-          <text>楔 子 浮生二八</text>
-          <view class='arrow'></view>
-        </a>
-
-        <a href="/h5/chapter?bookid=831100&amp;cid=54649645&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3246">
-          <text>楔 子 浮生二八</text>
-          <view class='arrow'></view>
-        </a>
-        <a href="/h5/chapter?bookid=831100&amp;cid=55742716&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3131">
-          <text>楔 子 浮生二八</text>
-          <view class='arrow'></view>
-        </a>
-
-        <a href="/h5/chapter?bookid=831100&amp;cid=54649645&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3246">
-          <text>楔 子 浮生二八</text>
-          <view class='arrow'></view>
-        </a>
-        <a href="/h5/chapter?bookid=831100&amp;cid=55742716&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3131">
-          <text>楔 子 浮生二八</text>
-          <view class='arrow'></view>
-        </a>
-
-        <a href="/h5/chapter?bookid=831100&amp;cid=54649645&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3246">
-          <text>楔 子 浮生二八</text>
-          <view class='arrow'></view>
-        </a>
-        <a href="/h5/chapter?bookid=831100&amp;cid=55742716&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3131">
-          <text>楔 子 浮生二八</text>
-          <view class='arrow'></view>
-        </a>
-
-        <a href="/h5/chapter?bookid=831100&amp;cid=54649645&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3246">
-          <text>楔 子 浮生二八</text>
-          <view class='arrow'></view>
-        </a>
-      </div>
-    </view>
-  </view>
-  <view class="bottom-area">-------我是有底线的-------</view>
-</view>
-
-<view class="container">
-  <view class="booksite">
-    <div class="bookimg">
-      <image mode="widthFix" src="http://zuopinj.com/d/file/wx/huangyi/2015-03-07/869caebc2e0201a852d4cc8a1219c55d.jpg"></image>
-
-    </div>
-    <div class="bookinfo">
-      <h1 class="bookname">许你两世相顾</h1>
-      <div class="info">
-        <div>作者：
-          <span>之子言归</span>
-        </div>
-        <div>分类：
-          <span>都市重生</span>
-        </div>
-        <div>字数：
-          <span>1223094</span>
-        </div>
-        <div>已有
-          <span>4492人次</span> 读过此书</div>
-      </div>
-    </div>
-    <div>
-      <a href="#" class="cbut add_bs" bookid="831100"></a>
-      <div class="bookbutton">
-        <a>立即阅读</a>
-        <a class="book-btn" href="javascript:void(0)">进入目录</a>
-      </div>
-    </div>
-  </view>
-  <view class="book-text">
-    <view class="navig-tab-area">
-      <text class="book-text-title">作品介绍</text>
-    </view>
-    <view class="book-text-content">
-      <text>简介： 凌渡宇系列有点像007系列，故事的展开呈现固定的模式。同时与007系列一样，凌渡宇作为一个英雄始终是战无不胜攻无不克，能人所不能。凌渡宇系列的每个故事之间没有非常大的联系，但是又有一定的相关性，顺序性，可以单独的拿出每个故事来看，也可以把这些看成凌渡宇的一系列历险。</text>
-    </view>
-  </view>
-  <view class="book-list">
-    <view class="navig-tab-area">
-      <text class="book-text-title">目录</text>
-    </view>
-    <view class="book-text-content">
-      <div class="book_list">
-        <a href="/h5/chapter?bookid=831100&amp;cid=55742716&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3131">
-          <text>楔 子 浮生二八</text>
-          <view class='arrow'></view>
-        </a>
-
-        <a href="/h5/chapter?bookid=831100&amp;cid=54649645&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3246">
-          <text>楔 子 浮生二八</text>
-          <view class='arrow'></view>
-        </a>
-
-        <a href="/h5/chapter?bookid=831100&amp;cid=55742716&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3131">
-          <text>楔 子 浮生二八</text>
-          <view class='arrow'></view>
-        </a>
-
-        <a href="/h5/chapter?bookid=831100&amp;cid=54649645&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3246">
-          <text>楔 子 浮生二八</text>
-          <view class='arrow'></view>
-        </a>
-        <a href="/h5/chapter?bookid=831100&amp;cid=55742716&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3131">
-          <text>楔 子 浮生二八</text>
-          <view class='arrow'></view>
-        </a>
-
-        <a href="/h5/chapter?bookid=831100&amp;cid=54649645&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3246">
-          <text>楔 子 浮生二八</text>
-          <view class='arrow'></view>
-        </a>
-        <a href="/h5/chapter?bookid=831100&amp;cid=55742716&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3131">
-          <text>楔 子 浮生二八</text>
-          <view class='arrow'></view>
-        </a>
-
-        <a href="/h5/chapter?bookid=831100&amp;cid=54649645&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3246">
-          <text>楔 子 浮生二八</text>
-          <view class='arrow'></view>
-        </a>
-        <a href="/h5/chapter?bookid=831100&amp;cid=55742716&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3131">
-          <text>楔 子 浮生二八</text>
-          <view class='arrow'></view>
-        </a>
-
-        <a href="/h5/chapter?bookid=831100&amp;cid=54649645&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3246">
-          <text>楔 子 浮生二八</text>
-          <view class='arrow'></view>
-        </a>
-        <a href="/h5/chapter?bookid=831100&amp;cid=55742716&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3131">
-          <text>楔 子 浮生二八</text>
-          <view class='arrow'></view>
-        </a>
-
-        <a href="/h5/chapter?bookid=831100&amp;cid=54649645&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3246">
-          <text>楔 子 浮生二八</text>
-          <view class='arrow'></view>
-        </a>
-        <a href="/h5/chapter?bookid=831100&amp;cid=55742716&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3131">
-          <text>楔 子 浮生二八</text>
-          <view class='arrow'></view>
-        </a>
-
-        <a href="/h5/chapter?bookid=831100&amp;cid=54649645&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3246">
-          <text>楔 子 浮生二八</text>
-          <view class='arrow'></view>
-        </a>
-        <a href="/h5/chapter?bookid=831100&amp;cid=55742716&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3131">
-          <text>楔 子 浮生二八</text>
-          <view class='arrow'></view>
-        </a>
-
-        <a href="/h5/chapter?bookid=831100&amp;cid=54649645&amp;fpage=36&amp;fmodule=23&amp;_st=" title="字数:3246">
-          <text>楔 子 浮生二八</text>
+        <a bindtap="tapBook" data-book_id="{{item.book_id}}" data-chapter_id="{{item.chapter_id}}"wx:for="{{chapterArray}}" wx:key="id" wx:for-index="id" wx:for-item="item">
+          <text>{{item.chapter_name}}</text>
           <view class='arrow'></view>
         </a>
       </div>
