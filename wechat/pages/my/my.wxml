@@ -1,14 +1,15 @@
-<!--pages/my/my.wxml-->
+<!--index.wxml-->
 <view class="container">
   <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
   </view>
   <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+    <text class="user-motto">{{userInfo.nickName}},您好！现在开启你的阅读之旅吧，本平台资源暂时有限，如果需要可留言，我们将尽力为您提供。</text>
+  </view>
+  <view class="usermotto area">
+   <view style="font-weight: bold;">开发者申明:</view>
+<view style="text-indent:2em;">这个平台是个人在工作之余开发的，由于开发者喜欢读有质量的书，所以有建立一个读书的平台的想法，供喜欢读书的来交流和分享。如果对平台有建议和想法请不吝赐教。</view><text style="font-weight: bold;">\n开发者邮箱： liuyinleidm@163.com</text>
   </view>
 </view>
 

@@ -3,9 +3,11 @@
   background-color: #ffffff;
 }
 .book-area {
-  display: flex;
+  width:100%;
+  text-align: left;
+  /* display: flex;
   justify-content: space-around;
-  width: 100%;
+  width: 100%; */
 }
 .cover-img {
   padding: 20px 10px;

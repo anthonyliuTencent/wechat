@@ -1,18 +1,30 @@
 // pages/my/my.js
+const utils = require('../../utils/util.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    userInfo: {},
+    motto: "jj"
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    utils.request({
+      url: 'handler/user/getuserall',
+      data: {},
+      method: 'post',
+      success: (data) => {
+        let result = data.data
+        this.setData({
+          userInfo: result[0]
+        })
+      },
+    })
   },
 
   /**
@@ -40,7 +52,6 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
   },
 
   /**

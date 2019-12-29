@@ -1,4 +1,5 @@
 // pages/collect/index.js
+const utils = require('../../utils/util.js')
 const app = getApp()
 Page({
 
@@ -13,33 +14,25 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
+    wx.setNavigationBarTitle({
+      title: '我的书架'
+    })
     utils.request({
-      url: 'handler/user/addfavbook',
-      data: {
-        book_id: that.data.bookInfo.id
-      },
+      url: 'handler/user/getfavmsg',
+      data: {},
       method: 'post',
       success: (data) => {
         let result = data.data
-        console.log('result is:', result)
-        if (result.retCode === '000000') {
-          wx.showToast({
-            title: '成功加入书架',
-            icon: 'success',
-            duration: 2000
-          })
-        } else {
-          wx.showToast({
-            title: result.retMsg,
-            icon: 'none',
-            duration: 2000
-          })
-        }
+        this.setData({
+          bookInfo: result
+        })
       },
     })
   },
   tapBook: function(e) {
     console.log('e is:', e.target.dataset);
+    let dataset = (e.target.dataset.book_id) ? e.target.dataset : e.currentTarget.dataset
+    wx.navigateTo({ url: `/pages/book/list?book_id=${dataset.book_id}` });
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
