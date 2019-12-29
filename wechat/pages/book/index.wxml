@@ -20,7 +20,7 @@
           <span>4492人次</span> 读过此书
         </div> -->
       </div>
-    </div>
+    </div> 
     <div>
       <a  href="javascript:void(0)" class="cbut add_bs" bindtap="addBook"></a>
       <div class="bookbutton">

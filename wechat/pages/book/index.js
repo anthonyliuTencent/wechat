@@ -22,22 +22,30 @@ Page({
     wx.navigateTo({ url: `/pages/book/detail?book_id=${dataset.book_id}&chapter_id=${dataset.chapter_id}` });
   },
   addBook: function () {
-     var that= this;
-    wx.getUserInfo({
-      success: function (res) {
-        console.log(res);
-        let data = res.userInfo
-        data.book_id = that.data.id
-        wx.request({
-          url: `${utils.baseUrl}handler/user/addfavbook`,
-          data,
-          method: 'post',
-          success: (result) => {
-          },
-          fail: ()=>{
-          }
-        })
-      }
+    var that =this
+    utils.request({
+      url:'handler/user/addfavbook',
+      data: {
+        book_id: that.data.bookInfo.id
+      },
+      method: 'post',
+      success: (data) => {
+        let result = data.data
+        console.log('result is:', result)
+        if(result.retCode === '000000') {
+          wx.showToast({
+            title: '成功加入书架',
+            icon: 'success',
+            duration: 2000
+          })
+        } else {
+          wx.showToast({
+            title: result.retMsg,
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      },
     })
   },
   /**
@@ -46,6 +54,7 @@ Page({
   onLoad: function (options) {
     let url = utils.getCurrentPageUrlWithArgs()
     let book_id = utils.getLinkValue(url)['id'] || 1;
+
     wx.request({
       url: `${utils.baseUrl}handler/book/getbookdetail`,
       data: {

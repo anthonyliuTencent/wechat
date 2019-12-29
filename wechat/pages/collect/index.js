@@ -13,18 +13,29 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
-    wx.request({
-      url:'https://mydear.site/handler/user/getfavmsg',
+    utils.request({
+      url: 'handler/user/addfavbook',
       data: {
-        user_id:'1'
+        book_id: that.data.bookInfo.id
       },
       method: 'post',
-      success: (data)=>{
-        console.log('data is:',data)
-        this.setData({
-          bookInfo: data.data
-        })
-      }
+      success: (data) => {
+        let result = data.data
+        console.log('result is:', result)
+        if (result.retCode === '000000') {
+          wx.showToast({
+            title: '成功加入书架',
+            icon: 'success',
+            duration: 2000
+          })
+        } else {
+          wx.showToast({
+            title: result.retMsg,
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      },
     })
   },
   tapBook: function(e) {

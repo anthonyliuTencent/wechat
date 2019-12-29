@@ -73,11 +73,45 @@ function compare (prop) {
     }
   }
 }
+function request(obj) {
+  wx.getStorage({
+    key: 'cookie',
+    success: (cookie) => {
+      wx.request({
+        url: `https://mydear.site/${obj.url}`,
+        data: obj.data,
+        header: {
+          'content-type': 'application/json',
+          'cookie': cookie.data // 设置cookie
+        },
+        method: 'post',
+        success: (result) => {
+          if (result.header) {
+            if ('Set-Cookie' in result.header) {
+              wx.setStorageSync(key, result.header['Set-Cookie']);
+            }
+            else if ('set-cookie' in result.header) {
+              wx.setStorageSync(key, result.header['set-cookie'])
+            }
+          }
+          obj.success(result)
+        },
+        fail: err => {
+          obj.fail&& obj.fail(err)
+        },
+        complete: (res) => {
+          obj.complete && obj.complete(res);
+        }
+      })
+    }
+  })
+}
 module.exports = {
   formatTime: formatTime,
   baseUrl: 'https://mydear.site/',
   getCurrentPageUrl: getCurrentPageUrl,
   getCurrentPageUrlWithArgs: getCurrentPageUrlWithArgs,
   getLinkValue: getLinkValue,
-  compare: compare
+  compare: compare,
+  request:request
 }
