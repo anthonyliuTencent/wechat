@@ -1,0 +1,54 @@
+
+<view class="home" bindtap="gohome">
+    <image style="width: 50rpx;height: 50rpx;" src="../../resources/images/home_0@2x.png"></image>
+</view>
+
+<div class='clock-wrapper' style="zoom:0.7;">
+  <div class='clock-border' style="margin-top:150rpx;">
+    <div class='clock'>
+      <ul class='minute-marks'>
+        <li class='five'></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li class='five'></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li class='five'></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li class='five'></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li class='five'></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li class='five'></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+      <div class='hour' style="transform:{{hourdeg}};">
+        <div class='hand' wx-if="{{hourdeg}}"></div>
+      </div>
+      <div class='minute' style="transform:{{minutedeg}};">
+        <div class='hand' wx-if="{{minutedeg}}"></div>
+      </div>
+      <div class='second' style="transform:{{seconddeg}};">
+        <div class='hand' wx-if="{{seconddeg}}"></div>
+      </div>
+    </div>
+  </div>
+  <div style="text-align:center;clear:both;">
+  </div>
+</div>

@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/clock/index",
     "pages/index/index",
     "pages/collect/index",
     "pages/logs/logs",
@@ -23,15 +24,9 @@
     "borderStyle": "white",
     "list": [
       {
-        "selectedIconPath": "images/fav.png",
-        "iconPath": "images/fav.png",
-        "pagePath": "pages/collect/index",
-        "text": "收藏"
-      },
-      {
         "selectedIconPath": "images/main.png",
         "iconPath": "images/main.png",
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/clock/index",
         "text": "首页"
       },
       {

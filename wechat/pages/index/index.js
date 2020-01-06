@@ -13,38 +13,6 @@ Page({
     famous: "培根"
   },
   getUser: function() {
-    var that = this
-    let code;
-    wx.login({
-      success: function(res) {
-        if (res.code) {
-          code = res.code
-          wx.getUserInfo({
-            success: function(res) {
-              wx.request({
-                url: `${utils.baseUrl}handler/user/getusermsg`,
-                data: {
-                  code,
-                  ...res.userInfo
-                },
-                method: 'post',
-                success: (data) => {
-                  wx.setStorage({
-                    key: 'cookie',
-                    data: data.header["Set-Cookie"], // 从返回数据的响应头中取cookie
-                    success: (result) => {
-                      console.log('cookie is ok')
-                    }
-                  })
-                }
-              })
-            }
-          });
-        } else {
-
-        }
-      }
-    })
   },
   /**
    * 生命周期函数--监听页面加载
