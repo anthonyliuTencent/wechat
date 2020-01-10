@@ -1,8 +1,7 @@
 //app.js
-const utils = require('./utils/util.js')
+const utils = require('./utils/utils.js')
 App({
   onLaunch: function () {
-
     var that = this
     let code;
     wx.login({

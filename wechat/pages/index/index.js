@@ -1,45 +1,63 @@
 //index.js
-// pages/collect/index.js
-const utils = require('../../utils/util.js')
-const app = getApp()
+const testData = require('../../debug/index/index.js');
+var window = (function () {
+  return this
+})();
+const utils = require('../../utils/utils.js')
+const jsonParse = require('../../utils/jsonParse.js')
+let app = getApp();
+var CONFIGDATA = {};
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    loveInfo: [],
-    otherInfo: [],
-    motto: "读书给人以快乐、给人以光彩、给人以才干。",
-    famous: "培根"
+    viewData: []
   },
   getUser: function() {
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function() {
-    wx.request({
-      url: `${utils.baseUrl}handler/book/getsomebook`,
-      data: {},
-      method: 'post',
-      success: (data) => {
-        let loveInfo = [],
-          otherInfo = []
-        data.data.forEach((item, i) => {
-          if (item.love === 1) {
-            loveInfo.push(item)
-          } else {
-            otherInfo.push(item)
-          }
-        })
-        this.setData({
-          loveInfo,
-          otherInfo
-        })
-      }
-    })
+  render: function(){
+    var that = this;
+    // that.setData({ "viewData": CONFIGDATA.viewData })
+    CONFIGDATA.event && CONFIGDATA.event.onLoad
+      && jsonParse.doJs(CONFIGDATA.event.onLoad, that, {
+       viewData:CONFIGDATA.viewData
+      })
+    // 加载
+    //wx.showLoading({ title: '加载中' });
+    // 处理标题
+    if (CONFIGDATA.pageInfo && CONFIGDATA.pageInfo.title) {
+      wx.setNavigationBarTitle({
+        title: CONFIGDATA.pageInfo.title
+      });
+    }
+  },
+  onLoad: function(options) {
     // 异步获取用户信息
-    this.getUser()
+    //this.getUser()
+    var that = this
+    CONFIGDATA = testData;
+    this.render()
+    // utils.request({
+    //   url: 'handler/view/getviewjs',
+    //   data: {
+    //     page: 'index/index'
+    //   },
+    //   method: 'post',
+    //   success: (data) => {
+    //     console.log('data is:', data.data)
+    //     let virtualDom = data.data.data
+    //     CONFIGDATA = virtualDom;
+    //     console.log(' CONFIGDATA', CONFIGDATA.event)
+    //     CONFIGDATA.event && CONFIGDATA.event.onLoad
+    //       && jsonParse.doJs(CONFIGDATA.event.onLoad, this)
+    //     // let dom = jsonParse.createElement(virtualDom.view)
+    //     // WxParse.wxParse('article', 'html', dom, that, 5);
+    //   },
+    // })
   },
   tapBook: function(e) {
     let dataset = e.target.dataset
@@ -53,11 +71,15 @@ Page({
       url: `/pages/book/index?id=${dataset.book_id}`
     });
   },
+  init: function(){
+
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-
+    this.init();
+    
   },
 
   /**
@@ -100,5 +122,8 @@ Page({
    */
   onShareAppMessage: function() {
     console.log('share ')
+  },
+  doJs:function(e){
+
   }
 })

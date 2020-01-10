@@ -1,5 +1,5 @@
 // pages/collect/index.js
-const utils = require('../../utils/util.js')
+const utils = require('../../utils/utils.js')
 const app = getApp()
 Page({
 
@@ -30,7 +30,7 @@ Page({
     })
   },
   tapBook: function(e) {
-    console.log('e is:', e.target.dataset);
+    console.log('e is:', e);
     let dataset = (e.target.dataset.book_id) ? e.target.dataset : e.currentTarget.dataset
     wx.navigateTo({ url: `/pages/book/list?book_id=${dataset.book_id}` });
   },

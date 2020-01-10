@@ -1,5 +1,5 @@
 // pages/book/detail.js
-const utils = require('../../utils/util.js')
+const utils = require('../../utils/utils.js')
 Page({
   /**
    * 页面的初始数据

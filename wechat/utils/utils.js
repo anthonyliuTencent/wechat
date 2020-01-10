@@ -8,7 +8,6 @@ const formatTime = date => {
 
   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
-
 const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
@@ -106,7 +105,49 @@ function request(obj) {
     }
   })
 }
+function handerView(view,data) {
+  // 参数还是要处理一下的
+  if (view.attr) {
+    for (var i in view.attr) {
+      if (/^jss\:/.test(view.attr[i])) {
+        // 需要处理的
+        // _temp.attr[i] = doSingleLine(_temp.attr[i].replace(/^jss\:/, ""));
+      }
+    }
+  }
+  // 判断child
+  if (view.child && view.child.length) {
+    view.child = goViews(view.child,data);
+  }
+  return view
+}
+function goViews(viewData,data){
+  var _temp = [];
+  viewData.forEach(function (ceil, index) {
+    // 判断是否有wxfor
+    if (ceil.wxfor) {
+      // 替换wxfor
+      let wxforData = data[ceil.wxfor];
+      let tmpl = ceil.template;
+      // console.log('tmpl is:', tmpl)
+      // let tempForData = []
+      wxforData.forEach(function(item, i){
+        let tmplItem = tmpl.replace(/\{\{(.*?)\}\}/g, function($0, $1){
+          return item[$1]
+        })
+        console.log('tmpl:', tmplItem)
+        _temp.push(JSON.parse(tmplItem))
+      })
+    } else {
+      // 没有循环
+      _temp.push(handerView(ceil,data));
+    }
+  });
+  console.log('_temp is:', _temp)
+  return _temp;
+}
 module.exports = {
+  goViews: goViews,
   formatTime: formatTime,
   baseUrl: 'https://mydear.site/',
   getCurrentPageUrl: getCurrentPageUrl,

@@ -1,4 +1,8 @@
 /* pages/index/index.wxss */
+.container {
+  margin: 0;
+  padding: 0;
+}
 .book-area {
   display: flex;
   justify-content: space-around;

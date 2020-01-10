@@ -1,9 +1,15 @@
 <!--index.wxml-->
 <view class="container">
+<myview taiedata="{{item}}" wx:key="unique" wx:for="{{viewData}}" bindjss="onJss">
+</myview>
+</view>
+
+<!-- <import src="../../wxParse/wxParse.wxml"/>
+<view class="container">
 <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
     <text class="famous">--{{famous}}</text>
-  </view>
+</view>
   <view class="navig-tab">
  <view class="navig-tab-area">
  <text style="padding-left: 7px;">值得阅读</text>
@@ -13,12 +19,7 @@
   <view class="book-area">
     <image bindtap="tapBook"data-book_id="{{item.book_id}}" wx:for="{{loveInfo}}" wx:key="id" wx:for-index="id" wx:for-item="item" class="cover-img" mode="widthFix" src="{{item.book_cover_img}}" >
     <text class="cover-text">{{item.book_name}}</text></image>
-    <!-- <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">点击收藏 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block> -->
-  </view>
+ </view>
   <view class="navig-tab">
     <view class="navig-tab-area">
       <text style="padding-left: 7px;">更多好书</text>
@@ -34,5 +35,7 @@
       <view class="book-list-text-author">作者:黄易</view>
     </view>
  </view>
-</view>
+<template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+<!-- <rich-text nodes="{{htmlInfo}}"></rich-text> -->
+<!-- </view> -->
 
