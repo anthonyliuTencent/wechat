@@ -9,7 +9,7 @@
 </text>
 
 
-<label wx:elif="{{taiedata.type == 'label' && !taiedata.hide}}" data-tapstr="{{taiedata.bindtap}}" for="{{taiedata.attr && taiedata.attr['for']}}" data-info="{{taiedata}}" bindtap="bindtap" style="{{taiedata.style ? taiedata.style : ''}}">{{taiedata.innerText ? taiedata.innerText : ''}}</label>
+<label wx:elif="{{taiedata.type == 'label' && !taiedata.hide}}" data-tapstr="{{taiedata.catchtap}}" for="{{taiedata.attr && taiedata.attr['for']}}" data-info="{{taiedata}}" catchtap="catchtap" style="{{taiedata.style ? taiedata.style : ''}}">{{taiedata.innerText ? taiedata.innerText : ''}}</label>
 
 <image wx:elif="{{taiedata.type == 'image' && !taiedata.hide}}" src="{{taiedata.attr && taiedata.attr['src']}}" mode="{{taiedata.attr && taiedata.attr['mode'] ? taiedata.attr['mode'] : 'scaleToFill'}}" lazy-load="{{taiedata.attr && taiedata.attr['lazy-load'] ? taiedata.attr['lazy-load'] : false}}"
   show-menu-by-longpress="{{taiedata.attr && taiedata.attr['show-menu-by-longpress'] ? taiedata.attr['show-menu-by-longpress'] : false}}" data-info="{{taiedata}}" bindtap="bindtap" binderror="binderror" bindload="bindload" style="{{taiedata.style ? taiedata.style : ''}}"> <myview wx:if="{{taiedata.child && taiedata.child.length > 0}}" wx:key="unique" wx:for="{{taiedata.child}}" taiedata="{{item}}" bindjss="onJss">

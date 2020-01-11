@@ -35,10 +35,16 @@ function _createElement(tagName, props,children){
 function createElement(viewArray){
   var contentHtml =''
   viewArray.forEach((item,i) => {
-    console.log('item is:',item)
     contentHtml += _createElement(item.tagName, item.props, item.children)
   })
   return contentHtml
+}
+function executeJs(jsStr, that, attr) {
+  console.log('jsStr', jsStr);
+  // jsStr ='wx.navigateTo({url:"/pages/book/index?id=10"})'
+  // jsStr = 'console.log(attr.book_id)'
+  // wx.navigateTo({ url: "/pages/book/index?id=10"})
+  new Canjs(jsStr, { wx, that, attr }).run()
 }
 function doJs(json, that, option){
   if (json.request) {
@@ -53,7 +59,7 @@ function doJs(json, that, option){
         if (option && option.viewData){
           // 初始化首屏
           var _temp = utils.goViews(option.viewData, viewData);
-          console.log('_temp is:', _temp)
+          // console.log('_temp is:', _temp)
           that.setData({
             viewData: _temp
           });
@@ -67,6 +73,7 @@ function doJs(json, that, option){
   }
 }
 module.exports = {
+  executeJs: executeJs,
   doJs: doJs,
   createElement: createElement
 }

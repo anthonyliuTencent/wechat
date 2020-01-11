@@ -135,7 +135,7 @@ function goViews(viewData,data){
         let tmplItem = tmpl.replace(/\{\{(.*?)\}\}/g, function($0, $1){
           return item[$1]
         })
-        console.log('tmpl:', tmplItem)
+        //console.log('tmpl:', tmplItem)
         _temp.push(JSON.parse(tmplItem))
       })
     } else {
@@ -143,7 +143,7 @@ function goViews(viewData,data){
       _temp.push(handerView(ceil,data));
     }
   });
-  console.log('_temp is:', _temp)
+  // console.log('_temp is:', _temp)
   return _temp;
 }
 module.exports = {

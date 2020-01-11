@@ -123,7 +123,9 @@ Page({
   onShareAppMessage: function() {
     console.log('share ')
   },
-  doJs:function(e){
-
+  onJss:function(e){
+    let detail = e.detail.detail;
+    console.log('detail is:',detail)
+    jsonParse.executeJs(detail.func, this, detail.attr)
   }
 })

@@ -17,7 +17,7 @@
  </view>
  </view>
   <view class="book-area">
-    <image bindtap="tapBook"data-book_id="{{item.book_id}}" wx:for="{{loveInfo}}" wx:key="id" wx:for-index="id" wx:for-item="item" class="cover-img" mode="widthFix" src="{{item.book_cover_img}}" >
+    <image bindtap="tapBook" data-book_id="{{item.book_id}}" wx:for="{{loveInfo}}" wx:key="id" wx:for-index="id" wx:for-item="item" class="cover-img" mode="widthFix" src="{{item.book_cover_img}}" >
     <text class="cover-text">{{item.book_name}}</text></image>
  </view>
   <view class="navig-tab">
