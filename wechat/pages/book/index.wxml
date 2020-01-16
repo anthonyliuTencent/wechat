@@ -1,54 +1,5 @@
-<!--pages/book/index.wxml-->
+<!--index.wxml-->
 <view class="container">
-  <view class="booksite">
-    <div class="bookimg">
-      <image mode="widthFix" src="{{bookInfo.cover_img}}"></image>
-    </div>
-    <div class="bookinfo">
-      <h1 class="bookname">{{bookInfo.name}}</h1>
-      <div class="info">
-        <div>作者：
-          <span>{{bookInfo.author}}</span>
-        </div>
-        <!-- <div>分类：
-          <span>都市重生</span>
-        </div>
-        <div>字数：
-          <span>1223094</span>
-        </div>
-        <div>已有
-          <span>4492人次</span> 读过此书
-        </div> -->
-      </div>
-    </div> 
-    <div>
-      <a  href="javascript:void(0)" class="cbut add_bs" bindtap="addBook"></a>
-      <div class="bookbutton">
-        <a  href="javascript:void(0)" data-book_id="{{bookInfo.id}}"bindtap="jumpContent" data-chapter_id='0'>立即阅读</a>
-        <a class="book-btn" data-book_id="{{bookInfo.id}}" bindtap="jumpList" href="javascript:void(0)">进入目录</a>
-      </div>
-    </div>
-  </view>
-  <view class="book-text">
-    <view class="navig-tab-area">
-      <text class="book-text-title">作品介绍</text>
-    </view>
-    <view class="book-text-content">
-      <text>{{bookInfo.introduce}}</text>
-    </view>
-  </view>
-  <view class="book-list">
-    <view class="navig-tab-area">
-      <text class="book-text-title">目录</text>
-    </view>
-    <view class="book-text-content">
-      <div class="book_list">
-        <a bindtap="tapBook" data-book_id="{{item.book_id}}" data-chapter_id="{{item.chapter_id}}"wx:for="{{chapterArray}}" wx:key="id" wx:for-index="id" wx:for-item="item">
-          <text>{{item.chapter_name}}</text>
-          <view class='arrow'></view>
-        </a>
-      </div>
-    </view>
-  </view>
-  <view class="bottom-area">-------我是有底线的-------</view>
+<myview taiedata="{{item}}" wx:key="unique" wx:for="{{viewData}}" bindjss="onJss">
+</myview>
 </view>

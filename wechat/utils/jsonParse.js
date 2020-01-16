@@ -1,6 +1,4 @@
-var window = (function () {
-  return this
-})();
+
 const utils = require('./utils.js')
 const Canjs = require('./scriptParse.js')
 function _createElement(tagName, props,children){
@@ -46,30 +44,38 @@ function executeJs(jsStr, that, attr) {
   // wx.navigateTo({ url: "/pages/book/index?id=10"})
   new Canjs(jsStr, { wx, that, attr }).run()
 }
-function doJs(json, that, option){
+function getData(dataFunc, that){
+  console.log('data is:', dataFunc)
+  let data = {}
+  if (dataFunc){
+    new Canjs(dataFunc, { wx, that, utils, data }).run()
+  }
+  console.log('data is:',data)
+  return data;
+}
+function doJs(json, that, wx, option){
   if (json.request) {
     // 调用微信接口
     utils.request({
       url: json.request.url,
-      data: json.request.data,
+      data: getData(json.request.data, that),
       success: (data) => {
         var data =data.data
-        var viewData = {}
-        new Canjs(json.request.callback, { data, utils, viewData }).run()
+        var renderData = {}
+        new Canjs(json.request.callback, { data, utils, renderData}).run()
         if (option && option.viewData){
           // 初始化首屏
-          var _temp = utils.goViews(option.viewData, viewData);
-          // console.log('_temp is:', _temp)
+          var _temp = utils.goViews(option.viewData, renderData);
           that.setData({
             viewData: _temp
-          });
+          },);
         }
       }
     })
   }
   if (json.func) {
     let viewData = option.viewData
-    new Canjs(json.func, { wx, that, viewData }).run()
+    new Canjs(json.func, { wx, that, utils, viewData}).run()
   }
 }
 module.exports = {

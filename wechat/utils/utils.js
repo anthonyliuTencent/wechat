@@ -73,35 +73,32 @@ function compare (prop) {
   }
 }
 function request(obj) {
-  wx.getStorage({
-    key: 'cookie',
-    success: (cookie) => {
-      wx.request({
-        url: `https://mydear.site/${obj.url}`,
-        data: obj.data,
-        header: {
-          'content-type': 'application/json',
-          'cookie': cookie.data // 设置cookie
-        },
-        method: 'post',
-        success: (result) => {
-          if (result.header) {
-            if ('Set-Cookie' in result.header) {
-              wx.setStorageSync(key, result.header['Set-Cookie']);
-            }
-            else if ('set-cookie' in result.header) {
-              wx.setStorageSync(key, result.header['set-cookie'])
-            }
-          }
-          obj.success(result)
-        },
-        fail: err => {
-          obj.fail&& obj.fail(err)
-        },
-        complete: (res) => {
-          obj.complete && obj.complete(res);
+  let cookie = wx.getStorageSync('cookie') || {};
+  console.log('cookie is:', cookie)
+  wx.request({
+    url: `https://mydear.site/${obj.url}`,
+    data: obj.data,
+    header: {
+      'content-type': 'application/json',
+      'cookie': cookie.data // 设置cookie
+    },
+    method: 'post',
+    success: (result) => {
+      if (result.header) {
+        if ('Set-Cookie' in result.header) {
+          wx.setStorageSync('cookie', result.header['Set-Cookie']);
         }
-      })
+        else if ('set-cookie' in result.header) {
+          wx.setStorageSync('cookie', result.header['set-cookie'])
+        }
+      }
+      obj.success(result)
+    },
+    fail: err => {
+      obj.fail&& obj.fail(err)
+    },
+    complete: (res) => {
+      obj.complete && obj.complete(res);
     }
   })
 }
@@ -121,13 +118,13 @@ function handerView(view,data) {
   }
   return view
 }
-function goViews(viewData,data){
+function goViews(viewData,renderData){
   var _temp = [];
   viewData.forEach(function (ceil, index) {
     // 判断是否有wxfor
     if (ceil.wxfor) {
       // 替换wxfor
-      let wxforData = data[ceil.wxfor];
+      let wxforData = renderData[ceil.wxfor];
       let tmpl = ceil.template;
       // console.log('tmpl is:', tmpl)
       // let tempForData = []
@@ -138,15 +135,42 @@ function goViews(viewData,data){
         //console.log('tmpl:', tmplItem)
         _temp.push(JSON.parse(tmplItem))
       })
-    } else {
+    } else if(ceil.wxfill){
+      let fillData = renderData[ceil.wxfill];
+      for (var key in ceil){
+        if (typeof ceil[key] === 'string'){
+          ceil[key] = ceil[key].replace(/\{\{(.*?)\}\}/g, function ($0, $1) {
+            return fillData[$1]
+          })
+          console.log(' ceil[key] is:', ceil[key])
+        } else if(key === 'attr'){
+          let attrObj = ceil['attr']
+          for (var key2 in attrObj) {
+            attrObj[key2] = attrObj[key2].replace(/\{\{(.*?)\}\}/g, function ($0, $1) {
+              return fillData[$1]
+            })
+          }
+        }
+      }
+      _temp.push(handerView(ceil, renderData));
+    }else{
       // 没有循环
-      _temp.push(handerView(ceil,data));
+      _temp.push(handerView(ceil, renderData));
     }
   });
   // console.log('_temp is:', _temp)
   return _temp;
 }
+function setCache(key, v, time) {
+  // 要同时写两份
+  wx.setStorageSync(key, v);
+  // 同时写上时间
+  if (time) {
+    wx.setStorageSync(key + "__", new Date().getTime() + time * 60 * 1000);
+  }
+}
 module.exports = {
+  setCache,
   goViews: goViews,
   formatTime: formatTime,
   baseUrl: 'https://mydear.site/',

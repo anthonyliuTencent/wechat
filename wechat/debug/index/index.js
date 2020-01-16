@@ -82,14 +82,13 @@ var json = {
     }]
     },{
       wxfor: 'otherInfo',
-      template: `{"type":"view","hide":false,"style":"padding-left: 12px;padding-top: 5px;padding-bottom: 5px;background-color: #ffffff;border-bottom:1px solid #eeeeee;","child":[{"type":"view","hide":false,"style":"width: 20%;padding-top: 6px;float: left;padding-top: 12px;","child":[{"type":"image","hide":false,"style":"width: 100%;","attr":{"mode":"widthFix","src":"{{book_cover_img}}"}}]},{"type":"view","hide":false,"style":"width: 78%;float: right;","child":[{"type":"view","hide":false,"child":[{"type":"view","hide":false,"style":"font-weight: bold;","attr":{"mode":"widthFix","src":"{{book_name}}"}}]},{"type":"view","hide":false,"style":"padding-top: 12px;font-size:12px;text-overflow:ellipsis;overflow:hidden;word-break: break-all;display:-webkit-box;-webkit-line-clamp:5;padding-right: 8px;-webkit-box-orient:vertical;","innerText":"{{book_introduce}}"},{"type":"view","hide":false,"style":"padding-top:4px;padding-right: 8px;float: right;font-size:12px;color: #969696;","innerText":"作者:黄易"}]}]}`
+      template: `{"bindtap":"wx.navigateTo({url: '/pages/book/index?id='+attr.book_id});","type":"view","attr":{"book_id":"{{book_id}}"},"hide":false,"style":"padding-left: 12px;padding-top: 5px;padding-bottom: 5px;background-color: #ffffff;border-bottom:1px solid #eeeeee;","child":[{"type":"view","hide":false,"style":"width: 20%;padding-top: 6px;float: left;padding-top: 12px;","child":[{"type":"image","hide":false,"style":"width: 100%;","attr":{"mode":"widthFix","src":"{{book_cover_img}}"}}]},{"type":"view","hide":false,"style":"width: 78%;float: right;","child":[{"type":"view","hide":false,"child":[{"type":"view","hide":false,"style":"font-weight: bold;","attr":{"mode":"widthFix","src":"{{book_name}}"}}]},{"type":"view","hide":false,"style":"padding-top: 12px;font-size:12px;text-overflow:ellipsis;overflow:hidden;word-break: break-all;display:-webkit-box;-webkit-line-clamp:5;padding-right: 8px;-webkit-box-orient:vertical;","innerText":"{{book_introduce}}"},{"type":"view","hide":false,"style":"padding-top:4px;padding-right: 8px;float: right;font-size:12px;color: #969696;","innerText":"作者:黄易"}]}]}`
     }
   ],  
   event: {
     onLoad: {
       request: {
         url: "handler/book/getsomebook",
-        data: {},
         callback: ` var loveInfo = []; var otherInfo = [];
 	  		data.forEach(function(item,i){
 	  			if (item.love === 1) {
@@ -98,8 +97,8 @@ var json = {
 		        otherInfo.push(item);
 		      }
 	  		})
-        viewData.loveInfo = loveInfo;
-        viewData.otherInfo = otherInfo;
+        renderData.loveInfo = loveInfo;
+        renderData.otherInfo = otherInfo;
         `
       },
       func: ''
