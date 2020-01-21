@@ -1,110 +1,144 @@
-// pages/book/list.js
+//index.js
+const testData = require('../../debug/book/list.js');
 const utils = require('../../utils/utils.js')
+const jsonParse = require('../../utils/jsonParse.js')
+let app = getApp();
+var CONFIGDATA = {};
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    chapterArray:[],
-    array: [],
-    index: 0
+    viewData: []
   },
-  Allchapter:[],
-  bindPickerChange: function(e){
-    let index = e.detail.value
-    let that = this
-    this.setData({
-      chapterArray: that.Allchapter.slice((index * 20), (index * 20)+20),
-      index
-    })
-  },
-  tapBook: function (e) {
-    let dataset = (e.target.dataset.book_id) ? e.target.dataset : e.currentTarget.dataset
-    console.log('dataset is:', dataset)
-    wx.navigateTo({ url: `/pages/book/detail?book_id=${dataset.book_id}&chapter_id=${dataset.chapter_id}` });
+  getUser: function () {
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    // 设置导航栏为对应导航
-    wx.setNavigationBarTitle({
-      title: '目录'
-    })
-    let url = utils.getCurrentPageUrlWithArgs()
-    let book_id = utils.getLinkValue(url)['book_id'];
-    wx.request({
-      url: `${utils.baseUrl}handler/book/getbookdetail`,
-      data: {
-        book_id
-      },
-      method: 'post',
-      success: (result) => {
-        // console.log('data is:', result)
-        let data = result.data
-        let compare = utils.compare('chapter_id')
-        let Allchapter = data.chapter.sort(compare)
-        let len = Math.floor(Allchapter.length / 20)
-        let tempArray = [];
-        for(let i =0; i < len; i++) {
-          tempArray.push((i*20+1) + '----' + ((i+1)*20 + '章'))
-        }
-        tempArray.push((len * 20 + 1) + '----' + (Allchapter.length + '章'))
-        this.Allchapter = Allchapter
-        this.setData({
-          array: tempArray,
-          chapterArray: Allchapter.slice(0,20)
-        })
-      }
-    })
+  render: function () {
+    var that = this;
+    // that.setData({ "viewData": CONFIGDATA.viewData })
+    CONFIGDATA.event && CONFIGDATA.event.onLoad
+      && jsonParse.initPage(CONFIGDATA.event.onLoad, that, wx, {
+        viewData: CONFIGDATA.viewData
+      })
+    // 加载
+    //wx.showLoading({ title: '加载中' });
+    // 处理标题
+    if (CONFIGDATA.pageInfo && CONFIGDATA.pageInfo.title) {
+      wx.setNavigationBarTitle({
+        title: CONFIGDATA.pageInfo.title
+      });
+    }
   },
-
+  onLoad: function (options) {
+    // 异步获取用户信息
+    //this.getUser()
+    var that = this
+    currentPageUrl = app.getCurrentPages();
+    console.log(app.getCurrentPages())
+    CONFIGDATA = wx.getStorageSync(currentPageUrl);
+    if (!CONFIGDATA) {
+      console.log('not CONFIGDATA')
+      CONFIGDATA = testData;
+      // 到时放开
+      //utils.setCache(currentPageUrl, CONFIGDATA, 60 * 24 * 7);
+    }
+    this.render()
+    // utils.request({
+    //   url: 'handler/view/getviewjs',
+    //   data: {
+    //     page: 'index/index'
+    //   },
+    //   method: 'post',
+    //   success: (data) => {
+    //     console.log('data is:', data.data)
+    //     let virtualDom = data.data.data
+    //     CONFIGDATA = virtualDom;
+    //     console.log(' CONFIGDATA', CONFIGDATA.event)
+    //     CONFIGDATA.event && CONFIGDATA.event.onLoad
+    //       && jsonParse.doJs(CONFIGDATA.event.onLoad, this)
+    //     // let dom = jsonParse.createElement(virtualDom.view)
+    //     // WxParse.wxParse('article', 'html', dom, that, 5);
+    //   },
+    // })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    var that = this;
+    CONFIGDATA.event && CONFIGDATA.event.onReady
+      && jsonParse.doJs(CONFIGDATA.event.onReady, that, wx)
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that = this;
+    CONFIGDATA.event && CONFIGDATA.event.onShow
+      && jsonParse.doJs(CONFIGDATA.event.onShow, that, wx)
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    var that = this;
+    CONFIGDATA.event && CONFIGDATA.event.onHide
+      && jsonParse.doJs(CONFIGDATA.event.onHide, that, wx)
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
+    var that = this;
+    CONFIGDATA.event && CONFIGDATA.event.onUnload
+      && jsonParse.doJs(CONFIGDATA.event.onUnload, that, wx)
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    var that = this;
+    CONFIGDATA.event && CONFIGDATA.event.onPullDownRefresh
+      && jsonParse.doJs(CONFIGDATA.event.onPullDownRefresh, that, wx)
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    var that = this;
+    CONFIGDATA.event && CONFIGDATA.event.onReachBottom
+      && jsonParse.doJs(CONFIGDATA.event.onReachBottom, that, wx)
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    var that = this;
+    CONFIGDATA.event && CONFIGDATA.event.onShareAppMessage
+      && jsonParse.doJs(CONFIGDATA.event.onShareAppMessage, that, wx)
+  },
+  onResize: function () {
+    var that = this;
+    CONFIGDATA.event && CONFIGDATA.event.onResize
+      && jsonParse.doJs(CONFIGDATA.event.onResize, that, wx)
+  },
+  onPageScroll: function () {
+    var that = this;
+    CONFIGDATA.event && CONFIGDATA.event.onPageScroll
+      && jsonParse.doJs(CONFIGDATA.event.onPageScroll, that, wx)
+  },
+  onJss: function (e) {
+    let detail = e.detail.detail;
+    console.log('detail is:', e)
+    jsonParse.executeJs(detail.func, this, detail.attr, e.detail.option)
   }
 })

@@ -37,15 +37,17 @@ function createElement(viewArray){
   })
   return contentHtml
 }
-function executeJs(jsStr, that, attr) {
+// option是事件触发wx系统带上的属性
+function executeJs(jsStr, that, attr, option) {
   console.log('jsStr', jsStr);
+  attr = attr || {}
   // jsStr ='wx.navigateTo({url:"/pages/book/index?id=10"})'
   // jsStr = 'console.log(attr.book_id)'
   // wx.navigateTo({ url: "/pages/book/index?id=10"})
-  new Canjs(jsStr, { wx, that, attr }).run()
+  new Canjs(jsStr, { wx, that, attr, utils, option}).run()
 }
 function getData(dataFunc, that){
-  console.log('data is:', dataFunc)
+  // console.log('data is:', dataFunc)
   let data = {}
   if (dataFunc){
     new Canjs(dataFunc, { wx, that, utils, data }).run()
@@ -53,7 +55,13 @@ function getData(dataFunc, that){
   console.log('data is:',data)
   return data;
 }
-function doJs(json, that, wx, option){
+function setData(that, option) {
+  var _temp = utils.goViews(option.viewData, that.renderData);
+  that.setData({
+    viewData: _temp
+  });
+}
+function initPage(json, that, wx, option){
   if (json.request) {
     // 调用微信接口
     utils.request({
@@ -62,13 +70,18 @@ function doJs(json, that, wx, option){
       success: (data) => {
         var data =data.data
         var renderData = {}
-        new Canjs(json.request.callback, { data, utils, renderData}).run()
+        new Canjs(json.request.callback, { data, utils, renderData, that}).run()
+        console.log('renderData is:',renderData)
+        that.renderData = renderData
         if (option && option.viewData){
           // 初始化首屏
+          // 深拷贝
+          console.log('option is:', option)
+          that.viewTemplateStr = JSON.stringify(option.viewData)
           var _temp = utils.goViews(option.viewData, renderData);
           that.setData({
             viewData: _temp
-          },);
+          });
         }
       }
     })
@@ -78,8 +91,16 @@ function doJs(json, that, wx, option){
     new Canjs(json.func, { wx, that, utils, viewData}).run()
   }
 }
+function doJs(jsStr, that, attr, option) {
+  attr = attr || {}
+  // jsStr ='wx.navigateTo({url:"/pages/book/index?id=10"})'
+  // jsStr = 'console.log(attr.book_id)'
+  // wx.navigateTo({ url: "/pages/book/index?id=10"})
+  new Canjs(jsStr, { wx, that, attr, utils, option }).run()
+}
 module.exports = {
   executeJs: executeJs,
   doJs: doJs,
+  initPage: initPage,
   createElement: createElement
 }

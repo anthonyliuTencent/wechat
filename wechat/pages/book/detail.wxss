@@ -95,12 +95,10 @@ border-top-left-radius: 20px;
 }
 
 .button {
-  flex: 1;
   margin: 0.5em;
   text-align: center;
   font-size: 14px;
   border-radius: 5px;
-  display: block;
   padding: 12px;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
   text-decoration: none;

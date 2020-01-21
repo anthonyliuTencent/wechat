@@ -12,6 +12,22 @@ const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
 }
+function queryComponentMsg(that,pSeletor,cSelector, callback){
+  var richTextDom = that.selectComponent(pSeletor);
+  const query = wx.createSelectorQuery().in(richTextDom)
+  query.select(cSelector).boundingClientRect()
+  query.exec(function (res) {
+    callback(res[0])
+  })
+}
+function queryDomMsg(selector, callback){
+  var query = wx.createSelectorQuery();
+  //选择id
+  query.select(selector).boundingClientRect()
+  query.exec(function(res){
+    callback(res[0])
+  })
+}
 function getCurrentPageUrl() {
   var pages = getCurrentPages() //获取加载的页面
   var currentPage = pages[pages.length - 1] //获取当前页面的对象
@@ -80,7 +96,7 @@ function request(obj) {
     data: obj.data,
     header: {
       'content-type': 'application/json',
-      'cookie': cookie.data // 设置cookie
+      'cookie': cookie// 设置cookie
     },
     method: 'post',
     success: (result) => {
@@ -119,6 +135,8 @@ function handerView(view,data) {
   return view
 }
 function goViews(viewData,renderData){
+  console.log('viewData', viewData)
+  console.log('renderData', renderData)
   var _temp = [];
   viewData.forEach(function (ceil, index) {
     // 判断是否有wxfor
@@ -137,15 +155,28 @@ function goViews(viewData,renderData){
       })
     } else if(ceil.wxfill){
       let fillData = renderData[ceil.wxfill];
+      let arrayFlag = 0
+      if(Array.isArray(fillData)) {
+        // 数组获取下标
+        arrayFlag = 1
+      }
       for (var key in ceil){
         if (typeof ceil[key] === 'string'){
-          ceil[key] = ceil[key].replace(/\{\{(.*?)\}\}/g, function ($0, $1) {
-            return fillData[$1]
-          })
-          console.log(' ceil[key] is:', ceil[key])
+          if (arrayFlag) {
+            ceil[key] = ceil[key].replace(/\{\{(.*?)\}\}/g, function ($0, $1) {
+              console.log('$1:', $1)
+              return fillData[renderData[$1]]
+            })
+          } else {
+            ceil[key] = ceil[key].replace(/\{\{(.*?)\}\}/g, function ($0, $1) {
+              return fillData[$1]
+            })
+          }
+          // console.log(' ceil[key] is:', ceil[key])
         } else if(key === 'attr'){
           let attrObj = ceil['attr']
           for (var key2 in attrObj) {
+            console.log('key2= is:', key2)
             attrObj[key2] = attrObj[key2].replace(/\{\{(.*?)\}\}/g, function ($0, $1) {
               return fillData[$1]
             })
@@ -153,8 +184,17 @@ function goViews(viewData,renderData){
         }
       }
       _temp.push(handerView(ceil, renderData));
-    }else{
-      // 没有循环
+    }else if(ceil.attr){
+      for (var key in ceil.attr){
+        if (typeof ceil.attr[key] === 'string') {
+          let regex = /\{\{(.*?)\}\}/
+          let chooseKey = ceil.attr[key].match(regex);
+          ceil.attr[key] = renderData[chooseKey[1]]
+        }
+      }
+      _temp.push(handerView(ceil, renderData));
+    }else {
+      // 没有循环,也没有属性
       _temp.push(handerView(ceil, renderData));
     }
   });
@@ -171,6 +211,8 @@ function setCache(key, v, time) {
 }
 module.exports = {
   setCache,
+  queryComponentMsg,
+  queryDomMsg,
   goViews: goViews,
   formatTime: formatTime,
   baseUrl: 'https://mydear.site/',

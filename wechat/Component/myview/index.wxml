@@ -1,6 +1,6 @@
-<view wx:if="{{taiedata.type == 'view' && !taiedata.hide}}" data-info="{{taiedata}}" bindtap="bindtap" style="{{taiedata.style ? taiedata.style : ''}}">
+<view wx:if="{{taiedata.type == 'view' && !taiedata.hide}}" data-info="{{taiedata}}" bindtap="bindtap" id="{{taiedata.id ? taiedata.id : ''}}"style="{{taiedata.style ? taiedata.style : ''}}">
   {{taiedata.innerText ? taiedata.innerText : ''}}
-  <myview wx:if="{{taiedata.child && taiedata.child.length > 0}}" wx:key="unique" wx:for="{{taiedata.child}}" taiedata="{{item}}" bindjss="onJss">
+  <myview wx:if="{{taiedata.child && taiedata.child.length > 0}}" wx:key="unique" wx:for="{{taiedata.child}}" id="{{item.componentid ? item.componentid: ''}}"taiedata="{{item}}" bindjss="onJss">
   </myview>
 </view>
 
@@ -93,7 +93,7 @@
 </progress>
 
 
-<rich-text wx:elif="{{taiedata.type == 'rich-text' && !taiedata.hide}}" space="{{taiedata.attr && taiedata.attr['space']}}" nodes="{{taiedata.attr && taiedata.attr['nodes'] ? taiedata.attr['nodes'] : []}}" data-info="{{taiedata}}" bindtap="bindtap" style="{{taiedata.style ? taiedata.style : ''}}">
+<rich-text id="{{taiedata.id ? taiedata.id : ''}}" wx:elif="{{taiedata.type == 'rich-text' && !taiedata.hide}}" space="{{taiedata.attr && taiedata.attr['space']}}" nodes="{{taiedata.attr && taiedata.attr['nodes'] ? taiedata.attr['nodes'] : []}}" data-info="{{taiedata}}" bindtap="bindtap" style="{{taiedata.style ? taiedata.style : ''}}">
 </rich-text>
 
 <!--更多表单组件-->
@@ -111,7 +111,7 @@
 </editor>
 
 <picker wx:elif="{{taiedata.type == 'picker' && !taiedata.hide}}" mode="{{taiedata.attr && taiedata.attr['mode'] ? taiedata.attr['mode'] : 'selector'}}" disabled="{{taiedata.attr && taiedata.attr['disabled'] ? taiedata.attr['disabled'] : false}}" data-info="{{taiedata}}"
-  bindtap="bindtap" bindcancel="bindcancel" style="{{taiedata.style ? taiedata.style : ''}}">
+  bindtap="bindtap"  bindchange="bindchange" range="{{taiedata.attr && taiedata.attr['range']}}"bindcancel="bindcancel" style="{{taiedata.style ? taiedata.style : ''}}">
   <myview wx:if="{{taiedata.child && taiedata.child.length > 0}}" wx:key="unique" wx:for="{{taiedata.child}}" taiedata="{{item}}" bindjss="onJss"></myview>
 </picker>
 

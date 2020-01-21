@@ -1,5 +1,10 @@
 <!--pages/book/list.wxml-->
+
 <view class="container">
+<myview taiedata="{{item}}" wx:key="unique" wx:for="{{viewData}}" bindjss="onJss">
+</myview>
+</view>
+<!-- <view class="container">
   <view class="section">
     <picker class="picker" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
       <div class='down'></div> 
@@ -17,4 +22,4 @@
     </view>
   </view>
   <view class="bottom-area">-------我是有底线的-------</view>
-</view>
+</view> -->

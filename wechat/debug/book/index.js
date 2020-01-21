@@ -42,6 +42,32 @@ var viewData = [
       child:[{
         type: 'view',
         hide: false,
+        wxfill: 'bookInfo',
+        attr: {"book_id": "{{id}}" },
+        bindtap:`utils.request({
+          url:'handler/user/addfavbook',
+          data: {
+            book_id: '10'
+          },
+          method: 'post',
+          success: function(data){
+            let result = data.data
+            console.log('result is:', result)
+            if(result.retCode === '000000') {
+              wx.showToast({
+                title: '成功加入书架',
+                icon: 'success',
+                duration: 2000
+              })
+            } else {
+              wx.showToast({
+                title: result.retMsg,
+                icon: 'none',
+                duration: 2000
+              })
+            }
+          },
+        })`,
         style: `position: absolute;right: 25px;
               top: 50px;
               width: 54px;
@@ -52,7 +78,6 @@ var viewData = [
               line-height: 23px;
               overflow: hidden;border: 1px solid #ff4643;color: #ff4643;`,
         innerText:'+ 书架',
-        bindtap:'console.log("xx")'
       },{
         type:'view',
         hide:false,
@@ -60,6 +85,10 @@ var viewData = [
         child:[{
           type: 'button',
           hide: false,
+          wxfill: 'bookInfo',
+          attr: { "open-type":"getUserInfo", "book_id":"{{id}}"},
+          bindgetuserinfo:"bindgetuserinfo",
+          bindgetuserinfo2: "wx.navigateTo({ url: '/pages/book/detail?book_id='+attr.book_id+'&chapter_id=0' });",
           style: `-webkit-box-flex: 1;
                   line-height: 38px;
                   border-radius: 2px;
@@ -71,10 +100,12 @@ var viewData = [
                   font-weight: normal;
                   padding: 1px 36px;`,
           innerText: '立即阅读',
-          bindtap: 'console.log("xx")'
+          bindtap: ''
         },{
           type: 'view',
           hide: false,
+          wxfill: 'bookInfo',
+          attr: { book_id: "{{id}}"},
           style: `-webkit-box-flex: 1;
                 line-height: 35px;
                 border-radius: 2px;
@@ -86,7 +117,7 @@ var viewData = [
                 text-overflow: ellipsis;
                 padding: 1.5px 44px;border: 1px solid #b33836;color: #b33836;background: #fff;margin-left: 8px;`,
           innerText: '进入目录',
-          bindtap: 'console.log("xx")'
+            bindtap: 'wx.navigateTo({ url: "/pages/book/list?book_id="+attr.book_id});'
         }]
       }]
     }]
@@ -136,7 +167,7 @@ var viewData = [
       type: 'view',
       hide: false,
       wxfor: 'chapterArray',
-        template: `{"type":"view","style":"border-bottom: 1px solid #dfdfdf;  position: relative;clear: both;height: 38px;padding: 0px 20px 15px 8px;font-size: 14px;","child":[{"type":"text","style":"display:inline-block","innerText":"{{chapter_name}}"},{"type":"view","style":"width: 10px;height: 10px;border-top: 2px solid #999;border-right: 2px solid #999;position: absolute;right: 20rpx;transform: rotate(45deg);margin-top: -22px;"}]}`
+      template: `{"type":"view","bindtap":"wx.navigateTo({url: '/pages/book/detail?book_id={{book_id}}&chapter_id={{chapter_id}}'});","style":"border-bottom: 1px solid #dfdfdf;  position: relative;clear: both;height: 38px;padding: 0px 20px 15px 8px;font-size: 14px;","child":[{"type":"text","style":"display:inline-block","innerText":"{{chapter_name}}"},{"type":"view","style":"width: 10px;height: 10px;border-top: 2px solid #999;border-right: 2px solid #999;position: absolute;right: 20rpx;transform: rotate(45deg);margin-top: -12px;"}]}`
     }]
   },{
     type: 'view',
@@ -152,7 +183,7 @@ var json = {
     onLoad: {
       request: {
         url: "handler/book/getbookdetail",
-        data: "let url = utils.getCurrentPageUrlWithArgs();data.book_id =utils.getLinkValue(url)['id'] || 10;",
+        data: "let url = utils.getCurrentPageUrlWithArgs();data.book_id =utils.getLinkValue(url)[id]|| 10;",
         callback: `let bookInfo = {
           author: data.book_author,
           cover_img: data.book_book_cover_img,

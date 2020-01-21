@@ -53,46 +53,28 @@ Component({
     bindtransition: eventhander("bindtransition"),
     bindanimationfinish: eventhander("bindanimationfinish"),
     bindgetuserinfo: function (e) {
-      // 把当前的点击事件记下来
-    //   if (!window.ed) window.ed = {};
-    //   window.ed.bindgetuserinfo = e;
-
-    //   // 如果授权了
-    //   if (e.detail && e.detail.userInfo) {
-    //     // 授权了
-    //     var uinfo = wx.getStorageSync('uinfo');
-
-    //     if (!e.detail.userInfo.avatarUrl) {
-    //       e.detail.userInfo.avatarUrl = "https://wqs.jd.com/pingou/images/clock_task/5a0697abN8a425d5c.png";
-    //     }
-    //     if (!e.detail.userInfo.nickName) {
-    //       e.detail.userInfo.nickName = "太阿用户";
-    //     }
-
-    //     uinfo.avatarUrl = e.detail.userInfo.avatarUrl;
-    //     uinfo.city = e.detail.userInfo.city;
-    //     uinfo.country = e.detail.userInfo.country;
-    //     uinfo.gender = e.detail.userInfo.gender;
-    //     uinfo.language = e.detail.userInfo.language;
-    //     uinfo.nickName = e.detail.userInfo.nickName;
-    //     uinfo.province = e.detail.userInfo.province;
-        
-    //     // 写入缓存
-    //     wx.setStorageSync('uinfo', uinfo);
-
-    //     // 更新用户信息
-    //     utils.request("https://onhit.cn/sanpk/login-update", e.detail.userInfo , function (res) {
-    //     }); 
-    //   }
-
-
-    //   // 自定义事件
-    //   var _info = e.target.dataset.info || e.currentTarget.dataset.info;
-    //   if (_info.bindgetuserinfo) {
-    //     // 有点击事件的
-    //     // 需要冒泡
-    //     this.triggerEvent('jss', {detail: _info.bindgetuserinfo})
-    //   }
+      var userInfo = wx.getStorageSync('userInfo')
+      if (!userInfo.nickName) {
+        //没有昵称，需要存储信息到后台
+        var updateInfo = {
+          ...e.detail.userInfo, openid: userInfo.openid};
+        wx.setStorageSync('userInfo', updateInfo);
+        console.log('updateInfo is:', updateInfo)
+        utils.request({
+          url: 'handler/user/adduserinfo',
+          data: updateInfo,
+          method: 'post',
+          success: (data) => {
+            console.log('xx is:',data)
+          },
+        })
+      }
+      var _info = e.target.dataset.info || e.currentTarget.dataset.info;
+      console.log('_info:', _info)
+      if (_info.bindgetuserinfo) {
+        // 有点击事件的需要冒泡
+        this.triggerEvent('jss', { detail: { func: _info.bindgetuserinfo2, attr: _info.attr }})
+      }
     },
     bindcontact: eventhander("bindcontact"),
     bindgetphonenumber: eventhander("bindgetphonenumber"),
@@ -148,7 +130,7 @@ function eventhander (type) {
     if (_info[type]) {
       // 有点击事件的,需要冒泡
       console.log('_info is:', _info)
-      this.triggerEvent('jss', { detail: { func: _info[type], attr: _info.attr}})
+      this.triggerEvent('jss', { detail: { func: _info[type], attr: _info.attr}, option:e.detail})
     }
   }
 }

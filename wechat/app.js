@@ -3,28 +3,27 @@ const utils = require('./utils/utils.js')
 App({
   onLaunch: function () {
     //初始化加载，先判断用户登录状态
-    if (wx.getStorageSync('userInfo')) {
-      // 没有获取到用户的信息
-    } else {
-      wx.login({
-        success: function (res) {
-          console.log(res.code);
-          if (res.code) {
-            code = res.code
-            utils.request({
-              url: 'handler/user/getusermsg',
-              data: { code },
-              method: 'post',
-              success: (data) => {
-                console.log('get openid is ok')
-              },
-            })
-          } else {
-            console.log('hello world!')
-          }
+    wx.login({
+      success: function (res) {
+        console.log(res.code);
+        if (res.code) {
+          code = res.code
+          utils.request({
+            url: 'handler/user/getusermsg',
+            data: { code },
+            method: 'post',
+            success: (data) => {
+              let userInfo={
+                openid: data.data.openid
+              }
+              wx.setStorageSync('userInfo', userInfo);
+            },
+          })
+        } else {
+          console.log('hello world!')
         }
-      })
-    }
+      }
+    })
   },
   getCurrentPages: function () {
     　　var pages = getCurrentPages();    //获取加载的页面

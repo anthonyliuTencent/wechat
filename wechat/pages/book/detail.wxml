@@ -1,27 +1,4 @@
-<!--pages/book/detail.wxml-->
-<!-- <import src="../../wxParse/wxParse.wxml"/> -->
-<view class="book-content" id="book-conent" bindtap="showHelp" 
-   style="background-color:{{backgroundColor}}">
-  <div class="body" style="font-size: {{fontSize}};">
-    <!-- <div class="title">{{title}}</div> -->
-    <!-- <template is="wxParse" data="{{wxParseData:content.nodes}}"/> -->
-    <rich-text nodes="{{html}}"></rich-text>
-  </div>
-  <view class="help" style="display:{{helpShow}};">
-    <view class="fontArea">
-      <div data-size="small" catchtap="changeFont"class="small-font">小</div>
-      <div data-size="media" catchtap="changeFont"class="media-font">中</div>
-      <div data-size="large" catchtap="changeFont" class="large-font">大</div>
-    </view>
-    <view class="colorArea">
-      <div class="button white-btn" catchtap="changeColor" data-color="1"></div>
-      <div class="button yello-btn" catchtap="changeColor"data-color="2" ></div>
-      <div class="button blur-btn" catchtap="changeColor" data-color="3"></div>
-    </view>
-  </view>
-  <div class="navigator" id="navigator" style="display:{{jumpShow}};">
-    <div class="button" catchtap="lookLast">上一章</div>
-    <div class="button" catchtap="lookList">目录</div>
-    <div class="button nextpage" catchtap="lookNext">下一页</div>
-  </div>
+<view class="container">
+<myview id="yyyyy" taiedata="{{item}}" wx:key="unique" wx:for="{{viewData}}" bindjss="onJss">
+</myview>
 </view>

@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "Select": "/Component/select/select"
+    "Select": "/Component/select/select",
+    "myview": "/Component/myview/index"
   }
   
 }
