@@ -70,7 +70,7 @@ function initPage(json, that, wx, option){
       success: (data) => {
         var data =data.data
         var renderData = {}
-        new Canjs(json.request.callback, { data, utils, renderData, that}).run()
+        new Canjs(json.request.callback, { data, utils, renderData, that, wx}).run()
         console.log('renderData is:',renderData)
         that.renderData = renderData
         if (option && option.viewData){

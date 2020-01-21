@@ -4,66 +4,66 @@
   </myview>
 </view>
 
-<text wx:if="{{taiedata.type == 'text' && !taiedata.hide}}" style="{{taiedata.style ? taiedata.style : ''}}">
+<text id="{{taiedata.id ? taiedata.id : ''}}" wx:if="{{taiedata.type == 'text' && !taiedata.hide}}" style="{{taiedata.style ? taiedata.style : ''}}">
   {{taiedata.innerText ? taiedata.innerText : ''}}
 </text>
 
 
-<label wx:elif="{{taiedata.type == 'label' && !taiedata.hide}}" data-tapstr="{{taiedata.catchtap}}" for="{{taiedata.attr && taiedata.attr['for']}}" data-info="{{taiedata}}" catchtap="catchtap" style="{{taiedata.style ? taiedata.style : ''}}">{{taiedata.innerText ? taiedata.innerText : ''}}</label>
+<label wx:elif="{{taiedata.type == 'label' && !taiedata.hide}}" id="{{taiedata.id ? taiedata.id : ''}}" data-tapstr="{{taiedata.catchtap}}" for="{{taiedata.attr && taiedata.attr['for']}}" data-info="{{taiedata}}" catchtap="catchtap" style="{{taiedata.style ? taiedata.style : ''}}">{{taiedata.innerText ? taiedata.innerText : ''}}</label>
 
-<image wx:elif="{{taiedata.type == 'image' && !taiedata.hide}}" src="{{taiedata.attr && taiedata.attr['src']}}" mode="{{taiedata.attr && taiedata.attr['mode'] ? taiedata.attr['mode'] : 'scaleToFill'}}" lazy-load="{{taiedata.attr && taiedata.attr['lazy-load'] ? taiedata.attr['lazy-load'] : false}}"
-  show-menu-by-longpress="{{taiedata.attr && taiedata.attr['show-menu-by-longpress'] ? taiedata.attr['show-menu-by-longpress'] : false}}" data-info="{{taiedata}}" bindtap="bindtap" binderror="binderror" bindload="bindload" style="{{taiedata.style ? taiedata.style : ''}}"> <myview wx:if="{{taiedata.child && taiedata.child.length > 0}}" wx:key="unique" wx:for="{{taiedata.child}}" taiedata="{{item}}" bindjss="onJss">
+<image id="{{taiedata.id ? taiedata.id : ''}}" wx:elif="{{taiedata.type == 'image' && !taiedata.hide}}" src="{{taiedata.attr && taiedata.attr['src']}}" mode="{{taiedata.attr && taiedata.attr['mode'] ? taiedata.attr['mode'] : 'scaleToFill'}}" lazy-load="{{taiedata.attr && taiedata.attr['lazy-load'] ? taiedata.attr['lazy-load'] : false}}"
+  show-menu-by-longpress="{{taiedata.attr && taiedata.attr['show-menu-by-longpress'] ? taiedata.attr['show-menu-by-longpress'] : false}}" data-info="{{taiedata}}" bindtap="bindtap" binderror="binderror" bindload="bindload" style="{{taiedata.style ? taiedata.style : ''}}"> <myview id="{{item.componentid ? item.componentid: ''}}" wx:if="{{taiedata.child && taiedata.child.length > 0}}" wx:key="unique" wx:for="{{taiedata.child}}" taiedata="{{item}}" bindjss="onJss">
   </myview></image>
 
-<scroll-view wx:elif="{{taiedata.type == 'scroll-view' && !taiedata.hide}}" scroll-x="{{taiedata.attr && taiedata.attr['scroll-x'] ? taiedata.attr['scroll-x'] : false}}" scroll-y="{{taiedata.attr && taiedata.attr['scroll-y'] ? taiedata.attr['scroll-y'] : false}}"
+<scroll-view id="{{taiedata.id ? taiedata.id : ''}}"  wx:elif="{{taiedata.type == 'scroll-view' && !taiedata.hide}}" scroll-x="{{taiedata.attr && taiedata.attr['scroll-x'] ? taiedata.attr['scroll-x'] : false}}" scroll-y="{{taiedata.attr && taiedata.attr['scroll-y'] ? taiedata.attr['scroll-y'] : false}}"
   upper-threshold="{{taiedata.attr && taiedata.attr['upper-threshold'] ? taiedata.attr['upper-threshold'] : '50'}}" lower-threshold="{{taiedata.attr && taiedata.attr['lower-threshold'] ? taiedata.attr['lower-threshold'] : '50'}}" scroll-top="{{taiedata.attr && taiedata.attr['scroll-top']}}"
   scroll-left="{{taiedata.attr && taiedata.attr['scroll-left']}}" scroll-into-view="{{taiedata.attr && taiedata.attr['scroll-into-view']}}" scroll-with-animation="{{taiedata.attr && taiedata.attr['scroll-with-animation'] ? taiedata.attr['scroll-with-animation'] : false}}"
   enable-back-to-top="{{taiedata.attr && taiedata.attr['enable-back-to-top'] ? taiedata.attr['enable-back-to-top'] : false}}" enable-flex="{{taiedata.attr && taiedata.attr['enable-flex'] ? taiedata.attr['enable-flex'] : false}}" data-info="{{taiedata}}"
   bindtap="bindtap" bindscrolltoupper="bindscrolltoupper" bindscrolltolower="bindscrolltolower" bindscroll="bindscroll" style="{{taiedata.style ? taiedata.style : ''}}">{{taiedata.innerText ? taiedata.innerText : ''}}
-  <myview wx:if="{{taiedata.child && taiedata.child.length > 0}}" wx:key="unique" wx:for="{{taiedata.child}}" taiedata="{{item}}" bindjss="onJss"></myview>
+  <myview id="{{item.componentid ? item.componentid: ''}}" wx:if="{{taiedata.child && taiedata.child.length > 0}}" wx:key="unique" wx:for="{{taiedata.child}}" taiedata="{{item}}" bindjss="onJss"></myview>
 </scroll-view>
 
-<swiper wx:elif="{{taiedata.type == 'swiper' && !taiedata.hide}}" indicator-dots="{{taiedata.attr && taiedata.attr['indicator-dots'] ? taiedata.attr['indicator-dots'] : false}}" indicator-color="{{taiedata.attr && taiedata.attr['indicator-color'] ? taiedata.attr['indicator-color'] : false}}"
+<swiper id="{{taiedata.id ? taiedata.id : ''}}" wx:elif="{{taiedata.type == 'swiper' && !taiedata.hide}}" indicator-dots="{{taiedata.attr && taiedata.attr['indicator-dots'] ? taiedata.attr['indicator-dots'] : false}}" indicator-color="{{taiedata.attr && taiedata.attr['indicator-color'] ? taiedata.attr['indicator-color'] : false}}"
   indicator-active-color="{{taiedata.attr && taiedata.attr['indicator-active-color'] ? taiedata.attr['indicator-active-color'] : false}}" autoplay="{{taiedata.attr && taiedata.attr['autoplay'] ? taiedata.attr['autoplay'] : false}}" current="{{taiedata.attr && taiedata.attr['current'] ? taiedata.attr['current'] : false}}"
   interval="{{taiedata.attr && taiedata.attr['interval'] ? taiedata.attr['interval'] : false}}" duration="{{taiedata.attr && taiedata.attr['duration'] ? taiedata.attr['duration'] : false}}" circular="{{taiedata.attr && taiedata.attr['circular'] ? taiedata.attr['circular'] : false}}"
   vertical="{{taiedata.attr && taiedata.attr['vertical'] ? taiedata.attr['vertical'] : false}}" previous-margin="{{taiedata.attr && taiedata.attr['previous-margin'] ? taiedata.attr['previous-margin'] : false}}" next-margin="{{taiedata.attr && taiedata.attr['next-margin'] ? taiedata.attr['next-margin'] : false}}"
   display-multiple-items="{{taiedata.attr && taiedata.attr['display-multiple-items'] ? taiedata.attr['display-multiple-items'] : false}}" skip-hidden-item-layout="{{taiedata.attr && taiedata.attr['skip-hidden-item-layout'] ? taiedata.attr['skip-hidden-item-layout'] : false}}"
   easing-function="{{taiedata.attr && taiedata.attr['easing-function'] ? taiedata.attr['easing-function'] : false}}" data-info="{{taiedata}}" bindtap="bindtap" bindchange="bindchange" bindtransition="bindtransition" bindanimationfinish="bindanimationfinish"
   style="{{taiedata.style ? taiedata.style : ''}}">{{taiedata.innerText ? taiedata.innerText : ''}}
-  <myview wx:if="{{taiedata.child && taiedata.child.length > 0}}" wx:key="unique" wx:for="{{taiedata.child}}" taiedata="{{item}}" bindjss="onJss"></myview>
+  <myview id="{{item.componentid ? item.componentid: ''}}" wx:if="{{taiedata.child && taiedata.child.length > 0}}" wx:key="unique" wx:for="{{taiedata.child}}" taiedata="{{item}}" bindjss="onJss"></myview>
 </swiper>
 
-<swiper-item wx:elif="{{taiedata.type == 'swiper-item' && !taiedata.hide}}" item-id="{{taiedata.attr && taiedata.attr['item-id']}}" data-info="{{taiedata}}" bindtap="bindtap" style="{{taiedata.style ? taiedata.style : ''}}">{{taiedata.innerText ? taiedata.innerText : ''}}
-  <myview wx:if="{{taiedata.child && taiedata.child.length > 0}}" wx:key="unique" wx:for="{{taiedata.child}}" taiedata="{{item}}" bindjss="onJss"></myview>
+<swiper-item id="{{taiedata.id ? taiedata.id : ''}}" wx:elif="{{taiedata.type == 'swiper-item' && !taiedata.hide}}" item-id="{{taiedata.attr && taiedata.attr['item-id']}}" data-info="{{taiedata}}" bindtap="bindtap" style="{{taiedata.style ? taiedata.style : ''}}">{{taiedata.innerText ? taiedata.innerText : ''}}
+  <myview id="{{item.componentid ? item.componentid: ''}}" wx:if="{{taiedata.child && taiedata.child.length > 0}}" wx:key="unique" wx:for="{{taiedata.child}}" taiedata="{{item}}" bindjss="onJss"></myview>
 </swiper-item>
 
 
-<button wx:elif="{{taiedata.type == 'button' && !taiedata.hide}}" size="{{taiedata.attr && taiedata.attr['size'] ? taiedata.attr['size'] : 'default'}}" type="{{taiedata.attr && taiedata.attr['type'] ? taiedata.attr['type'] : 'default'}}" plain="{{taiedata.attr && taiedata.attr['plain'] ? taiedata.attr['plain'] : false}}"
+<button id="{{taiedata.id ? taiedata.id : ''}}" wx:elif="{{taiedata.type == 'button' && !taiedata.hide}}" size="{{taiedata.attr && taiedata.attr['size'] ? taiedata.attr['size'] : 'default'}}" type="{{taiedata.attr && taiedata.attr['type'] ? taiedata.attr['type'] : 'default'}}" plain="{{taiedata.attr && taiedata.attr['plain'] ? taiedata.attr['plain'] : false}}"
   disabled="{{taiedata.attr && taiedata.attr['disabled'] ? taiedata.attr['disabled'] : false}}" loading="{{taiedata.attr && taiedata.attr['loading'] ? taiedata.attr['loading'] : false}}" form-type="{{taiedata.attr && taiedata.attr['form-type']}}" open-type="{{taiedata.attr && taiedata.attr['open-type']}}"
   data-info="{{taiedata}}" bindtap="bindtap" bindgetuserinfo="bindgetuserinfo" bindcontact="bindcontact" bindgetphonenumber="bindgetphonenumber" bindopensetting="bindopensetting" bindlaunchapp="bindlaunchapp" style="{{taiedata.style ? taiedata.style : ''}}">{{taiedata.innerText ? taiedata.innerText : ''}}
-  <myview wx:if="{{taiedata.child && taiedata.child.length > 0}}" wx:key="unique" wx:for="{{taiedata.child}}" taiedata="{{item}}" bindjss="onJss"></myview>
+  <myview id="{{item.componentid ? item.componentid: ''}}" wx:if="{{taiedata.child && taiedata.child.length > 0}}" wx:key="unique" wx:for="{{taiedata.child}}" taiedata="{{item}}" bindjss="onJss"></myview>
 </button>
 
-<input wx:elif="{{taiedata.type == 'input' && !taiedata.hide}}" value="{{taiedata.attr && taiedata.attr['value']}}" type="{{taiedata.attr && taiedata.attr['type'] ? taiedata.attr['type'] : 'text'}}" password="{{taiedata.attr && taiedata.attr['password'] ? taiedata.attr['password'] : false}}"
+<input id="{{taiedata.id ? taiedata.id : ''}}" wx:elif="{{taiedata.type == 'input' && !taiedata.hide}}" value="{{taiedata.attr && taiedata.attr['value']}}" type="{{taiedata.attr && taiedata.attr['type'] ? taiedata.attr['type'] : 'text'}}" password="{{taiedata.attr && taiedata.attr['password'] ? taiedata.attr['password'] : false}}"
   placeholder="{{taiedata.attr && taiedata.attr['placeholder']}}" placeholder-style="{{taiedata.attr && taiedata.attr['placeholder-style']}}" disabled="{{taiedata.attr && taiedata.attr['disabled'] ? taiedata.attr['disabled'] : false}}" maxlength="{{taiedata.attr && taiedata.attr['maxlength'] ? taiedata.attr['maxlength'] : '140'}}"
   focus="{{taiedata.attr && taiedata.attr['focus'] ? taiedata.attr['focus'] : false}}" confirm-type="{{taiedata.attr && taiedata.attr['confirm-type'] ? taiedata.attr['confirm-type'] : 'done'}}" confirm-hold="{{taiedata.attr && taiedata.attr['confirm-hold'] ? taiedata.attr['confirm-hold'] : false}}"
   data-info="{{taiedata}}" bindtap="bindtap" bindinput="bindinput" bindfocus="bindfocus" bindblur="bindblur" bindconfirm="bindconfirm" bindkeyboardheightchange="bindkeyboardheightchange" style="{{taiedata.style ? taiedata.style : ''}}"></input>
 
 
-<form wx:elif="{{taiedata.type == 'form' && !taiedata.hide}}" report-submit="{{taiedata.attr && taiedata.attr['report-submit'] ? taiedata.attr['report-submit'] : false}}" report-submit-timeout="{{taiedata.attr && taiedata.attr['report-submit-timeout'] ? taiedata.attr['report-submit-timeout'] : 0}}"
+<form id="{{taiedata.id ? taiedata.id : ''}}" wx:elif="{{taiedata.type == 'form' && !taiedata.hide}}" report-submit="{{taiedata.attr && taiedata.attr['report-submit'] ? taiedata.attr['report-submit'] : false}}" report-submit-timeout="{{taiedata.attr && taiedata.attr['report-submit-timeout'] ? taiedata.attr['report-submit-timeout'] : 0}}"
   data-info="{{taiedata}}" bindtap="bindtap" bindsubmit="bindsubmit" bindreset="bindreset" style="{{taiedata.style ? (taiedata.style + ';display: block;position: relative;') : 'display: block;position: relative;'}}">
-  <button form-type="submit" style="width: 100%;height: 100%;border:none;position: absolute;" plain="true">{{taiedata.innerText ? taiedata.innerText : ''}}</button>
-  <myview wx:if="{{taiedata.child && taiedata.child.length > 0}}" wx:key="unique" wx:for="{{taiedata.child}}" taiedata="{{item}}" bindjss="onJss"></myview>
+  <button id="{{taiedata.id ? taiedata.id : ''}}" form-type="submit" style="width: 100%;height: 100%;border:none;position: absolute;" plain="true">{{taiedata.innerText ? taiedata.innerText : ''}}</button>
+  <myview id="{{item.componentid ? item.componentid: ''}}"wx:if="{{taiedata.child && taiedata.child.length > 0}}" wx:key="unique" wx:for="{{taiedata.child}}" taiedata="{{item}}" bindjss="onJss"></myview>
 </form>
 
-<ad wx:elif="{{taiedata.type == 'ad' && !taiedata.hide}}" unit-id="{{taiedata.attr && taiedata.attr['unit-id']}}" data-info="{{taiedata}}" bindtap="bindtap" bindload="bindload" binderror="binderror" bindclose="bindclose" style="{{taiedata.style ? taiedata.style : ''}}">
+<ad id="{{taiedata.id ? taiedata.id : ''}}" wx:elif="{{taiedata.type == 'ad' && !taiedata.hide}}" unit-id="{{taiedata.attr && taiedata.attr['unit-id']}}" data-info="{{taiedata}}" bindtap="bindtap" bindload="bindload" binderror="binderror" bindclose="bindclose" style="{{taiedata.style ? taiedata.style : ''}}">
 </ad>
 
-<official-account wx:elif="{{taiedata.type == 'official-account' && !taiedata.hide}}" bindload="bindload" binderror="binderror" style="{{taiedata.style ? taiedata.style : ''}}">
+<official-account id="{{taiedata.id ? taiedata.id : ''}}" wx:elif="{{taiedata.type == 'official-account' && !taiedata.hide}}" bindload="bindload" binderror="binderror" style="{{taiedata.style ? taiedata.style : ''}}">
 </official-account>
 
 
-<video wx:elif="{{taiedata.type == 'video' && !taiedata.hide}}" src="{{taiedata.attr && taiedata.attr['src']}}" duration="{{taiedata.attr && taiedata.attr['duration']}}" controls="{{taiedata.attr && taiedata.attr['controls'] ? taiedata.attr['controls'] : true}}"
+<video id="{{taiedata.id ? taiedata.id : ''}}" wx:elif="{{taiedata.type == 'video' && !taiedata.hide}}" src="{{taiedata.attr && taiedata.attr['src']}}" duration="{{taiedata.attr && taiedata.attr['duration']}}" controls="{{taiedata.attr && taiedata.attr['controls'] ? taiedata.attr['controls'] : true}}"
   autoplay="{{taiedata.attr && taiedata.attr['autoplay'] ? taiedata.attr['autoplay'] : false}}" loop="{{taiedata.attr && taiedata.attr['loop'] ? taiedata.attr['loop'] : false}}" muted="{{taiedata.attr && taiedata.attr['muted'] ? taiedata.attr['muted'] : false}}"
   initial-time="{{taiedata.attr && taiedata.attr['initial-time'] ? taiedata.attr['initial-time'] : 0}}" page-gesture="{{taiedata.attr && taiedata.attr['page-gesture'] ? taiedata.attr['page-gesture'] : false}}" direction="{{taiedata.attr && taiedata.attr['direction']}}"
   show-progress="{{taiedata.attr && taiedata.attr['show-progress'] ? taiedata.attr['show-progress'] : true}}" show-fullscreen-btn="{{taiedata.attr && taiedata.attr['show-fullscreen-btn'] ? taiedata.attr['show-fullscreen-btn'] : true}}" show-play-btn="{{taiedata.attr && taiedata.attr['show-play-btn'] ? taiedata.attr['show-play-btn'] : true}}"
@@ -76,17 +76,17 @@
   binderror="binderror" bindprogress="bindprogress" style="{{taiedata.style ? taiedata.style : ''}}">
 </video>
 
-<audio wx:elif="{{taiedata.type == 'video' && !taiedata.hide}}" id="{{taiedata.attr && taiedata.attr['id']}}" src="{{taiedata.attr && taiedata.attr['src']}}" loop="{{taiedata.attr && taiedata.attr['loop'] ? taiedata.attr['loop'] : false}}" controls="{{taiedata.attr && taiedata.attr['controls'] ? taiedata.attr['controls'] : false}}"
+<audio id="{{taiedata.id ? taiedata.id : ''}}" wx:elif="{{taiedata.type == 'video' && !taiedata.hide}}" id="{{taiedata.attr && taiedata.attr['id']}}" src="{{taiedata.attr && taiedata.attr['src']}}" loop="{{taiedata.attr && taiedata.attr['loop'] ? taiedata.attr['loop'] : false}}" controls="{{taiedata.attr && taiedata.attr['controls'] ? taiedata.attr['controls'] : false}}"
   poster="{{taiedata.attr && taiedata.attr['poster']}}" name="{{taiedata.attr && taiedata.attr['name'] ? taiedata.attr['name'] : '未知音频'}}" author="{{taiedata.attr && taiedata.attr['author'] ? taiedata.attr['author'] : '未知作者'}}" data-info="{{taiedata}}"
   bindtap="bindtap" binderro="binderror" bindplay="bindplay" bindpause="bindpause" bindtimeupdate="bindtimeupdate" bindended="bindended" style="{{taiedata.style ? taiedata.style : ''}}">
 </audio>
 
-<icon wx:elif="{{taiedata.type == 'icon' && !taiedata.hide}}" type="{{taiedata.attr && taiedata.attr['type']}}" color="{{taiedata.attr && taiedata.attr['color']}}" size="{{taiedata.attr && taiedata.attr['size'] ? taiedata.attr['size'] : 23}}" data-info="{{taiedata}}"
+<icon id="{{taiedata.id ? taiedata.id : ''}}" wx:elif="{{taiedata.type == 'icon' && !taiedata.hide}}" type="{{taiedata.attr && taiedata.attr['type']}}" color="{{taiedata.attr && taiedata.attr['color']}}" size="{{taiedata.attr && taiedata.attr['size'] ? taiedata.attr['size'] : 23}}" data-info="{{taiedata}}"
   bindtap="bindtap" style="{{taiedata.style ? taiedata.style : ''}}">
 </icon>
 
 
-<progress wx:elif="{{taiedata.type == 'progress' && !taiedata.hide}}" percent="{{taiedata.attr && taiedata.attr['percent']}}" show-info="{{taiedata.attr && taiedata.attr['show-info'] ? taiedata.attr['show-info'] : false}}" border-radius="{{taiedata.attr && taiedata.attr['border-radius'] ? taiedata.attr['border-radius'] : 0}}"
+<progress id="{{taiedata.id ? taiedata.id : ''}}" wx:elif="{{taiedata.type == 'progress' && !taiedata.hide}}" percent="{{taiedata.attr && taiedata.attr['percent']}}" show-info="{{taiedata.attr && taiedata.attr['show-info'] ? taiedata.attr['show-info'] : false}}" border-radius="{{taiedata.attr && taiedata.attr['border-radius'] ? taiedata.attr['border-radius'] : 0}}"
   font-size="{{taiedata.attr && taiedata.attr['font-size'] ? taiedata.attr['font-size'] : 16}}" stroke-width="{{taiedata.attr && taiedata.attr['stroke-width'] ? taiedata.attr['stroke-width'] : 6}}" color="{{taiedata.attr && taiedata.attr['color'] ? taiedata.attr['color'] : '#09BB07'}}"
   activeColor="{{taiedata.attr && taiedata.attr['activeColor'] ? taiedata.attr['activeColor'] : '#09BB07'}}" backgroundColor="{{taiedata.attr && taiedata.attr['backgroundColor'] ? taiedata.attr['backgroundColor'] : '#EBEBEB'}}" active="{{taiedata.attr && taiedata.attr['active'] ? taiedata.attr['active'] : false}}"
   active-mode="{{taiedata.attr && taiedata.attr['active-mode'] ? taiedata.attr['active-mode'] : 'backwards'}}" data-info="{{taiedata}}" bindtap="bindtap" bindactiveend="bindactiveend" style="{{taiedata.style ? taiedata.style : ''}}">
@@ -97,53 +97,53 @@
 </rich-text>
 
 <!--更多表单组件-->
-<checkbox wx:elif="{{taiedata.type == 'checkbox' && !taiedata.hide}}" value="{{taiedata.attr && taiedata.attr['percent']}}" disabled="{{taiedata.attr && taiedata.attr['disabled'] ? taiedata.attr['disabled'] : false}}" checked="{{taiedata.attr && taiedata.attr['checked'] ? taiedata.attr['checked'] : false}}"
+<checkbox id="{{taiedata.id ? taiedata.id : ''}}" wx:elif="{{taiedata.type == 'checkbox' && !taiedata.hide}}" value="{{taiedata.attr && taiedata.attr['percent']}}" disabled="{{taiedata.attr && taiedata.attr['disabled'] ? taiedata.attr['disabled'] : false}}" checked="{{taiedata.attr && taiedata.attr['checked'] ? taiedata.attr['checked'] : false}}"
   color="{{taiedata.attr && taiedata.attr['color'] ? taiedata.attr['color'] : '#09BB07'}}" data-info="{{taiedata}}" bindtap="bindtap" style="{{taiedata.style ? taiedata.style : ''}}">
 </checkbox>
 
-<checkbox-group wx:elif="{{taiedata.type == 'checkbox-group' && !taiedata.hide}}" data-info="{{taiedata}}" bindtap="bindtap" bindchange="bindchange" style="{{taiedata.style ? taiedata.style : ''}}">
-  <myview wx:if="{{taiedata.child && taiedata.child.length > 0}}" wx:key="unique" wx:for="{{taiedata.child}}" taiedata="{{item}}" bindjss="onJss"></myview>
+<checkbox-group id="{{taiedata.id ? taiedata.id : ''}}" wx:elif="{{taiedata.type == 'checkbox-group' && !taiedata.hide}}" data-info="{{taiedata}}" bindtap="bindtap" bindchange="bindchange" style="{{taiedata.style ? taiedata.style : ''}}">
+  <myview id="{{item.componentid ? item.componentid: ''}}" wx:if="{{taiedata.child && taiedata.child.length > 0}}" wx:key="unique" wx:for="{{taiedata.child}}" taiedata="{{item}}" bindjss="onJss"></myview>
 </checkbox-group>
 
-<editor wx:elif="{{taiedata.type == 'editor' && !taiedata.hide}}" read-only="{{taiedata.attr && taiedata.attr['read-only'] ? taiedata.attr['read-only'] : false}}" placeholder="{{taiedata.attr && taiedata.attr['placeholder']}}" show-img-size="{{taiedata.attr && taiedata.attr['show-img-size'] ? taiedata.attr['show-img-size'] : false}}"
+<editor id="{{taiedata.id ? taiedata.id : ''}}" wx:elif="{{taiedata.type == 'editor' && !taiedata.hide}}" read-only="{{taiedata.attr && taiedata.attr['read-only'] ? taiedata.attr['read-only'] : false}}" placeholder="{{taiedata.attr && taiedata.attr['placeholder']}}" show-img-size="{{taiedata.attr && taiedata.attr['show-img-size'] ? taiedata.attr['show-img-size'] : false}}"
   show-img-toolbar="{{taiedata.attr && taiedata.attr['show-img-toolbar'] ? taiedata.attr['show-img-toolbar'] : false}}" show-img-resize="{{taiedata.attr && taiedata.attr['show-img-resize'] ? taiedata.attr['show-img-resize'] : false}}" data-info="{{taiedata}}"
   bindtap="bindtap" bindready="bindready" bindfocus="bindfocus" bindblur="bindblur" bindinput="bindinput" bindstatuschange="bindstatuschange" style="{{taiedata.style ? taiedata.style : ''}}">
 </editor>
 
-<picker wx:elif="{{taiedata.type == 'picker' && !taiedata.hide}}" mode="{{taiedata.attr && taiedata.attr['mode'] ? taiedata.attr['mode'] : 'selector'}}" disabled="{{taiedata.attr && taiedata.attr['disabled'] ? taiedata.attr['disabled'] : false}}" data-info="{{taiedata}}"
+<picker id="{{taiedata.id ? taiedata.id : ''}}" wx:elif="{{taiedata.type == 'picker' && !taiedata.hide}}" mode="{{taiedata.attr && taiedata.attr['mode'] ? taiedata.attr['mode'] : 'selector'}}" disabled="{{taiedata.attr && taiedata.attr['disabled'] ? taiedata.attr['disabled'] : false}}" data-info="{{taiedata}}"
   bindtap="bindtap"  bindchange="bindchange" range="{{taiedata.attr && taiedata.attr['range']}}"bindcancel="bindcancel" style="{{taiedata.style ? taiedata.style : ''}}">
-  <myview wx:if="{{taiedata.child && taiedata.child.length > 0}}" wx:key="unique" wx:for="{{taiedata.child}}" taiedata="{{item}}" bindjss="onJss"></myview>
+  <myview id="{{item.componentid ? item.componentid: ''}}" wx:if="{{taiedata.child && taiedata.child.length > 0}}" wx:key="unique" wx:for="{{taiedata.child}}" taiedata="{{item}}" bindjss="onJss"></myview>
 </picker>
 
-<picker-view wx:elif="{{taiedata.type == 'picker-view' && !taiedata.hide}}" value="{{taiedata.attr && taiedata.attr['value']}}" indicator-style="{{taiedata.attr && taiedata.attr['indicator-style']}}" mask-style="{{taiedata.attr && taiedata.attr['mask-style']}}"
+<picker-view id="{{taiedata.id ? taiedata.id : ''}}" wx:elif="{{taiedata.type == 'picker-view' && !taiedata.hide}}" value="{{taiedata.attr && taiedata.attr['value']}}" indicator-style="{{taiedata.attr && taiedata.attr['indicator-style']}}" mask-style="{{taiedata.attr && taiedata.attr['mask-style']}}"
   data-info="{{taiedata}}" bindtap="bindtap" bindchange="bindchange" bindpickstart="bindpickstart" bindpickend="bindpickend" style="{{taiedata.style ? taiedata.style : ''}}">
-  <myview wx:if="{{taiedata.child && taiedata.child.length > 0}}" wx:key="unique" wx:for="{{taiedata.child}}" taiedata="{{item}}" bindjss="onJss"></myview>
+  <myview id="{{item.componentid ? item.componentid: ''}}" wx:if="{{taiedata.child && taiedata.child.length > 0}}" wx:key="unique" wx:for="{{taiedata.child}}" taiedata="{{item}}" bindjss="onJss"></myview>
 </picker-view>
 
 <picker-view-column wx:elif="{{taiedata.type == 'picker-view-column' && !taiedata.hide}}" data-info="{{taiedata}}" bindtap="bindtap" style="{{taiedata.style ? taiedata.style : ''}}">
-  <myview wx:if="{{taiedata.child && taiedata.child.length > 0}}" wx:key="unique" wx:for="{{taiedata.child}}" taiedata="{{item}}" bindjss="onJss"></myview>
+  <myview id="{{item.componentid ? item.componentid: ''}}" wx:if="{{taiedata.child && taiedata.child.length > 0}}" wx:key="unique" wx:for="{{taiedata.child}}" taiedata="{{item}}" bindjss="onJss"></myview>
 </picker-view-column>
 
-<radio wx:elif="{{taiedata.type == 'radio' && !taiedata.hide}}" value="{{taiedata.attr && taiedata.attr['value']}}" checked="{{taiedata.attr && taiedata.attr['checked'] ? taiedata.attr['checked'] : false}}" disabled="{{taiedata.attr && taiedata.attr['disabled'] ? taiedata.attr['disabled'] : false}}"
+<radio id="{{taiedata.id ? taiedata.id : ''}}" wx:elif="{{taiedata.type == 'radio' && !taiedata.hide}}" value="{{taiedata.attr && taiedata.attr['value']}}" checked="{{taiedata.attr && taiedata.attr['checked'] ? taiedata.attr['checked'] : false}}" disabled="{{taiedata.attr && taiedata.attr['disabled'] ? taiedata.attr['disabled'] : false}}"
   color="{{taiedata.attr && taiedata.attr['color'] ? taiedata.attr['color'] : '#09BB07'}}" data-info="{{taiedata}}" bindtap="bindtap" style="{{taiedata.style ? taiedata.style : ''}}">
 </radio>
 
-<radio-group wx:elif="{{taiedata.type == 'radio-group' && !taiedata.hide}}" data-info="{{taiedata}}" bindtap="bindtap" bindchange="bindchange" style="{{taiedata.style ? taiedata.style : ''}}">
-  <myview wx:if="{{taiedata.child && taiedata.child.length > 0}}" wx:key="unique" wx:for="{{taiedata.child}}" taiedata="{{item}}" bindjss="onJss"></myview>
+<radio-group id="{{taiedata.id ? taiedata.id : ''}}" wx:elif="{{taiedata.type == 'radio-group' && !taiedata.hide}}" data-info="{{taiedata}}" bindtap="bindtap" bindchange="bindchange" style="{{taiedata.style ? taiedata.style : ''}}">
+  <myview id="{{item.componentid ? item.componentid: ''}}" wx:if="{{taiedata.child && taiedata.child.length > 0}}" wx:key="unique" wx:for="{{taiedata.child}}" taiedata="{{item}}" bindjss="onJss"></myview>
 </radio-group>
 
-<slider wx:elif="{{taiedata.type == 'slider' && !taiedata.hide}}" min="{{taiedata.attr && taiedata.attr['min'] ? taiedata.attr['min'] : 0}}" max="{{taiedata.attr && taiedata.attr['max'] ? taiedata.attr['max'] : 100}}" step="{{taiedata.attr && taiedata.attr['step'] ? taiedata.attr['step'] : 1}}"
+<slider id="{{taiedata.id ? taiedata.id : ''}}" wx:elif="{{taiedata.type == 'slider' && !taiedata.hide}}" min="{{taiedata.attr && taiedata.attr['min'] ? taiedata.attr['min'] : 0}}" max="{{taiedata.attr && taiedata.attr['max'] ? taiedata.attr['max'] : 100}}" step="{{taiedata.attr && taiedata.attr['step'] ? taiedata.attr['step'] : 1}}"
   disabled="{{taiedata.attr && taiedata.attr['disabled'] ? taiedata.attr['disabled'] : false}}" value="{{taiedata.attr && taiedata.attr['value'] ? taiedata.attr['value'] : 0}}" color="{{taiedata.attr && taiedata.attr['color'] ? taiedata.attr['color'] : '#e9e9e9'}}"
   selected-color="{{taiedata.attr && taiedata.attr['selected-color'] ? taiedata.attr['selected-color'] : '#1aad19'}}" activeColor="{{taiedata.attr && taiedata.attr['activeColor'] ? taiedata.attr['activeColor'] : '#1aad19'}}" backgroundColor="{{taiedata.attr && taiedata.attr['backgroundColor'] ? taiedata.attr['backgroundColor'] : '#e9e9e9'}}"
   block-size="{{taiedata.attr && taiedata.attr['block-size'] ? taiedata.attr['block-size'] : 28}}" block-color="{{taiedata.attr && taiedata.attr['block-color'] ? taiedata.attr['block-color'] : '#ffffff'}}" show-value="{{taiedata.attr && taiedata.attr['show-value'] ? taiedata.attr['show-value'] : false}}"
   data-info="{{taiedata}}" bindtap="bindtap" bindchange="bindchange" bindchanging="bindchanging" style="{{taiedata.style ? taiedata.style : ''}}">
 </slider>
 
-<switch wx:elif="{{taiedata.type == 'switch' && !taiedata.hide}}" checked="{{taiedata.attr && taiedata.attr['checked'] ? taiedata.attr['checked'] : false}}" disabled="{{taiedata.attr && taiedata.attr['disabled'] ? taiedata.attr['disabled'] : false}}"
+<switch id="{{taiedata.id ? taiedata.id : ''}}" wx:elif="{{taiedata.type == 'switch' && !taiedata.hide}}" checked="{{taiedata.attr && taiedata.attr['checked'] ? taiedata.attr['checked'] : false}}" disabled="{{taiedata.attr && taiedata.attr['disabled'] ? taiedata.attr['disabled'] : false}}"
   type="{{taiedata.attr && taiedata.attr['type'] ? taiedata.attr['type'] : 'switch'}}" color="{{taiedata.attr && taiedata.attr['color'] ? taiedata.attr['color'] : '#04BE02'}}" data-info="{{taiedata}}" bindtap="bindtap" bindchange="bindchange" style="{{taiedata.style ? taiedata.style : ''}}">
 </switch>
 
-<textarea wx:elif="{{taiedata.type == 'textarea' && !taiedata.hide}}" value="{{taiedata.attr && taiedata.attr['value']}}" placeholder="{{taiedata.attr && taiedata.attr['placeholder']}}" placeholder-style="{{taiedata.attr && taiedata.attr['placeholder-style']}}"
+<textarea id="{{taiedata.id ? taiedata.id : ''}}" wx:elif="{{taiedata.type == 'textarea' && !taiedata.hide}}" value="{{taiedata.attr && taiedata.attr['value']}}" placeholder="{{taiedata.attr && taiedata.attr['placeholder']}}" placeholder-style="{{taiedata.attr && taiedata.attr['placeholder-style']}}"
   placeholder-class="{{taiedata.attr && taiedata.attr['placeholder-class'] ? taiedata.attr['placeholder-class'] : 'textarea-placeholder'}}" disabled="{{taiedata.attr && taiedata.attr['disabled'] ? taiedata.attr['disabled'] : false}}" maxlength="{{taiedata.attr && taiedata.attr['maxlength'] ? taiedata.attr['maxlength'] : 140}}"
   auto-focus="{{taiedata.attr && taiedata.attr['auto-focus'] ? taiedata.attr['auto-focus'] : false}}" focus="{{taiedata.attr && taiedata.attr['focus'] ? taiedata.attr['focus'] : false}}" auto-height="{{taiedata.attr && taiedata.attr['auto-height'] ? taiedata.attr['auto-height'] : false}}"
   fixed="{{taiedata.attr && taiedata.attr['fixed'] ? taiedata.attr['fixed'] : false}}" cursor-spacing="{{taiedata.attr && taiedata.attr['cursor-spacing'] ? taiedata.attr['cursor-spacing'] : 0}}" cursor="{{taiedata.attr && taiedata.attr['cursor'] ? taiedata.attr['cursor'] : -1}}"

@@ -1,5 +1,5 @@
 <!--index.wxml-->
 <view class="container">
-<myview taiedata="{{item}}" wx:key="unique" wx:for="{{viewData}}" bindjss="onJss">
+<myview id="yyyyy" taiedata="{{item}}" wx:key="unique" wx:for="{{viewData}}" bindjss="onJss">
 </myview>
 </view>

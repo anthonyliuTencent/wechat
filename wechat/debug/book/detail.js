@@ -28,7 +28,7 @@ var viewData = [
       type:'view',
       wxfill: "helpArea",
       hide:false,
-        style: `display:{{help}};border-top-right-radius: 20px;border-top-left-radius: 20px;border-top: 1px solid #dfdfdf;position: fixed;left: 0;bottom: 0;background: #ffecc2;width: 100%`,
+        style: `display:{{help}};border-top-right-radius: 20px;border-top-left-radius: 20px;border-top: 1px solid #dfdfdf;position: fixed;left: 0;bottom: 0;background: {{color}};width: 100%`,
       child:[{
           type: 'view',
           hide: false,
@@ -38,18 +38,43 @@ var viewData = [
             hide: false,
             style: 'font-size: 18px;padding: 5px 50px;',
             dataSize: "small",
+            bindtap:`that.renderData.cssFill= {
+                css:"font-size: 18px;background-color: #ffecc2;padding-bottom:160px"
+                }
+                let viewTemplate = JSON.parse(that.viewTemplateStr)
+          var _temp = utils.goViews(viewTemplate, that.renderData);
+          that.setData({
+            viewData: _temp
+          });
+                `,
             innerText: '小'
           }, {
             type: 'view',
             hide: false,
             style: 'font-size: 20px;padding: 5px 50px;',
             dataSize: "media",
+              bindtap:`that.renderData.cssFill= {
+                css:"font-size: 20px;background-color: #ffecc2;padding-bottom:160px"
+                }
+                let viewTemplate = JSON.parse(that.viewTemplateStr)
+          var _temp = utils.goViews(viewTemplate, that.renderData);
+          that.setData({
+            viewData: _temp
+          });`,
             innerText: '中'
           }, {
             type: 'view',
             hide: false,
             style: 'font-size: 22px;padding: 5px 50px;',
             dataSize: "large",
+            bindtap:`that.renderData.cssFill= {
+              css:"font-size: 22px;background-color: #ffecc2;padding-bottom:160px"
+                }
+                let viewTemplate = JSON.parse(that.viewTemplateStr)
+              var _temp = utils.goViews(viewTemplate, that.renderData);
+              that.setData({
+                viewData: _temp
+              });`,
             innerText: '大'
           }]
       },{
@@ -59,28 +84,52 @@ var viewData = [
         child:[{
           type:'view',
           hide: false,
+          bindtap: `that.renderData.cssFill= {
+              css:"font-size: 22px;background-color: #ffffff;padding-bottom:160px"
+                }
+                renderData.helpArea.color = '#ffffff'
+                let viewTemplate = JSON.parse(that.viewTemplateStr)
+              var _temp = utils.goViews(viewTemplate, that.renderData);
+              that.setData({
+                viewData: _temp
+              });`,
           style: `background-color: #ffffff;margin: 0.5em;
             border-radius: 5px; 
             padding: 12px;width: 50px;
             box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);`,
-          dataColor:"1"
         },{
           type: 'view',
           hide: false,
+          bindtap: `that.renderData.cssFill= {
+            css:"font-size: 22px;background-color: #ffecc2;padding-bottom:160px"
+              }
+              let viewTemplate = JSON.parse(that.viewTemplateStr)
+              that.renderData.helpArea.color = '#ffecc2'
+            var _temp = utils.goViews(viewTemplate, that.renderData);
+            that.setData({
+              viewData: _temp
+            });`,
           style: `background-color: #ffecc2;margin: 0.5em;
            width: 50px;
             border-radius: 5px;
             padding: 12px;
             box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);`,
-          dataColor: "2"
         },{
           type: 'view',
           hide: false,
-            style: `background-color: #CCFFCC;margin: 0.5em;width: 50px;
-            border-radius: 5px;
-            padding: 12px;
-            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);`,
-          dataColor: "3"
+          bindtap: `that.renderData.cssFill= {
+          css:"font-size: 22px;background-color: #CCFFCC;padding-bottom:160px"
+            }
+            that.renderData.helpArea.color = '#CCFFCC'
+            let viewTemplate = JSON.parse(that.viewTemplateStr)
+          var _temp = utils.goViews(viewTemplate, that.renderData);
+          that.setData({
+            viewData: _temp
+          });`,
+          style: `background-color: #CCFFCC;margin: 0.5em;width: 50px;
+          border-radius: 5px;
+          padding: 12px;
+          box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);`,
         }]
       },{
         type:'view',
@@ -89,6 +138,20 @@ var viewData = [
         child: [{
           type: 'view',
           hide: false,
+          bindtap: `var data = that.renderData.data
+          if (data.chapter_id === 0) {
+            wx.showToast({
+              title: '已经是第一章了',
+              icon: 'none',
+              duration: 2000
+            })
+          } else {
+            var chapter_id = data.chapter_id - 1
+            wx.navigateTo({
+              url: '/pages/book/detail?book_id='
+              + data.book_id+'&chapter_id='+ chapter_id
+            });
+          }`,
           style: `margin: 0.5em;text-align: center;font-size: 14px;
             border-radius: 5px;
             padding: 12px 30px;
@@ -98,18 +161,33 @@ var viewData = [
           }, {
                 type: 'view',
                 hide: false,
-                style: `width: 30%;;
-                margin: 0.5em;
-                text-align: center;
-                font-size: 14px;
-                border-radius: 5px;
-                padding: 12px 30px;
-                box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-                text-decoration: none;`,
+                style: `width: 30%;margin: 0.5em;text-align: center;
+                font-size: 14px;border-radius: 5px;padding: 12px 30px;
+                box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);text-decoration: none;`,
+                bindtap: `var book_id = that.data.book_id
+                wx.navigateTo({
+                  url: '/pages/book/list?book_id ='+ book_id
+                });`,
                 innerText: '目录'
               }, {
               type: 'view',
               hide: false,
+            bindtap:`
+              var data = that.renderData.data
+              if (data.chapter_id === data.chapter_total -1) {
+                wx.showToast({
+                  title: '已经是最后一章了',
+                  icon: 'none',
+                  duration: 2000
+                })
+              } else {
+                var chapter_id = data.chapter_id + 1
+                wx.navigateTo({
+                  url: '/pages/book/detail?book_id='
+                  + data.book_id+'&chapter_id='+ chapter_id
+                });
+              }
+              `,
               style: `background-color: #f03;margin: 0.5em;
               text-align: center;
               font-size: 14px;
@@ -148,11 +226,18 @@ var json = {
         wx.setNavigationBarTitle({
           title: data.chapter_name
         })
+        console.log('ssasd:',data)
+        renderData.data = {
+          chapter_id:data.chapter_id,
+          book_id: data.book_id,
+          chapter_total: data.chapter_total
+        }
         renderData.contentHtml ={
           html: content
         }
         renderData.helpArea = {
-          help: 'none'
+          help: 'none',
+          color:'#ffecc2'
         }
         renderData.cssFill= {
           css:"font-size: 20px;background-color: #ffecc2;padding-bottom:160px"
@@ -172,7 +257,6 @@ var json = {
             if(judgeHeight >= 0 && help === 'block') {
               that.renderData.helpArea.help ='none';
               var viewTemplate = JSON.parse(that.viewTemplateStr)
-              console.log('viewTemplate:', viewTemplate)
               var _temp = utils.goViews(viewTemplate, that.renderData);
               that.setData({
                 viewData: _temp

@@ -1,13 +1,4 @@
-<!--index.wxml-->
 <view class="container">
-  <view class="navig-tab-area">
-      <text class="book-text-title">我的书架</text>
-    </view>
-  <view class="book-area">
-    <image bindtap="tapBook" data-book_id="{{item.book_id}}" wx:for="{{bookInfo}}" wx:key="id" wx:for-index="id" wx:for-item="item" class="cover-img" src="{{item.book_cover_img}}"style="height:140px;width:94px" >
-    <text class="cover-text">{{item.book_name}}</text></image>
-    <view wx:if="{{bookInfo.length < 1}}" style="padding-top: 50px;">
-    <text>您的书架是空的，快去收藏一本书吧~</text></view>
-  </view>
-
+<myview id="yyyyy" taiedata="{{item}}" wx:key="unique" wx:for="{{viewData}}" bindjss="onJss">
+</myview>
 </view>
