@@ -35,12 +35,25 @@ Page({
     // 异步获取用户信息
     //this.getUser()
     var that = this
-    currentPageUrl = app.getCurrentPages();
-    console.log(app.getCurrentPages())
+    var url = app.getCurrentPages() //获取加载的页面
+    var index = url.indexOf('?');
+    var currentPageUrl = index > -1 ? url.substring(0, index) : url;
     CONFIGDATA = wx.getStorageSync(currentPageUrl);
     if (!CONFIGDATA) {
       console.log('not CONFIGDATA')
-      CONFIGDATA = testData;
+      utils.request({
+        url: "handler/view/getviewjs",
+        data: {
+          page: currentPageUrl
+        },
+        success: function (data) {
+          CONFIGDATA = data.data.data;
+          // 到时放开
+          //utils.setCache(currentPageUrl, CONFIGDATA, 60 * 24 * 7);
+          that.render()
+        }
+      })
+      // CONFIGDATA = testData;
       // 到时放开
       //utils.setCache(currentPageUrl, CONFIGDATA, 60 * 24 * 7);
     }

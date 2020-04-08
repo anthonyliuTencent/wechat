@@ -32,7 +32,7 @@
       {
         "selectedIconPath": "images/user.png",
         "iconPath": "images/user.png",
-        "pagePath": "pages/my/my",
+        "pagePath": "pages/collect/index",
         "text": "我"
       }
     ]

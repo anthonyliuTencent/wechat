@@ -47,7 +47,7 @@ var viewData = [
         bindtap:`utils.request({
           url:'handler/user/addfavbook',
           data: {
-            book_id: '10'
+            book_id: "{{id}}"
           },
           method: 'post',
           success: function(data){
@@ -183,7 +183,7 @@ var json = {
     onLoad: {
       request: {
         url: "handler/book/getbookdetail",
-        data: "let url = utils.getCurrentPageUrlWithArgs();data.book_id =utils.getLinkValue(url)[id]|| 10;",
+        data: "let url = utils.getCurrentPageUrlWithArgs();data.book_id =utils.getLinkValue(url)[id]",
         callback: `let bookInfo = {
           author: data.book_author,
           cover_img: data.book_book_cover_img,

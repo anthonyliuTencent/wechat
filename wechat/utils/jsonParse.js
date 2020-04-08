@@ -71,14 +71,14 @@ function initPage(json, that, wx, option){
         var data =data.data
         var renderData = {}
         new Canjs(json.request.callback, { data, utils, renderData, that, wx}).run()
-        console.log('renderData is:',renderData)
         that.renderData = renderData
         if (option && option.viewData){
           // 初始化首屏
-          // 深拷贝
-          console.log('option is:', option)
-          that.viewTemplateStr = JSON.stringify(option.viewData)
-          var _temp = utils.goViews(option.viewData, renderData);
+          // 缓存起来
+          let tempStr;
+          that.viewTemplateStr = tempStr = JSON.stringify(option.viewData)
+          let tempObj = JSON.parse(tempStr)  
+          var _temp = utils.goViews(tempObj, renderData);
           that.setData({
             viewData: _temp
           });

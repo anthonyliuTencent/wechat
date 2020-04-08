@@ -1,5 +1,5 @@
 //index.js
-const testData = require('../../debug/index/index.js');
+// const testData = require('../../debug/index/index.js');
 const utils = require('../../utils/utils.js')
 const jsonParse = require('../../utils/jsonParse.js')
 let app = getApp();
@@ -36,33 +36,28 @@ Page({
     // 异步获取用户信息
     //this.getUser()
     var that = this
-    currentPageUrl = app.getCurrentPages();
-    console.log(app.getCurrentPages())
+    var url = app.getCurrentPages() //获取加载的页面
+    var index = url.indexOf('?');
+    var currentPageUrl = index > -1 ? url.substring(0, index) : url;
     CONFIGDATA = wx.getStorageSync(currentPageUrl);
     if (!CONFIGDATA) {
       console.log('not CONFIGDATA')
-      CONFIGDATA = testData;
-      // 到时放开
-      //utils.setCache(currentPageUrl, CONFIGDATA, 60 * 24 * 7);
+      // CONFIGDATA = testData;
+      // that.render()
+      utils.request({
+        url: "handler/view/getviewjs",
+        data:{
+          page: currentPageUrl
+        },
+        success: function(data) {
+          CONFIGDATA = data.data.data;
+          console.log('CONFIGDATA', CONFIGDATA)
+          // 到时放开
+          //utils.setCache(currentPageUrl, CONFIGDATA, 60 * 24 * 7);
+          that.render()
+        }
+      })
     }
-    this.render()
-    // utils.request({
-    //   url: 'handler/view/getviewjs',
-    //   data: {
-    //     page: 'index/index'
-    //   },
-    //   method: 'post',
-    //   success: (data) => {
-    //     console.log('data is:', data.data)
-    //     let virtualDom = data.data.data
-    //     CONFIGDATA = virtualDom;
-    //     console.log(' CONFIGDATA', CONFIGDATA.event)
-    //     CONFIGDATA.event && CONFIGDATA.event.onLoad
-    //       && jsonParse.doJs(CONFIGDATA.event.onLoad, this)
-    //     // let dom = jsonParse.createElement(virtualDom.view)
-    //     // WxParse.wxParse('article', 'html', dom, that, 5);
-    //   },
-    // })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

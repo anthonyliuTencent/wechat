@@ -34,7 +34,6 @@ function getCurrentPageUrl() {
   var url = currentPage.route //当前页面url
   return url
 }
-
 /*获取当前页带参数的url*/
 function getCurrentPageUrlWithArgs() {
   var pages = getCurrentPages() //获取加载的页面
@@ -90,7 +89,7 @@ function compare (prop) {
 }
 function request(obj) {
   let cookie = wx.getStorageSync('cookie') || {};
-  console.log('cookie is:', cookie)
+  // console.log('cookie is:', cookie)
   wx.request({
     url: `https://mydear.site/${obj.url}`,
     data: obj.data,
@@ -135,8 +134,6 @@ function handerView(view,data) {
   return view
 }
 function goViews(viewData,renderData){
-  console.log('viewData', viewData)
-  console.log('renderData', renderData)
   var _temp = [];
   viewData.forEach(function (ceil, index) {
     // 判断是否有wxfor
@@ -161,13 +158,13 @@ function goViews(viewData,renderData){
         arrayFlag = 1
       }
       for (var key in ceil){
-        if (typeof ceil[key] === 'string'){
+        if (typeof ceil[key] === 'string' && key !== 'type'){
           if (arrayFlag) {
             ceil[key] = ceil[key].replace(/\{\{(.*?)\}\}/g, function ($0, $1) {
-              console.log('$1:', $1)
               return fillData[renderData[$1]]
             })
           } else {
+            console.log('fillData is:', fillData)
             ceil[key] = ceil[key].replace(/\{\{(.*?)\}\}/g, function ($0, $1) {
               return fillData[$1]
             })
@@ -176,7 +173,7 @@ function goViews(viewData,renderData){
         } else if(key === 'attr'){
           let attrObj = ceil['attr']
           for (var key2 in attrObj) {
-            console.log('key2= is:', key2)
+            // console.log('key2= is:', key2)
             attrObj[key2] = attrObj[key2].replace(/\{\{(.*?)\}\}/g, function ($0, $1) {
               return fillData[$1]
             })

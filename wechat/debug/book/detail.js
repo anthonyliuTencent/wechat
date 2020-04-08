@@ -8,8 +8,11 @@ var viewData = [
       hide: false,
       componentid: "xxxxy",
       bindtap: `let help = that.renderData.helpArea.help;
+          console.log('help is:', help);
             that.renderData.helpArea.help = help === 'none'?'block':'none';
+            console.log('helo is:ss', that.renderData.helpArea.help)
             let viewTemplate = JSON.parse(that.viewTemplateStr)
+            console.log('viewTemplate is:', viewTemplate)
           var _temp = utils.goViews(viewTemplate, that.renderData);
           that.setData({
             viewData: _temp
@@ -28,7 +31,7 @@ var viewData = [
       type:'view',
       wxfill: "helpArea",
       hide:false,
-        style: `display:{{help}};border-top-right-radius: 20px;border-top-left-radius: 20px;border-top: 1px solid #dfdfdf;position: fixed;left: 0;bottom: 0;background: {{color}};width: 100%`,
+      style: `display:{{help}};border-top-right-radius: 20px;border-top-left-radius: 20px;border-top: 1px solid #dfdfdf;position: fixed;left: 0;bottom: 0;background: {{color}};width: 100%`,
       child:[{
           type: 'view',
           hide: false,
@@ -208,7 +211,7 @@ var json = {
     onLoad: {
       request: {
         url: "handler/book/getchaptercontent",
-        data: "let url = utils.getCurrentPageUrlWithArgs();data.book_id =utils.getLinkValue(url)[id]|| 10;data.chapter_id = utils.getLinkValue(url)['chapter_id'] || 1",
+        data: "let url = utils.getCurrentPageUrlWithArgs();data.book_id =utils.getLinkValue(url)[book_id];data.chapter_id = utils.getLinkValue(url)[chapter_id]",
         callback: `
         let content = data.content.replace(/<p>/g,
           '<p style="text-indent:2em;" \
@@ -226,7 +229,6 @@ var json = {
         wx.setNavigationBarTitle({
           title: data.chapter_name
         })
-        console.log('ssasd:',data)
         renderData.data = {
           chapter_id:data.chapter_id,
           book_id: data.book_id,

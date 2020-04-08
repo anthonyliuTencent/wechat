@@ -1,15 +1,4 @@
-<!--index.wxml-->
 <view class="container">
-  <view class="userinfo">
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{userInfo.nickName}},您好！现在开启你的娱乐之旅吧，本平台资源暂时有限，如果需要可留言，我们将尽力为您提供。</text>
-  </view>
-  <view class="usermotto area">
-   <view style="font-weight: bold;">开发者申明:</view>
-<view style="text-indent:2em;">这个平台是个人在工作之余开发的。如果对平台有建议和想法请不吝赐教。</view><text style="font-weight: bold;">\n开发者邮箱： liuyinleidm@163.com</text>
-  </view>
+  <myview id="yyyyy" taiedata="{{item}}" wx:key="unique" wx:for="{{viewData}}" bindjss="onJss">
+  </myview>
 </view>
-
