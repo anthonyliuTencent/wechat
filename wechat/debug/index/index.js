@@ -1,107 +1,171 @@
 var json = {
   pageInfo: {
-    title: '首页'
+    title: '家乡'
   },
   viewData: [{
     type: 'view',
     hide: false,
-    style: `font-family: Times New Roman,Georgia,Serif;
-            padding-top: 10px;
-            margin-top: 10px;
-            color: #FF6600;
-            background-color: #ffffff;
-            padding-left: 25px;
-            padding-right: 25px;
-            `,
+    style: `width:100%;height:400rpx;overflow:hidden;margin:0 auto;`,
     child: [{
-      type: 'text',
+      type: 'view',
       hide: false,
-      style: "font-size: 15px;text-align: center;padding-left: 30rpx;padding-right: 30rpx;",
-      innerText: '读书给人以快乐、给人以光彩、给人以才干。'
-    }, {
-      type: 'text',
-      hide: false,
-      style: "font-size: 12px;color:  #000000;display: block;text-align: right;padding-right:5px;",
-      innerText: '--培根'
+      style: `width:9999px;position:relative;animation:swipeCss 10s infinite 2s running;`,
+      child:[{
+        "type": "view",
+        "hide": false,
+        "wxfor": "carouselList",
+        "template": `{"type":"view","hide":false,"style":"float:left;width: 100vw;","child":[{"type":"image","hide":false,"style":"width:100%;height:400rpx;","attr":{"mode":"aspectFill","src":"{{url}}"}}]}`
+      }]
     }]
+  },{
+      type: 'view',
+      hide: false,
+      style: "text-align:center; padding-top:8px;",
+      bindtap: `let url = '/pages/hometown/index?flag=1'
+        wx.navigateTo({ url })`
+      ,
+      child:[{
+        type: 'label',
+        hide: false,
+        style: "text-decoration-line: underline;color: #0000EE",
+        innerText:'-家乡风景-',
+        catchtap: `let url = '/pages/hometown/index?flag=1'
+         wx.navigateTo({ url })`
+      }]
     },{
       type: 'view',
       hide: false,
-      style: "padding-left: 12px;margin-top: 12px;padding-top: 5px;background-color: #ffffff;"
-      ,
-    child: [{
+      style: "padding:10px",
+      child:[{
+        type: 'view',
+        hide: false,
+        style: "column-count: 2;",
+        child:[{
+          type:'view',
+          hide: false,
+          wxfor: 'note1',
+          template: `{"type":"view","hide":false,"style":"break-inside: avoid;box-sizing: border-box;text-align: center;background-color: #fff","child":[{"type":"image","hide":false,"style":"width:100%","attr":{"src":"{{url}}"}},{"type":"text","hide":false,"innerText":"{{title}}"}]}`
+        }]
+      }]
+    },
+    {
       type: 'view',
-      hide:false,
-      style: `border-left:3px solid red;color: #4c4c4c;font-size: 14px;height: 25px;border-top: 1px solid #dfdfdf;border-bottom: 1px solid #dfdfdf;padding: 11px 8px 0;background: #f2f2f2;line-height: 14px;`,
+      hide: false,
+      style: "text-align:center; padding-top:8px;",
+      bindtap: `let url = '/pages/hometown/index?flag=2'
+        wx.navigateTo({ url })`
+      ,
+      child: [{
+        type: 'label',
+        hide: false,
+        style: "text-decoration-line: underline;color: #0000EE",
+        innerText: '-家乡房产-',
+        catchtap: `let url = '/pages/hometown/index?flag=2'
+         wx.navigateTo({ url })`
+      }]
+    },
+    {
+      type: 'view',
+      hide: false,
+      style: "padding:20rpx;",
       child: [{
         type: 'view',
         hide: false,
-        style: "padding-left: 7px;",
-        innerText: '值得阅读'
-      }, {
-        type: 'view',
-        hide: false,
-          style: "font-family:'Franklin Gothic Medium', 'Arial Narrow';padding-left: 6px;font-size: 12px;color:#969696;margin-top: -13px;padding-left: 66px;",
-        innerText: '个人强烈推荐'
+        style: "text-align: center;column-count: 2;",
+        child: [{
+          type: 'view',
+          hide: false,
+          wxfor: 'note2',
+          template: `{"type":"view","hide":false,"style":"break-inside: avoid;box-sizing: border-box;text-align: center;background-color: #fff","child":[{"type":"image","hide":false,"style":"width:100%","attr":{"src":"{{url}}"}},{"type":"text","hide":false,"innerText":"{{title}}"}]}`
+        }]
       }]
-    }]
-  },{
+    },
+    {
       type: 'view',
       hide: false,
-      style: "background-color:#ffffff;display: flex;justify-content:space-around",
-      child:[{
-        wxfor: 'loveInfo',
-        template: `{"bindtap":"wx.navigateTo({url: '/pages/book/index?id='+attr.book_id});", "type":"image","hide":false,"style":"height:120px;width:85px;padding: 18px 3px;","attr":{"book_id":"{{book_id}}","src":"{{book_cover_img}}"},"child":[{"type":"view","hide":false,"style":"font-size: 14px;display: block;text-align: center;","innerText":"{{book_name}}"}]}`
+      style: "text-align:center; padding-top:8px;",
+      bindtap: `
+        let url = '/pages/hometown/index?flag=3'
+        wx.navigateTo({ url })`
+      ,
+      child: [{
+        type: 'label',
+        hide: false,
+        style: "text-decoration-line: underline;color: #0000EE",
+        innerText: '-父老乡亲-',
+        catchtap: `let url = '/pages/hometown/index?flag=3'
+         wx.navigateTo({ url })`
       }]
-  },{
-    type: 'view',
-    hide: false,
-    style: `
-      padding-left: 12px;
-      margin-top: 12px;
-      padding-top: 5px;
-      background-color: #ffffff;`,
-    child:[{
+    }, {
       type: 'view',
       hide: false,
-      style: `border-left: 3px solid red;
-        color: #4c4c4c;
-        font-size: 14px;
-        height: 25px;
-        border-top: 1px solid #dfdfdf;
-        border-bottom: 1px solid #dfdfdf;
-        padding: 11px 8px 0;
-        background: #f2f2f2;
-        line-height: 14px;`,
-      child:[{
+      style: "padding:20rpx;",
+      child: [{
         type: 'view',
         hide: false,
-        style:`padding-left: 7px;`,
-        innerText:'更多好书'
+        style: "text-align: center;column-count: 2;",
+        child: [{
+          type: 'view',
+          hide: false,
+          wxfor: 'note3',
+          template: `{"type":"view","hide":false,"style":"break-inside: avoid;box-sizing: border-box;text-align: center;background-color: #fff","child":[{"type":"image","hide":false,"style":"width:100%","attr":{"src":"{{url}}"}},{"type":"text","hide":false,"innerText":"{{title}}"}]}`
+        }]
       }]
-    }]
-    },{
-      wxfor: 'otherInfo',
-      template: `{"bindtap":"wx.navigateTo({url: '/pages/book/index?id='+attr.book_id});","type":"view","attr":{"book_id":"{{book_id}}"},"hide":false,"style":"padding-left: 12px;padding-top: 5px;padding-bottom: 5px;background-color: #ffffff;border-bottom:1px solid #eeeeee;","child":[{"type":"view","hide":false,"style":"width: 20%;padding-top: 6px;float: left;padding-top: 12px;","child":[{"type":"image","hide":false,"style":"width: 100%;","attr":{"mode":"widthFix","src":"{{book_cover_img}}"}}]},{"type":"view","hide":false,"style":"width: 78%;float: right;","child":[{"type":"view","hide":false,"child":[{"type":"view","hide":false,"style":"font-weight: bold;","attr":{"mode":"widthFix","src":"{{book_name}}"}}]},{"type":"view","hide":false,"style":"padding-top: 12px;font-size:12px;text-overflow:ellipsis;overflow:hidden;word-break: break-all;display:-webkit-box;-webkit-line-clamp:5;padding-right: 8px;-webkit-box-orient:vertical;","innerText":"{{book_introduce}}"},{"type":"view","hide":false,"style":"padding-top:4px;padding-right: 8px;float: right;font-size:12px;color: #969696;","innerText":"作者:黄易"}]}]}`
     }
   ],  
   event: {
     onLoad: {
-      request: {
-        url: "handler/book/getsomebook",
-        callback: ` var loveInfo = []; var otherInfo = [];
-	  		data.forEach(function(item,i){
-	  			if (item.love === 1) {
-		        loveInfo.push(item);
-		      } else {
-		        otherInfo.push(item);
-		      }
-	  		})
-        renderData.loveInfo = loveInfo;
-        renderData.otherInfo = otherInfo;
-        `
-      },
-      func: ''
+      func: `
+      var IMGPATH1 = 'https://mydear.site/static/image/scenety/';
+      var IMGPATH2 = 'https://mydear.site/static/image/house/';
+      var IMGPATH3 = 'https://mydear.site/static/image/people/';
+      renderData.carouselList = [{
+        url: IMGPATH1 + '1.jpg',
+      },{
+        url: IMGPATH2 + '1.jpg',
+      },{
+        url: IMGPATH3 + '1.jpg',
+      },{
+        url: IMGPATH1 + '3.jpg',
+      },{
+        url: IMGPATH2 + '2.jpg',
+      },{
+        url: IMGPATH1 + '1.jpg',
+      }];
+      renderData.note1 = [
+      {
+        title: '田野',
+        url: IMGPATH1 + '1.jpg'
+      }, {
+        title: '我家的院子',
+        url: IMGPATH1 + '3.jpg'
+      },{
+        title: '我家的长江',
+        url: IMGPATH1 + '4.jpg'
+      }];
+      renderData.note2 = [
+      {
+        title: '我的老家',
+        url: IMGPATH2 + '1.jpg'
+      }, {
+        title: '院子的花',
+        url: IMGPATH2 + '2.jpg'
+      }, {
+          title: '银杏',
+        url: IMGPATH2 + '3.jpg'
+      }];
+      renderData.note3= [
+        {
+          title: '施工标语',
+          url: IMGPATH3 + '1.jpg'
+        }, {
+          title: '堂妹大婚',
+          url: IMGPATH3 + '2.jpg'
+        }, {
+          title: '堂妹大婚',
+          url: IMGPATH3 + '3.jpg'
+        }];
+      `
     }
   }
 }

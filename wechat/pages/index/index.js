@@ -1,5 +1,5 @@
 //index.js
-// const testData = require('../../debug/index/index.js');
+const testData = require('../../debug/index/index.js');
 const utils = require('../../utils/utils.js')
 const jsonParse = require('../../utils/jsonParse.js')
 let app = getApp();
@@ -32,31 +32,48 @@ Page({
       });
     }
   },
+  getData: function (currentPageUrl) {
+    var that = this
+    utils.request({
+      url: "handler/view/getviewjs",
+      data: {
+        page: currentPageUrl
+      },
+      success: function (data) {
+        CONFIGDATA = data.data.data;
+        console.log('CONFIGDATA', CONFIGDATA)
+        // 到时放开
+        //utils.setCache(currentPageUrl, CONFIGDATA, 60 * 24 * 7);
+        that.render()
+      }
+    })
+  },
   onLoad: function(options) {
     // 异步获取用户信息
-    //this.getUser()
     var that = this
     var url = app.getCurrentPages() //获取加载的页面
     var index = url.indexOf('?');
     var currentPageUrl = index > -1 ? url.substring(0, index) : url;
     CONFIGDATA = wx.getStorageSync(currentPageUrl);
     if (!CONFIGDATA) {
-      console.log('not CONFIGDATA')
-      // CONFIGDATA = testData;
-      // that.render()
-      utils.request({
-        url: "handler/view/getviewjs",
-        data:{
-          page: currentPageUrl
-        },
-        success: function(data) {
-          CONFIGDATA = data.data.data;
-          console.log('CONFIGDATA', CONFIGDATA)
-          // 到时放开
-          //utils.setCache(currentPageUrl, CONFIGDATA, 60 * 24 * 7);
-          that.render()
+      this.getData(currentPageUrl);
+    } else {
+      console.log('app.cacheFlag is:', app.cacheFlag)
+      if(app.cacheFlag === -1) {
+        //还没有加载
+        app.CallbackFn = function (cacheFlag) {
+          if (!cacheFlag) {
+            //不缓存
+            that.getData(currentPageUrl);
+          } else {
+            that.render()
+          }
         }
-      })
+      } else if (app.cacheFlag === 0){
+        that.getData(currentPageUrl);
+      } else {
+        hat.render()
+      }
     }
   },
   /**
@@ -135,5 +152,5 @@ Page({
     let detail = e.detail.detail;
     console.log('detail is:',detail)
     jsonParse.executeJs(detail.func, this, detail.attr, e.detail.option)
-  }
+  },
 })

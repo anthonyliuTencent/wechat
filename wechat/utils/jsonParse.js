@@ -70,7 +70,7 @@ function initPage(json, that, wx, option){
       success: (data) => {
         var data =data.data
         var renderData = {}
-        new Canjs(json.request.callback, { data, utils, renderData, that, wx}).run()
+    new Canjs(json.request.callback, { data, utils, renderData, that, wx, option}).run()
         that.renderData = renderData
         if (option && option.viewData){
           // 初始化首屏
@@ -88,7 +88,19 @@ function initPage(json, that, wx, option){
   }
   if (json.func) {
     let viewData = option.viewData
-    new Canjs(json.func, { wx, that, utils, viewData}).run()
+    let renderData = {}
+    console.log('renderData is:', renderData)
+    new Canjs(json.func, { wx, that, utils, renderData,viewData}).run()
+    that.renderData = renderData
+    console.log('renderData is:', renderData)
+    let tempStr;
+    that.viewTemplateStr = tempStr = JSON.stringify(option.viewData)
+    let tempObj = JSON.parse(tempStr)
+    var _temp = utils.goViews(tempObj, renderData);
+    console.log('_temp is:', _temp)
+    that.setData({
+      viewData: _temp
+    });
   }
 }
 function doJs(jsStr, that, attr, option) {

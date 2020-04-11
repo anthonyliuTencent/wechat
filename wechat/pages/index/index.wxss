@@ -1,0 +1,35 @@
+@keyframes swipeCss {
+	0% {
+	transform:translateX(0px);
+  }
+  10% {
+    transform:translateX(-100vw);
+  }
+  20% {
+    transform:translateX(-100vw);
+  }
+  30% {
+    transform:translateX(-200vw);
+  }
+  40% {
+    transform:translateX(-200vw);
+  }
+  50% {
+    transform:translateX(-300vw);
+  }
+  60% {
+    transform:translateX(-300vw);
+  }
+  70% {
+    transform:translateX(-400vw);
+  }
+  80% {
+    transform:translateX(-400vw);
+  }
+  90% {
+    transform:translateX(-500vw);
+  }
+  100% {
+    transform:translateX(-500vw);
+  }
+}

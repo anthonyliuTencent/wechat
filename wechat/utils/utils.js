@@ -140,6 +140,7 @@ function goViews(viewData,renderData){
     if (ceil.wxfor) {
       // 替换wxfor
       let wxforData = renderData[ceil.wxfor];
+      
       let tmpl = ceil.template;
       // console.log('tmpl is:', tmpl)
       // let tempForData = []
@@ -147,7 +148,8 @@ function goViews(viewData,renderData){
         let tmplItem = tmpl.replace(/\{\{(.*?)\}\}/g, function($0, $1){
           return item[$1]
         })
-        //console.log('tmpl:', tmplItem)
+        // console.log('tmpl:', tmplItem)
+        //_temp.push(tmplItem)
         _temp.push(JSON.parse(tmplItem))
       })
     } else if(ceil.wxfill){
@@ -185,8 +187,10 @@ function goViews(viewData,renderData){
       for (var key in ceil.attr){
         if (typeof ceil.attr[key] === 'string') {
           let regex = /\{\{(.*?)\}\}/
-          let chooseKey = ceil.attr[key].match(regex);
-          ceil.attr[key] = renderData[chooseKey[1]]
+          if (regex.test(ceil.attr[key])) {
+            let chooseKey = ceil.attr[key].match(regex);
+            ceil.attr[key] = renderData[chooseKey[1]]
+          }
         }
       }
       _temp.push(handerView(ceil, renderData));
@@ -206,6 +210,15 @@ function setCache(key, v, time) {
     wx.setStorageSync(key + "__", new Date().getTime() + time * 60 * 1000);
   }
 }
+function depDealObj(objArray, callback) {
+  objArray.forEach(function(item, index) {
+    console.log('item is:', item)
+    callback(item)
+    if (item.child && item.child.length > 0) {
+      depDealObj(item.child, callback)
+    }
+  })
+}
 module.exports = {
   setCache,
   queryComponentMsg,
@@ -217,5 +230,6 @@ module.exports = {
   getCurrentPageUrlWithArgs: getCurrentPageUrlWithArgs,
   getLinkValue: getLinkValue,
   compare: compare,
-  request:request
+  request:request,
+  depDealObj: depDealObj
 }

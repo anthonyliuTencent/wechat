@@ -44,6 +44,7 @@ Component({
 
     // 统一事件处理
     bindtap: eventhander("bindtap"),
+    catchtap:eventhander("catchtap"),
     binderror: eventhander("binderror"),
     bindload: eventhander("bindload"),
     bindscrolltoupper: eventhander("bindscrolltoupper"),

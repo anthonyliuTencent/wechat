@@ -1,41 +1,8 @@
 <!--index.wxml-->
 <view class="container">
-<myview id="yyyyy" taiedata="{{item}}" wx:key="unique" wx:for="{{viewData}}" bindjss="onJss">
-</myview>
+  <myview id="yyyyy" taiedata="{{item}}" wx:key="unique" wx:for="{{viewData}}" bindjss="onJss">
+  </myview>
 </view>
 
-<!-- <import src="../../wxParse/wxParse.wxml"/>
-<view class="container">
-<view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-    <text class="famous">--{{famous}}</text>
-</view>
-  <view class="navig-tab">
- <view class="navig-tab-area">
- <text style="padding-left: 7px;">值得阅读</text>
- <text class="navig-tab-subtitle">个人强烈推荐</text>
- </view>
- </view>
-  <view class="book-area">
-    <image bindtap="tapBook" data-book_id="{{item.book_id}}" wx:for="{{loveInfo}}" wx:key="id" wx:for-index="id" wx:for-item="item" class="cover-img" mode="widthFix" src="{{item.book_cover_img}}" >
-    <text class="cover-text">{{item.book_name}}</text></image>
- </view>
-  <view class="navig-tab">
-    <view class="navig-tab-area">
-      <text style="padding-left: 7px;">更多好书</text>
-    </view>
- </view>
- <view class="book-list" bindtap="tapOtherBook" data-book_id="{{item.book_id}}" wx:for="{{otherInfo}}" wx:key="id" wx:for-index="id" wx:for-item="item">
-    <view class="book-list-image">
-      <image class="book-list-cover" mode="widthFix" src="{{item.book_cover_img}}"></image>
-    </view>
-    <view class="book-list-text">
-      <view><text class="book-list-text-title">{{item.book_name}}</text></view>
-      <view class="book-list-text-content"><text>{{item.book_introduce}}</text></view>
-      <view class="book-list-text-author">作者:黄易</view>
-    </view>
- </view>
-<template is="wxParse" data="{{wxParseData:article.nodes}}"/>
-<!-- <rich-text nodes="{{htmlInfo}}"></rich-text> -->
-<!-- </view> -->
 
+ 

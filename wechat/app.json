@@ -1,13 +1,13 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/clock/index",
     "pages/collect/index",
     "pages/logs/logs",
     "pages/book/index",
     "pages/my/my",
     "pages/book/detail",
-    "pages/book/list"
+    "pages/book/list",
+    "pages/hometown/index"
   ],
   "window": {
     "backgroundColor": "#eeeeee",

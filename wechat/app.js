@@ -2,6 +2,7 @@
 const utils = require('./utils/utils.js')
 App({
   onLaunch: function () {
+    var that = this
     //初始化加载，先判断用户登录状态
     wx.login({
       success: function (res) {
@@ -17,6 +18,10 @@ App({
                 openid: data.data.openid
               }
               wx.setStorageSync('userInfo', userInfo);
+              that.cacheFlag = data.data.cacheFlag
+              if (that.CallbackFn) {
+                that.CallbackFn(data.data.cacheFlag)
+              }
             },
           })
         } else {
@@ -41,5 +46,6 @@ App({
   },
   globalData: {
     userInfo: null
-  }
+  },
+  cacheFlag: -1
 })

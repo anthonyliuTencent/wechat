@@ -64,7 +64,7 @@ var json = {
     onLoad: {
       request: {
         url: "handler/book/getbookdetail",
-        data: "let url = utils.getCurrentPageUrlWithArgs();data.book_id =utils.getLinkValue(url)[id]|| 10;",
+        data: "let url = utils.getCurrentPageUrlWithArgs();data.book_id =utils.getLinkValue(url)[book_id];console.log('sadas:', data)",
         callback: `let compare = utils.compare('chapter_id')
         let Allchapter = data.chapter.sort(compare)
         let len = Math.floor(Allchapter.length / 20)

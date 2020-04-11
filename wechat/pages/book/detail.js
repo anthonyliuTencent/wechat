@@ -1,5 +1,4 @@
 //index.js
-const testData = require('../../debug/book/detail.js');
 const utils = require('../../utils/utils.js')
 const jsonParse = require('../../utils/jsonParse.js')
 let app = getApp();
@@ -32,6 +31,22 @@ Page({
       });
     }
   },
+  getData: function (currentPageUrl) {
+    var that = this
+    utils.request({
+      url: "handler/view/getviewjs",
+      data: {
+        page: currentPageUrl
+      },
+      success: function (data) {
+        CONFIGDATA = data.data.data;
+        console.log('CONFIGDATA', CONFIGDATA)
+        // 到时放开
+        //utils.setCache(currentPageUrl, CONFIGDATA, 60 * 24 * 7);
+        that.render()
+      }
+    })
+  },
   onLoad: function (options) {
     // 异步获取用户信息
     //this.getUser()
@@ -43,24 +58,25 @@ Page({
     // console.log('currentPageUrl is:', currentPageUrl)
     CONFIGDATA = wx.getStorageSync(currentPageUrl);
     if (!CONFIGDATA) {
-      console.log('not CONFIGDATA')
-      utils.request({
-        url: "handler/view/getviewjs",
-        data: {
-          page: currentPageUrl
-        },
-        success: function (data) {
-          CONFIGDATA = data.data.data;
-          // 到时放开
-          //utils.setCache(currentPageUrl, CONFIGDATA, 60 * 24 * 7);
-          that.render()
+      this.getData(currentPageUrl);
+    } else {
+      console.log('app.cacheFlag is:', app.cacheFlag)
+      if (app.cacheFlag === -1) {
+        //还没有加载
+        app.CallbackFn = function (cacheFlag) {
+          if (!cacheFlag) {
+            //不缓存
+            that.getData(currentPageUrl);
+          } else {
+            that.render()
+          }
         }
-      })
-      // CONFIGDATA = testData;
-      // 到时放开
-      //utils.setCache(currentPageUrl, CONFIGDATA, 60 * 24 * 7);
+      } else if (app.cacheFlag === 0) {
+        that.getData(currentPageUrl);
+      } else {
+        that.render()
+      }
     }
-    this.render()
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

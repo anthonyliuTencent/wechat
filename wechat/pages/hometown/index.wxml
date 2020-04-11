@@ -1,0 +1,6 @@
+<!--pages/hometown/index.wxml-->
+<view class="content">  
+  <view style="flex:1;width:100%;text-align: center;" wx:for="{{pics}}" wx:key="key">
+  <image src='{{item}}' mode='widthFix'></image>
+  </view>   
+</view>
