@@ -10,20 +10,19 @@ Page({
   data: {
     viewData: []
   },
-  getUser: function() {
+  getUser: function () {
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  render: function(){
+  render: function () {
     var that = this;
-    // that.setData({ "viewData": CONFIGDATA.viewData })
+    // wx.showLoading({ title: '加载中' });
     CONFIGDATA.event && CONFIGDATA.event.onLoad
       && jsonParse.initPage(CONFIGDATA.event.onLoad, that, wx, {
-       viewData:CONFIGDATA.viewData
+        viewData: CONFIGDATA.viewData
       })
     // 加载
-    //wx.showLoading({ title: '加载中' });
     // 处理标题
     if (CONFIGDATA.pageInfo && CONFIGDATA.pageInfo.title) {
       wx.setNavigationBarTitle({
@@ -47,7 +46,7 @@ Page({
       }
     })
   },
-  onLoad: function(options) {
+  onLoad: function (options) {
     // 异步获取用户信息
     var url = app.getCurrentPages() //获取加载的页面
     var index = url.indexOf('?');
@@ -57,7 +56,7 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
     var that = this;
     CONFIGDATA.event && CONFIGDATA.event.onReady
       && jsonParse.doJs(CONFIGDATA.event.onReady, that, wx)
@@ -66,7 +65,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
     var that = this;
     CONFIGDATA.event && CONFIGDATA.event.onShow
       && jsonParse.doJs(CONFIGDATA.event.onShow, that, wx)
@@ -75,7 +74,7 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
     var that = this;
     CONFIGDATA.event && CONFIGDATA.event.onHide
       && jsonParse.doJs(CONFIGDATA.event.onHide, that, wx)
@@ -84,7 +83,7 @@ Page({
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
     var that = this;
     CONFIGDATA.event && CONFIGDATA.event.onUnload
       && jsonParse.doJs(CONFIGDATA.event.onUnload, that, wx)
@@ -93,7 +92,7 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
     var that = this;
     CONFIGDATA.event && CONFIGDATA.event.onPullDownRefresh
       && jsonParse.doJs(CONFIGDATA.event.onPullDownRefresh, that, wx)
@@ -102,7 +101,7 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
     var that = this;
     CONFIGDATA.event && CONFIGDATA.event.onReachBottom
       && jsonParse.doJs(CONFIGDATA.event.onReachBottom, that, wx)
@@ -111,7 +110,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
     var that = this;
     CONFIGDATA.event && CONFIGDATA.event.onShareAppMessage
       && jsonParse.doJs(CONFIGDATA.event.onShareAppMessage, that, wx)
@@ -119,16 +118,17 @@ Page({
   onResize: function () {
     var that = this;
     CONFIGDATA.event && CONFIGDATA.event.onResize
-      && jsonParse.doJs(CONFIGDATA.event.onResize, that,wx)
+      && jsonParse.doJs(CONFIGDATA.event.onResize, that, wx)
   },
-  onPageScroll: function () {
+  onPageScroll: function (e) {
+    console.log('e is:', e)
     var that = this;
     CONFIGDATA.event && CONFIGDATA.event.onPageScroll
-      && jsonParse.doJs(CONFIGDATA.event.onPageScroll, that, wx)
+      && jsonParse.doJs(CONFIGDATA.event.onPageScroll, that, wx, e)
   },
-  onJss:function(e){
+  onJss: function (e) {
     let detail = e.detail.detail;
-    console.log('detail is:',detail)
+    console.log('detail is:', detail)
     jsonParse.executeJs(detail.func, this, detail.attr, e.detail.option)
-  },
+  }
 })

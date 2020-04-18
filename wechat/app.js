@@ -19,9 +19,6 @@ App({
               }
               wx.setStorageSync('userInfo', userInfo);
               that.cacheFlag = data.data.cacheFlag
-              if (that.CallbackFn) {
-                that.CallbackFn(data.data.cacheFlag)
-              }
             },
           })
         } else {

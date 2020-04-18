@@ -5,11 +5,17 @@ var json = {
   viewData: [{
     type: 'view',
     hide: false,
-    style: `width:100%;height:400rpx;overflow:hidden;margin:0 auto;`,
+    style: `width:100%;height:400rpx;overflow:hidden;margin:20px auto;`,
     child: [{
+      type:'view',
+      hide:false,
+      style: "text-indent: 20px;",
+      innerText:"你好，欢迎回家!你可以把你的记忆放在这里！"
+    },
+      {
       type: 'view',
       hide: false,
-      style: `width:9999px;position:relative;animation:swipeCss 10s infinite 2s running;`,
+        style: `margin:20px 0;width:9999px;position:relative;animation:swipeCss 10s infinite 2s running;`,
       child:[{
         "type": "view",
         "hide": false,
@@ -20,39 +26,40 @@ var json = {
   },{
       type: 'view',
       hide: false,
-      style: "text-align:center; padding-top:8px;",
-      bindtap: `let url = '/pages/hometown/index?flag=1'
-        wx.navigateTo({ url })`
+      style: "text-align:center; margin: 15px;",
+      bindtap: `let url = '/pages/hometown/introduce'
+         wx.navigateTo({ url })`
       ,
       child:[{
         type: 'label',
         hide: false,
         style: "text-decoration-line: underline;color: #0000EE",
-        innerText:'-家乡风景-',
-        catchtap: `let url = '/pages/hometown/index?flag=1'
+        innerText:'-家乡介绍-',
+        catchtap: `let url = '/pages/hometown/introduce'
          wx.navigateTo({ url })`
-      }]
-    },{
-      type: 'view',
-      hide: false,
-      style: "padding:10px",
-      child:[{
-        type: 'view',
-        hide: false,
-        style: "column-count: 2;",
-        child:[{
-          type:'view',
-          hide: false,
-          wxfor: 'note1',
-          template: `{"type":"view","hide":false,"style":"break-inside: avoid;box-sizing: border-box;text-align: center;background-color: #fff","child":[{"type":"image","hide":false,"style":"width:100%","attr":{"src":"{{url}}"}},{"type":"text","hide":false,"innerText":"{{title}}"}]}`
-        }]
       }]
     },
     {
       type: 'view',
       hide: false,
-      style: "text-align:center; padding-top:8px;",
-      bindtap: `let url = '/pages/hometown/index?flag=2'
+      style: "text-align:center; margin: 15px;",
+      bindtap: `let url = '/pages/hometown/index'
+        wx.navigateTo({ url })`
+      ,
+      child: [{
+        type: 'label',
+        hide: false,
+        style: "text-decoration-line: underline;color: #0000EE",
+        innerText: '-家乡风光-',
+        catchtap: `let url = '/pages/hometown/index'
+         wx.navigateTo({ url })`
+      }]
+    },
+    {
+      type: 'view',
+      hide: false,
+      style: "text-align:center; margin: 15px;",
+      bindtap: `let url = '/pages/hometown/sight'
         wx.navigateTo({ url })`
       ,
       child: [{
@@ -60,32 +67,16 @@ var json = {
         hide: false,
         style: "text-decoration-line: underline;color: #0000EE",
         innerText: '-家乡房产-',
-        catchtap: `let url = '/pages/hometown/index?flag=2'
+        catchtap: `let url = '/pages/hometown/sight'
          wx.navigateTo({ url })`
       }]
     },
     {
       type: 'view',
       hide: false,
-      style: "padding:20rpx;",
-      child: [{
-        type: 'view',
-        hide: false,
-        style: "text-align: center;column-count: 2;",
-        child: [{
-          type: 'view',
-          hide: false,
-          wxfor: 'note2',
-          template: `{"type":"view","hide":false,"style":"break-inside: avoid;box-sizing: border-box;text-align: center;background-color: #fff","child":[{"type":"image","hide":false,"style":"width:100%","attr":{"src":"{{url}}"}},{"type":"text","hide":false,"innerText":"{{title}}"}]}`
-        }]
-      }]
-    },
-    {
-      type: 'view',
-      hide: false,
-      style: "text-align:center; padding-top:8px;",
+      style: "text-align:center; margin: 15px;",
       bindtap: `
-        let url = '/pages/hometown/index?flag=3'
+        let url = '/pages/hometown/people'
         wx.navigateTo({ url })`
       ,
       child: [{
@@ -93,23 +84,24 @@ var json = {
         hide: false,
         style: "text-decoration-line: underline;color: #0000EE",
         innerText: '-父老乡亲-',
-        catchtap: `let url = '/pages/hometown/index?flag=3'
+        catchtap: `let url = '/pages/hometown/people'
          wx.navigateTo({ url })`
       }]
-    }, {
+    },{
       type: 'view',
       hide: false,
-      style: "padding:20rpx;",
+      style: "text-align:center; margin: 15px;",
+      bindtap: `
+        let url = '/pages/hometown/tel'
+        wx.navigateTo({ url })`
+      ,
       child: [{
-        type: 'view',
+        type: 'label',
         hide: false,
-        style: "text-align: center;column-count: 2;",
-        child: [{
-          type: 'view',
-          hide: false,
-          wxfor: 'note3',
-          template: `{"type":"view","hide":false,"style":"break-inside: avoid;box-sizing: border-box;text-align: center;background-color: #fff","child":[{"type":"image","hide":false,"style":"width:100%","attr":{"src":"{{url}}"}},{"type":"text","hide":false,"innerText":"{{title}}"}]}`
-        }]
+        style: "text-decoration-line: underline;color: #0000EE",
+        innerText: '-通讯录-',
+        catchtap: `let url = '/pages/hometown/tel'
+         wx.navigateTo({ url })`
       }]
     }
   ],  

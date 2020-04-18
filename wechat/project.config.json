@@ -93,6 +93,27 @@
 					"id": -1,
 					"name": "pages/index/index",
 					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/hometown/introduce",
+					"pathName": "pages/hometown/introduce",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/hometown/index",
+					"pathName": "pages/hometown/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/hometown/tel",
+					"pathName": "pages/hometown/tel",
 					"scene": null
 				}
 			]

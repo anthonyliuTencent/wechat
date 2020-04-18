@@ -7,7 +7,11 @@
     "pages/my/my",
     "pages/book/detail",
     "pages/book/list",
-    "pages/hometown/index"
+    "pages/hometown/index",
+    "pages/hometown/sight",
+    "pages/hometown/people",
+    "pages/hometown/introduce",
+    "pages/hometown/tel"
   ],
   "window": {
     "backgroundColor": "#eeeeee",

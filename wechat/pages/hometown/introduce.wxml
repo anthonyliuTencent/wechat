@@ -1,4 +1,4 @@
-<!--pages/hometown/index.wxml-->
+<!--pages/hometown/introduce.wxml-->
 <view class="container">
   <myview id="yyyyy" taiedata="{{item}}" wx:key="unique" wx:for="{{viewData}}" bindjss="onJss">
   </myview>

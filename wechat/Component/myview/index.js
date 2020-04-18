@@ -128,9 +128,11 @@ function eventhander (type) {
     // 把当前的点击事件记下来
     // 自定义事件
     var _info = e.target.dataset.info || e.currentTarget.dataset.info;
+    console.log('_info is:', _info)
+    console.log('type is:', type)
     if (_info[type]) {
       // 有点击事件的,需要冒泡
-      console.log('_info is:', _info)
+      // console.log('_info is:', _info)
       this.triggerEvent('jss', { detail: { func: _info[type], attr: _info.attr}, option:e.detail})
     }
   }

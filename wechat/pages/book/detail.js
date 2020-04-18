@@ -49,34 +49,11 @@ Page({
   },
   onLoad: function (options) {
     // 异步获取用户信息
-    //this.getUser()
     var that = this
     var url = app.getCurrentPages() //获取加载的页面
-    // console.log('url is:', url)
     var index = url.indexOf('?');
-    var currentPageUrl = index> -1 ? url.substring(0, index): url;
-    // console.log('currentPageUrl is:', currentPageUrl)
-    CONFIGDATA = wx.getStorageSync(currentPageUrl);
-    if (!CONFIGDATA) {
-      this.getData(currentPageUrl);
-    } else {
-      console.log('app.cacheFlag is:', app.cacheFlag)
-      if (app.cacheFlag === -1) {
-        //还没有加载
-        app.CallbackFn = function (cacheFlag) {
-          if (!cacheFlag) {
-            //不缓存
-            that.getData(currentPageUrl);
-          } else {
-            that.render()
-          }
-        }
-      } else if (app.cacheFlag === 0) {
-        that.getData(currentPageUrl);
-      } else {
-        that.render()
-      }
-    }
+    var currentPageUrl = index > -1 ? url.substring(0, index) : url;
+    this.getData(currentPageUrl);
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -146,7 +123,6 @@ Page({
       && jsonParse.doJs(CONFIGDATA.event.onResize, that, wx)
   },
   onPageScroll: function (e) {
-    console.log('e is:', e)
     var that = this;
     CONFIGDATA.event && CONFIGDATA.event.onPageScroll
       && jsonParse.doJs(CONFIGDATA.event.onPageScroll, that, wx, e)

@@ -1,5 +1,4 @@
 //index.js
-const testData = require('../../debug/my/my.js');
 const utils = require('../../utils/utils.js')
 const jsonParse = require('../../utils/jsonParse.js')
 let app = getApp();
@@ -32,21 +31,31 @@ Page({
       });
     }
   },
+  getData: function (currentPageUrl) {
+    var that = this
+    utils.request({
+      url: "handler/view/getviewjs",
+      data: {
+        page: currentPageUrl
+      },
+      success: function (data) {
+        CONFIGDATA = data.data.data;
+        that.render()
+      }
+    })
+  },
   onLoad: function (options) {
     // 异步获取用户信息
     var that = this
     var url = app.getCurrentPages() //获取加载的页面
     var index = url.indexOf('?');
     var currentPageUrl = index > -1 ? url.substring(0, index) : url;
-    // console.log('currentPageUrl is:', currentPageUrl)
     CONFIGDATA = wx.getStorageSync(currentPageUrl);
     if (!CONFIGDATA) {
-      console.log('not CONFIGDATA')
-      CONFIGDATA = testData;
-      // 到时放开
-      //utils.setCache(currentPageUrl, CONFIGDATA, 60 * 24 * 7);
+      this.getData(currentPageUrl);
+    } else {
+      that.render()
     }
-    this.render()
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

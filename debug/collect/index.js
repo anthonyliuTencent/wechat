@@ -36,7 +36,7 @@ var json = {
                   font-weight: normal;
                   padding: 1px 36px; margin-top:50px`,
         innerText: '点击我',
-        bindgetuserinfo2: 'that.onLoad()',
+        bindgetuserinfo2: 'that.onLoad()'
     },
     {
       type: 'text',
