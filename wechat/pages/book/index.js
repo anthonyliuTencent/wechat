@@ -23,7 +23,7 @@ Page({
         viewData: CONFIGDATA.viewData
       })
     // 加载
-    //wx.showLoading({ title: '加载中' });
+    // wx.showLoading({ title: '加载中' });
     // 处理标题
     if (CONFIGDATA.pageInfo && CONFIGDATA.pageInfo.title) {
       wx.setNavigationBarTitle({
@@ -130,6 +130,6 @@ Page({
   onJss: function (e) {
     let detail = e.detail.detail;
     console.log('detail is:', detail)
-    jsonParse.executeJs(detail.func, this, detail.attr, e.detail.option)
+    jsonParse.executeJs(detail.func, this, detail.attr, detail.option,e)
   }
 })

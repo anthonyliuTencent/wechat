@@ -10,7 +10,7 @@ var json = {
       type:'view',
       hide:false,
       style: "text-indent: 20px;",
-      innerText:"你好，欢迎回家!你可以把你的记忆放在这里！"
+      innerText:"大家好！，五一劳动节快乐哦！"
     },
       {
       type: 'view',
@@ -34,7 +34,7 @@ var json = {
         type: 'label',
         hide: false,
         style: "text-decoration-line: underline;color: #0000EE",
-        innerText:'-家乡介绍-',
+        innerText:'-老家介绍-',
         catchtap: `let url = '/pages/hometown/introduce'
          wx.navigateTo({ url })`
       }]
@@ -50,7 +50,7 @@ var json = {
         type: 'label',
         hide: false,
         style: "text-decoration-line: underline;color: #0000EE",
-        innerText: '-家乡风光-',
+        innerText: '-老家风光-',
         catchtap: `let url = '/pages/hometown/index'
          wx.navigateTo({ url })`
       }]
@@ -66,7 +66,7 @@ var json = {
         type: 'label',
         hide: false,
         style: "text-decoration-line: underline;color: #0000EE",
-        innerText: '-家乡房产-',
+        innerText: '-老家房产-',
         catchtap: `let url = '/pages/hometown/sight'
          wx.navigateTo({ url })`
       }]
@@ -103,6 +103,32 @@ var json = {
         catchtap: `let url = '/pages/hometown/tel'
          wx.navigateTo({ url })`
       }]
+    }, {
+      type: 'view',
+      hide: false,
+      style: "text-align:center; margin: 15px;",
+      bindtap: `
+        let url = '/pages/hometown/tel'
+        wx.navigateTo({ url })`
+      ,
+      child: [{
+        type: 'label',
+        hide: false,
+        style: "text-decoration-line: underline;color: #0000EE",
+        innerText: '-老家特产-',
+        catchtap: `let url = '/pages/book/index'
+         wx.navigateTo({ url })`
+      }]
+    },
+    {
+      type:"view",
+      hide: false,
+      style: `text-align:center;border: 1px solid #ee4341;
+    border-radius: 3px;
+      color: #ee4341;
+      text-decoration: none;
+    }`,
+      innerText:"广告位招租啊~",
     }
   ],  
   event: {

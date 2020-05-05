@@ -144,6 +144,7 @@ function goViews(viewData,renderData){
       let tmpl = ceil.template;
       // console.log('tmpl is:', tmpl)
       // let tempForData = []
+      // console.log('wxforData is:', wxforData)
       wxforData.forEach(function(item, i){
         let tmplItem = tmpl.replace(/\{\{(.*?)\}\}/g, function($0, $1){
           return item[$1]

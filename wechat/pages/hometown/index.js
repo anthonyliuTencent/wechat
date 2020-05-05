@@ -51,7 +51,9 @@ Page({
     var url = app.getCurrentPages() //获取加载的页面
     var index = url.indexOf('?');
     var currentPageUrl = index > -1 ? url.substring(0, index) : url;
-    this.getData(currentPageUrl);
+    // this.getData(currentPageUrl);
+    CONFIGDATA = testData;
+    this.render()
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -128,6 +130,6 @@ Page({
   onJss: function (e) {
     let detail = e.detail.detail;
     console.log('detail is:', detail)
-    jsonParse.executeJs(detail.func, this, detail.attr, e.detail.option)
+    jsonParse.executeJs(detail.func, this, detail.attr, detail.option)
   }
 })

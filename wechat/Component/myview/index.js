@@ -131,9 +131,10 @@ function eventhander (type) {
     console.log('_info is:', _info)
     console.log('type is:', type)
     if (_info[type]) {
+      // console.log('e ss:', e.detail.value)
       // 有点击事件的,需要冒泡
       // console.log('_info is:', _info)
-      this.triggerEvent('jss', { detail: { func: _info[type], attr: _info.attr}, option:e.detail})
+      this.triggerEvent('jss', { detail: { func: _info[type], attr: _info.attr, option:e.detail}})
     }
   }
 }

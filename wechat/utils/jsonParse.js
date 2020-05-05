@@ -103,12 +103,12 @@ function initPage(json, that, wx, option){
     });
   }
 }
-function doJs(jsStr, that, attr, option) {
+function doJs(jsStr, that, attr, option, target) {
   attr = attr || {}
   // jsStr ='wx.navigateTo({url:"/pages/book/index?id=10"})'
   // jsStr = 'console.log(attr.book_id)'
   // wx.navigateTo({ url: "/pages/book/index?id=10"})
-  new Canjs(jsStr, { wx, that, attr, utils, option }).run()
+  new Canjs(jsStr, { wx, that, attr, utils, option,target }).run()
 }
 module.exports = {
   executeJs: executeJs,
