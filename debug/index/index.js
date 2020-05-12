@@ -7,130 +7,130 @@ var json = {
     hide: false,
     style: `width:100%;height:400rpx;overflow:hidden;margin:20px auto;`,
     child: [{
-      type:'view',
-      hide:false,
-      style: "text-indent: 20px;",
-      innerText:"大家好！，五一劳动节快乐哦！"
-    },
-      {
       type: 'view',
       hide: false,
-        style: `margin:20px 0;width:9999px;position:relative;animation:swipeCss 10s infinite 2s running;`,
-      child:[{
+      style: "text-indent: 20px;",
+      innerText: "大家好！为家乡的伟大复兴而奋斗！"
+    },
+    {
+      type: 'view',
+      hide: false,
+      style: `margin:20px 0;width:9999px;position:relative;animation:swipeCss 10s infinite 2s running;`,
+      child: [{
         "type": "view",
         "hide": false,
         "wxfor": "carouselList",
         "template": `{"type":"view","hide":false,"style":"float:left;width: 100vw;","child":[{"type":"image","hide":false,"style":"width:100%;height:400rpx;","attr":{"mode":"aspectFill","src":"{{url}}"}}]}`
       }]
     }]
-  },{
-      type: 'view',
-      hide: false,
-      style: "text-align:center; margin: 15px;",
-      bindtap: `let url = '/pages/hometown/introduce'
+  }, {
+    type: 'view',
+    hide: false,
+    style: "text-align:center; margin: 15px;",
+    bindtap: `let url = '/pages/hometown/introduce'
          wx.navigateTo({ url })`
-      ,
-      child:[{
-        type: 'label',
-        hide: false,
-        style: "text-decoration-line: underline;color: #0000EE",
-        innerText:'-老家介绍-',
-        catchtap: `let url = '/pages/hometown/introduce'
-         wx.navigateTo({ url })`
-      }]
-    },
-    {
-      type: 'view',
+    ,
+    child: [{
+      type: 'label',
       hide: false,
-      style: "text-align:center; margin: 15px;",
-      bindtap: `let url = '/pages/hometown/index'
+      style: "text-decoration-line: underline;color: #0000EE",
+      innerText: '-我们的家乡-',
+      catchtap: `let url = '/pages/hometown/introduce'
+         wx.navigateTo({ url })`
+    }]
+  },
+  {
+    type: 'view',
+    hide: false,
+    style: "text-align:center; margin: 15px;",
+    bindtap: `let url = '/pages/hometown/index'
         wx.navigateTo({ url })`
-      ,
-      child: [{
-        type: 'label',
-        hide: false,
-        style: "text-decoration-line: underline;color: #0000EE",
-        innerText: '-老家风光-',
-        catchtap: `let url = '/pages/hometown/index'
-         wx.navigateTo({ url })`
-      }]
-    },
-    {
-      type: 'view',
+    ,
+    child: [{
+      type: 'label',
       hide: false,
-      style: "text-align:center; margin: 15px;",
-      bindtap: `let url = '/pages/hometown/sight'
+      style: "text-decoration-line: underline;color: #0000EE",
+      innerText: '-风光带（拍摄的照片）-',
+      catchtap: `let url = '/pages/hometown/index'
+         wx.navigateTo({ url })`
+    }]
+  },
+  {
+    type: 'view',
+    hide: false,
+    style: "text-align:center; margin: 15px;",
+    bindtap: `let url = '/pages/hometown/sight'
         wx.navigateTo({ url })`
-      ,
-      child: [{
-        type: 'label',
-        hide: false,
-        style: "text-decoration-line: underline;color: #0000EE",
-        innerText: '-老家房产-',
-        catchtap: `let url = '/pages/hometown/sight'
-         wx.navigateTo({ url })`
-      }]
-    },
-    {
-      type: 'view',
+    ,
+    child: [{
+      type: 'label',
       hide: false,
-      style: "text-align:center; margin: 15px;",
-      bindtap: `
+      style: "text-decoration-line: underline;color: #0000EE",
+      innerText: '-老房子（留下记忆）-',
+      catchtap: `let url = '/pages/hometown/sight'
+         wx.navigateTo({ url })`
+    }]
+  },
+  {
+    type: 'view',
+    hide: false,
+    style: "text-align:center; margin: 15px;",
+    bindtap: `
         let url = '/pages/hometown/people'
         wx.navigateTo({ url })`
-      ,
-      child: [{
-        type: 'label',
-        hide: false,
-        style: "text-decoration-line: underline;color: #0000EE",
-        innerText: '-父老乡亲-',
-        catchtap: `let url = '/pages/hometown/people'
-         wx.navigateTo({ url })`
-      }]
-    },{
-      type: 'view',
+    ,
+    child: [{
+      type: 'label',
       hide: false,
-      style: "text-align:center; margin: 15px;",
-      bindtap: `
+      style: "text-decoration-line: underline;color: #0000EE",
+      innerText: '-父老乡亲-',
+      catchtap: `let url = '/pages/hometown/people'
+         wx.navigateTo({ url })`
+    }]
+  }, {
+    type: 'view',
+    hide: false,
+    style: "text-align:center; margin: 15px;",
+    bindtap: `
         let url = '/pages/hometown/tel'
         wx.navigateTo({ url })`
-      ,
-      child: [{
-        type: 'label',
-        hide: false,
-        style: "text-decoration-line: underline;color: #0000EE",
-        innerText: '-通讯录-',
-        catchtap: `let url = '/pages/hometown/tel'
-         wx.navigateTo({ url })`
-      }]
-    }, {
-      type: 'view',
+    ,
+    child: [{
+      type: 'label',
       hide: false,
-      style: "text-align:center; margin: 15px;",
-      bindtap: `
+      style: "text-decoration-line: underline;color: #0000EE",
+      innerText: '-通讯录（常联系）-',
+      catchtap: `let url = '/pages/hometown/tel'
+         wx.navigateTo({ url })`
+    }]
+  }, {
+    type: 'view',
+    hide: false,
+    style: "text-align:center; margin: 15px;",
+    bindtap: `
         let url = '/pages/hometown/tel'
         wx.navigateTo({ url })`
-      ,
-      child: [{
-        type: 'label',
-        hide: false,
-        style: "text-decoration-line: underline;color: #0000EE",
-        innerText: '-老家特产-',
-        catchtap: `let url = '/pages/book/index'
-         wx.navigateTo({ url })`
-      }]
-    },
-    {
-      type:"view",
+    ,
+    child: [{
+      type: 'label',
       hide: false,
-      style: `text-align:center;border: 1px solid #ee4341;
+      style: "text-decoration-line: underline;color: #0000EE",
+      innerText: '-老家特产(好吃)-',
+      catchtap: `let url = '/pages/book/index'
+         wx.navigateTo({ url })`
+    }]
+  },
+  {
+    type: "view",
+    hide: false,
+    style: `text-align:center;border: 1px solid #ee4341;
     border-radius: 3px;
       color: #ee4341;
       text-decoration: none;
     }`,
-      innerText:"广告位招租啊~",
-    }
-  ],  
+    innerText: "免费给大家打广告（16737223791）~",
+  }
+  ],
   event: {
     onLoad: {
       func: `

@@ -1,5 +1,4 @@
 //index.js
-const testData = require('../../debug/index/index.js')
 const utils = require('../../utils/utils.js')
 const jsonParse = require('../../utils/jsonParse.js')
 let app = getApp();
@@ -53,9 +52,7 @@ Page({
     var url = app.getCurrentPages() //获取加载的页面
     var index = url.indexOf('?');
     var currentPageUrl = index > -1 ? url.substring(0, index) : url;
-    CONFIGDATA = testData;
-    this.render()
-    // this.getData(currentPageUrl);
+    this.getData(currentPageUrl);
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

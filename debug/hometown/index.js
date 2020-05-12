@@ -1,57 +1,121 @@
-var json = {
-  pageInfo: {
-    title: '家乡风光'
-  },
-  viewData: [{
-    type: 'view',
-    hide: false,
-    style: "padding:10px",
-    child: [{
-      type: 'view',
+var viewData = [
+    {
+      type: 'scroll-view',
+      attr: { 'scroll-y': true},
+      id:'1',
       hide: false,
-      style: "column-count: 2;",
-      child: [{
-        type: 'view',
-        hide: false,
-        wxfor: 'note1',
-        template: `{"type":"view","hide":false,"style":"break-inside: avoid;box-sizing: border-box;text-align: center;background-color: #fff","child":[{"type":"image","hide":false,"style":"width:100%","attr":{"src":"{{url}}"},"bindtap":"console.log('sad:',that.note1);wx.previewImage({current: attr.src, urls: that.note1})"},{"type":"text","hide":false,"innerText":"{{title}}"}]}`
+      style: `padding-top:5px;background-color: #fff;text-align: center;padding-bottom: 5px;`,
+      wxfor: 'categoryArray',
+      template: `{
+      "bindtap": "wx.redirectTo({url: '/pages/book/index?id='+attr.book_id});",
+      "type": "view",
+      "attr": {
+          "book_id": "{{book_id}}"
+      },
+      "hide": false,
+      "style": "padding-left: 12px;padding-top: 5px;padding-bottom: 5px;background-color: #ffffff;border-bottom:1px solid #eeeeee;",
+      "child": [{
+          "type": "view",
+          "hide": false,
+          "style": "width: 20%;padding-top: 6px;float: left;padding-top: 12px;",
+          "child": [{
+              "type": "image",
+              "hide": false,
+              "style": "width: 100%;",
+              "attr": {
+                 "lazy-load":true,
+                  "mode": "widthFix",
+                  "src": "{{book_cover_img}}"
+              }
+          }]
+      }, {
+          "type": "view",
+          "hide": false,
+          "style": "width: 78%;float: right;padding-top: 10px;",
+          "child": [{
+              "type": "view",
+              "hide": false,
+              "child": [{
+                  "type": "view",
+                  "hide": false,
+                  "style": "font-weight: bold;",
+                  "innerText":"{{book_name}}"
+              }]
+          },{
+              "type": "view",
+              "hide": false,
+              "style": "font-size:12px;color: #969696;",
+              "innerText": "{{book_author}}/著"
+      }, 
+      {
+              "type": "view",
+              "hide": false,
+              "style": "font-size:12px;text-overflow:ellipsis;overflow:hidden;word-break: break-all;display:-webkit-box;-webkit-line-clamp:3;padding-right: 8px;-webkit-box-orient:vertical;",
+              "innerText": "{{book_introduce}}"
+          }]
       }]
-    }]
-  }],
-  event: {
-    onLoad: {
-      func: `
-      var IMGPATH1 = 'https://mydear.site/static/image/scenety/';
-      var IMGPATH2 = 'https://mydear.site/static/image/house/';
-      var IMGPATH3 = 'https://mydear.site/static/image/people/';
-      that.note1 =[IMGPATH1 + '1.jpg', 
-        IMGPATH1 + '3.jpg',
-        IMGPATH1 + '4.jpg',
-        IMGPATH1 + '5.jpg', 
-        IMGPATH1 + '6.jpg', 
-        IMGPATH1 + '7.jpg']
-      renderData.note1 = [
+  }`
+    },{
+      type:"view",
+      hide: true,
+      id:'2',
+      style: `text-indent:2em;font-size: 14px;margin-top: 40px;`,
+      innerText:'对不起哦~没有搜索到您想要的书，如果找到该书，我们会及时通知您!',
+      child:[
         {
-          title: '田野',
-          url: IMGPATH1 + '1.jpg'
-        }, {
-          title: '我家的院子',
-          url: IMGPATH1 + '3.jpg'
-        }, {
-          title: '去岳阳的渡口',
-          url: IMGPATH1 + '4.jpg'
-        },{
-          title: '我家的长江',
-          url: IMGPATH1 + '5.jpg'
-        },{
-          title: '家的冬天',
-          url: IMGPATH1 + '6.jpg'
-        },{
-          title: '故乡的月亮',
-          url: IMGPATH1 + '7.jpg'
-        }];
-      `
+          type: 'view',
+          hide: true,
+          style: `border-left:3px solid red;margin-top: 25px;
+color: #4c4c4c;height: 25px;border-top: 1px solid #dfdfdf;border-bottom: 1px solid #dfdfdf;padding: 11px 8pxbackground: #f2f2f2;line-height: 14px;`,
+          child: [{
+            type: 'view',
+            hide: false,
+            style: "font-size: 14px",
+            innerText: '大家都在搜'
+          }]
+        }]
+    }
+  ]
+  var json = {
+    pageInfo: {
+      title: ''
+    },
+    viewData,
+    event: {
+      onReady: "wx.showLoading({title: '加载中...'})",
+      onLoad: {
+        request: {
+          url: "handler/category/getlocalbook",
+          data: `let url = utils.getCurrentPageUrlWithArgs();data.category =utils.getLinkValue(url)[category]
+          if(!data.category){
+            data.keyword = utils.getLinkValue(url)[keyword]
+          }
+          `,
+          callback: `
+          var title = data.title;
+          wx.setNavigationBarTitle({
+            title: title
+          })
+          wx.hideLoading()
+          renderData.categoryArray = data.categoryArray;
+          utils.depDealObj(option.viewData, function(obj){
+            if(obj.id === '1'){
+              if(renderData.categoryArray.length) {
+                obj.hide = false
+              } else{
+                obj.hide = true
+              }
+            } else if(obj.id === '2'){
+              if(renderData.categoryArray.length) {
+                obj.hide = true
+              } else{
+                obj.hide = false
+              }
+            } 
+          })
+          `
+        }
+      }
     }
   }
-}
-module.exports = json
+  module.exports = json

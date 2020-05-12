@@ -5,8 +5,8 @@ var viewData = [
     style: `padding-top:5px;background-color: #fff;text-align: center;padding-bottom: 5px;`,
     child: [{
       type: 'picker',
-      attr: {range:"{{array}}"},
-      bindchange:` let renderData = that.renderData;
+      attr: { range: "{{array}}" },
+      bindchange: ` let renderData = that.renderData;
       let index = option.value;
       renderData.index = index;
       renderData.chapterArray = renderData.Allchapter.slice((index * 20), (index * 20)+20);
@@ -28,26 +28,26 @@ var viewData = [
         border-right: 2px solid #999;
         position: absolute;
         right: 55px;
-        transform: rotate(135deg);`,
-      },{
-        type:'view',
+        transform: rotate(135deg);`
+      }, {
+        type: 'view',
         hide: false,
-        style:'text-align:center',
-        wxfill:"array",
-        innerText:"{{index}}",
+        style: 'text-align:center',
+        wxfill: "array",
+        innerText: "{{index}}"
       }]
     }]
-  },{
+  }, {
     type: 'view',
     hide: false,
     style: " margin: 5px;width: 100 %;padding: 5px;background-color: #fff;",
-    child:[{
+    child: [{
       type: 'view',
       hide: false,
-      wxfor:'chapterArray',
-      template:`{"type":"view","bindtap":"wx.navigateTo({url: '/pages/book/detail?book_id={{book_id}}&chapter_id={{chapter_id}}'});","hide":false,"child":[{"type":"view","hide":false,"style":"position: relative;clear: both;line-height: 38px;height: 38px;padding: 0px 20px 0px 8px;font-size: 14px;border-bottom: 1px solid #dfdfdf;color: #4c4c4c;display: block;margin: 0;background-size: 138px;background-position: right -50px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;","innerText":"{{chapter_name}}"},{"type":"view","hide":false,"style":"width: 10px;height: 10px;border-top: 2px solid #999;border-right: 2px solid #999;position: absolute;right: 20rpx;transform: rotate(45deg);margin-top: -24px;"}]}`
+      wxfor: 'chapterArray',
+      template: `{"type":"view","bindtap":"that.onJss=that.onxx;wx.navigateTo({url: '/pages/book/detail?book_id={{book_id}}&chapter_id={{chapter_id}}'});","hide":false,"child":[{"type":"view","hide":false,"style":"position: relative;clear: both;line-height: 38px;height: 38px;padding: 0px 20px 0px 8px;font-size: 14px;border-bottom: 1px solid #dfdfdf;color: #4c4c4c;display: block;margin: 0;background-size: 138px;background-position: right -50px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;","innerText":"{{chapter_name}}"},{"type":"view","hide":false,"style":"width: 10px;height: 10px;border-top: 2px solid #999;border-right: 2px solid #999;position: absolute;right: 20rpx;transform: rotate(45deg);margin-top: -24px;"}]}`
     }]
-  },{
+  }, {
     type: 'view',
     hide: false,
     style: `text-align: center;background-color: #fff;color: #787878;font-size: 13px;
@@ -56,15 +56,16 @@ padding-top: 5px;padding-bottom: 10px;`,
   }
 ]
 var json = {
-  pageInfo:{
+  pageInfo: {
     title: '目录'
   },
   viewData,
   event: {
+    onReady: "wx.showLoading({title: '加载中...'})",
     onLoad: {
       request: {
-        url: "handler/book/getbookdetail",
-        data: "let url = utils.getCurrentPageUrlWithArgs();data.book_id =utils.getLinkValue(url)[book_id];console.log('sadas:', data)",
+        url: "handler/book/getlist",
+        data: "let url = utils.getCurrentPageUrlWithArgs();data.book_id =utils.getLinkValue(url)[book_id]",
         callback: `let compare = utils.compare('chapter_id')
         let Allchapter = data.chapter.sort(compare)
         let len = Math.floor(Allchapter.length / 20)
@@ -72,14 +73,17 @@ var json = {
         for(let i =0; i < len; i++) {
           tempArray.push((i*20+1) + '----' + ((i+1)*20 + '章'))
         }
-        tempArray.push((len * 20 + 1) + '----' + (Allchapter.length + '章'))
+        if(Allchapter.length > len * 20) {
+          tempArray.push((len * 20 + 1) + '----' + (Allchapter.length + '章'))
+        }
         renderData.array = tempArray;
         renderData.Allchapter = Allchapter
         renderData.chapterArray = Allchapter.slice(0,20);
         renderData.index = 0;
+        wx.hideLoading()
         `
       }
     }
   }
 }
-module.exports = ssss
+module.exports = json
