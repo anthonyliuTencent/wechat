@@ -39,7 +39,7 @@ function createElement(viewArray){
 }
 // option是事件触发wx系统带上的属性
 function executeJs(jsStr, that, attr, option) {
-  console.log('jsStr', jsStr);
+  console.log('jsStrxxx', option);
   attr = attr || {}
   // jsStr ='wx.navigateTo({url:"/pages/book/index?id=10"})'
   // jsStr = 'console.log(attr.book_id)'
